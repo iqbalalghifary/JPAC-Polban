@@ -1,2 +1,2 @@
 # KoTA 203
-Pengelolaa Lowongan Pekerjaan JPAC Polban
+Pengelolaan Lowongan Pekerjaan JPAC Polban
