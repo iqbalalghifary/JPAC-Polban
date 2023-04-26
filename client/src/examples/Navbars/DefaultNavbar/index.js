@@ -24,11 +24,15 @@ import PropTypes from "prop-types";
 // @mui material components
 import Container from "@mui/material/Container";
 import Icon from "@mui/material/Icon";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
+import MuiLink from "@mui/material/Link";
 
 // Material Dashboard 2 React example components
 import DefaultNavbarLink from "examples/Navbars/DefaultNavbar/DefaultNavbarLink";
@@ -109,25 +113,29 @@ function DefaultNavbar({ transparent, light, action }) {
           lineHeight={1}
           pl={{ xs: 0, lg: 1 }}
         >
-          <MDTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
+          {/* <MDTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
             Material Dashboard 2
-          </MDTypography>
+          </MDTypography> */}
         </MDBox>
         <MDBox color="inherit" display={{ xs: "none", lg: "flex" }} m={0} p={0}>
-          <DefaultNavbarLink icon="donut_large" name="dashboard" route="/dashboard" light={light} />
-          <DefaultNavbarLink icon="person" name="profile" route="/profile" light={light} />
-          <DefaultNavbarLink
-            icon="account_circle"
-            name="sign up"
-            route="/authentication/sign-up"
-            light={light}
-          />
-          <DefaultNavbarLink
-            icon="key"
-            name="sign in"
-            route="/authentication/sign-in"
-            light={light}
-          />
+          <DefaultNavbarLink name="Home" route="/dashboard" light={light} />
+          <DefaultNavbarLink name="Membership" route="/profile" light={light} />
+          <DefaultNavbarLink name="Payment Confirmation" route="/profile" light={light} />
+          <DefaultNavbarLink name="Pengumuman" route="/profile" light={light} />
+          <DefaultNavbarLink name="Agenda" route="/profile" light={light} />
+          <DefaultNavbarLink name="Galeri" route="/profile" light={light} />
+          <DefaultNavbarLink name="About Us" route="/profile" light={light} />
+          <MDTypography component={MuiLink} href="#" variant="body1" color="white">
+            <InstagramIcon color="inherit" />
+          </MDTypography>
+          <MDTypography component={MuiLink} href="#" variant="body5" color="white">
+            <FacebookRoundedIcon color="inherit" />
+          </MDTypography>
+          <MDTypography component={MuiLink} href="#" variant="body5" color="white">
+            <TwitterIcon color="inherit" />
+          </MDTypography>
+          {/* <DefaultNavbarLink icon="FacebookRoundedIcon" route="/profile" light={light} /> */}
+          {/* <DefaultNavbarLink icon="twitter" route="/profile" light={light} /> */}
         </MDBox>
         {action &&
           (action.type === "internal" ? (
