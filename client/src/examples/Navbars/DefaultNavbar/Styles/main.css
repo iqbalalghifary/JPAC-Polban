@@ -44,6 +44,10 @@ nav a {
 }
 
 .btn-login {
+	position: absolute;
+	left: 1250px;
+	top: 22px;
+	width: 99px;
 	padding: 1em 1.5em;
 	background: #000033;
 	color: #fff;
@@ -56,11 +60,14 @@ nav a {
 	text-align: center;
 	margin-bottom: 8px;
 	height: 40px;
-	border: none;
-	border-radius: 80px;
+	background: #000033;
+	border-radius: 12px;
 }
 
 .btn-register {
+	position: absolute;
+	left: 1380px;
+	top: 22px;
 	padding: 1em 1.5em;
 	background: #EFEFEF;
 	color: #000000;
@@ -73,9 +80,10 @@ nav a {
 	text-align: center;
 	margin-bottom: 8px;
 	height: 40px;
-	border: none;
-	border-radius: 80px;
+	border: 1px solid #000000;
+	border-radius: 12px;
 }
+
 nav a:hover {
 	color: var(--secondaryColor);
 }
