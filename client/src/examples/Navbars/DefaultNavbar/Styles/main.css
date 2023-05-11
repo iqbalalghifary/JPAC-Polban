@@ -8,10 +8,12 @@
 }
 
 :root {
-	--mainColor: #000033;
+	--mainColor1: #ffffff;
+	--mainColor2: #000033;
 	--mainColorLight: #5767aa;
 	--secondaryColor: #db2b39;
-	--textColor: #eee;
+	--textColor1: #000;
+	--textColor2: #EFEFEF;
 }
 
 header {
@@ -19,10 +21,19 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	height: 98px;
 	padding: 0 2rem;
-	background-color: var(--mainColor);
-	color: var(--textColor);
+}
+
+.header-1 {
+	background-color: var(--mainColor1);
+	color: var(--textColor1);
+	height: 81px;
+}
+
+.header-2 {
+	background-color: var(--mainColor2);
+	color: var(--textColor2);
+	height: 47px;
 }
 
 nav a {

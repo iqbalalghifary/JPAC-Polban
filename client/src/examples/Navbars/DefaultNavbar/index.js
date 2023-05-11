@@ -13,7 +13,7 @@
 // * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 // */
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 // react-router components
 import { Link } from "react-router-dom";
@@ -66,8 +66,8 @@ import PropTypes from "prop-types";
 //       }
 //     }
 
-//     /** 
-//      The event listener that's calling the displayMobileNavbar function when 
+//     /**
+//      The event listener that's calling the displayMobileNavbar function when
 //      resizing the window.
 //     */
 //     window.addEventListener("resize", displayMobileNavbar);
@@ -216,12 +216,7 @@ import PropTypes from "prop-types";
 
 // export default DefaultNavbar;
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import ReactDOM from "react-dom";
+import App from "./App";
 
-
-ReactDOM.render(
-    <App />,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById("root"));
