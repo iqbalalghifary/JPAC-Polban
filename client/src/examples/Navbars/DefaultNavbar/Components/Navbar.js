@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable global-require */
 /* eslint-disable jsx-a11y/alt-text */
 import { useRef } from "react";
@@ -16,7 +17,7 @@ function Navbar() {
       <header className="header header-1">
         <img
           src={require("examples/Navbars/DefaultNavbar/images/logo.png")}
-          width={44}
+          width={40}
           height={52}
         />
         <h3>Pusat Karir POLBAN</h3>
@@ -25,13 +26,51 @@ function Navbar() {
           <a href="/#">Perusahaan Mitra</a>
           <a href="/#">Tracer Study</a>
           <a href="/#">Help</a>
-          <button type="button" className="nav-btn nav-close-btn" onClick={showNavbar}>
-            <FaTimes />
-          </button>
+          {/* <button
+            disabled={showNavbar}
+            type="submit"
+            style={{ width: "20%" }}
+            className="p-2 w-150"
+          >
+            Login
+          </button> */}
+          {/* <button className="btn-register">
+            Register
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            />
+          </button> */}
+          {/* <button type="button" className="nav-btn nav-close-btn" onClick={showNavbar}>
+            Login <FaTimes />
+          </button> */}
         </nav>
-        <button type="button" className="nav-btn" onClick={showNavbar}>
-          <FaBars />
+        <button className="btn-login">
+          Login
+          <svg
+            width="3"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          />
         </button>
+        <button className="btn-register">
+          register
+          <svg
+            width="3"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </button>
+        {/* <button type="button" className="nav-btn" onClick={showNavbar}>
+          Register <FaBars />
+        </button> */}
       </header>
       <header className="header header-2">
         <nav ref={navRef}>

@@ -43,6 +43,39 @@ nav a {
 	text-decoration: none;
 }
 
+.btn-login {
+	padding: 1em 1.5em;
+	background: #000033;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 500;
+	font-size: 14.4px;
+	line-height: 22px;
+	text-align: center;
+	margin-bottom: 8px;
+	height: 40px;
+	border: none;
+	border-radius: 80px;
+}
+
+.btn-register {
+	padding: 1em 1.5em;
+	background: #EFEFEF;
+	color: #000000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 500;
+	font-size: 14.4px;
+	line-height: 22px;
+	text-align: center;
+	margin-bottom: 8px;
+	height: 40px;
+	border: none;
+	border-radius: 80px;
+}
 nav a:hover {
 	color: var(--secondaryColor);
 }
