@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+/* eslint-disable jsx-a11y/alt-text */
 import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "examples/Navbars/DefaultNavbar/Styles/main.css";
@@ -12,7 +14,7 @@ function Navbar() {
   return (
     <div>
       <header className="header header-1">
-        <img 
+        <img
           src={require("examples/Navbars/DefaultNavbar/images/logo.png")}
           width={44}
           height={52}
