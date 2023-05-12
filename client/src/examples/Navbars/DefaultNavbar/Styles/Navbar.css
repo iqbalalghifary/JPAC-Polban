@@ -80,15 +80,19 @@ header {
 
 /* teks bar kedua */
 .header-2 nav a {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;	
 	margin: 0 1rem;
 	color: var(--textColor);
 	text-decoration: none;
 }
 
-
 .btn-login {
 	position: absolute;
-	left: 1250px;
+	left: 1100px;
 	top: 22px;
 	height: 40px;
 	width: 100px;
@@ -108,7 +112,7 @@ header {
 
 .btn-register {
 	position: absolute;
-	left: 1380px;
+	left: 1210px;
 	top: 22px;
 	height: 40px;
 	width: 100px;
@@ -157,7 +161,7 @@ nav {
 	}
 
 	header nav {
-		position: fixed;
+		position:absolute;
 		top: -100vh;
 		left: 0;
 		height: 100%;
