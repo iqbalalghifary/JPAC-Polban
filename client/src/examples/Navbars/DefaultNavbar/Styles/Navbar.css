@@ -88,7 +88,7 @@ header {
 
 .btn-login {
 	position: absolute;
-	left: 1100px;
+	left: 1250px;
 	top: 22px;
 	height: 40px;
 	width: 100px;
@@ -108,7 +108,7 @@ header {
 
 .btn-register {
 	position: absolute;
-	left: 1200px;
+	left: 1380px;
 	top: 22px;
 	height: 40px;
 	width: 100px;
@@ -125,9 +125,9 @@ header {
 	text-align: center;
 	margin-bottom: 8px;
 	height: 40px;
-	border: none;
-
+	border: 1px solid #000000;
 }
+
 nav a:hover {
 	color: var(--secondaryColor);
 }
