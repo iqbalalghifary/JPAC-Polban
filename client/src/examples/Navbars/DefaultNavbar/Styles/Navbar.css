@@ -17,33 +17,82 @@
 	--textColor2: #EFEFEF;
 }
 
+/* body navbar */
 header {
 	border-radius: [object Object]px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: left;
 	padding: 0 2rem;
 }
 
+/* teks pusat karir polban */
+.header-1 h3 {
+	margin-left: 1%;
+	margin-right: 10%;
+	width: 77px;
+	height: 34px;
+	left: 88px;
+	top: 26px;
+
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 900;
+	font-size: 14px;
+	line-height: 16px;
+
+	color: #000000;
+}
+
+
+/* bar pertama */
 .header-1 {
 	background-color: var(--mainColor1);
 	color: var(--textColor1);
 	height: 81px;
 }
 
+/* teks bar pertama */
+.header-1 nav a {
+	width: 131px;
+	height: 16px;
+	left: 259px;
+	top: 33px;
+
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+
+	color: #000000;
+	margin: 0 1rem;
+	color: var(--textColor);
+	text-decoration: none;
+}
+
+/* bar kedua */
 .header-2 {
 	background-color: var(--mainColor2);
 	color: var(--textColor2);
 	height: 47px;
 }
 
-nav a {
+/* teks bar kedua */
+.header-2 nav a {
 	margin: 0 1rem;
 	color: var(--textColor);
 	text-decoration: none;
 }
 
+
 .btn-login {
+	position: absolute;
+	left: 1100px;
+	top: 22px;
+	height: 40px;
+	width: 100px;
+	border-radius: 10px;
 	padding: 1em 1.5em;
 	background: #000033;
 	color: #fff;
@@ -55,12 +104,15 @@ nav a {
 	line-height: 22px;
 	text-align: center;
 	margin-bottom: 8px;
-	height: 40px;
-	border: none;
-	border-radius: 80px;
 }
 
 .btn-register {
+	position: absolute;
+	left: 1200px;
+	top: 22px;
+	height: 40px;
+	width: 100px;
+	border-radius: 10px;
 	padding: 1em 1.5em;
 	background: #EFEFEF;
 	color: #000000;
@@ -74,7 +126,7 @@ nav a {
 	margin-bottom: 8px;
 	height: 40px;
 	border: none;
-	border-radius: 80px;
+
 }
 nav a:hover {
 	color: var(--secondaryColor);
@@ -128,7 +180,7 @@ nav {
 		top: 2rem;
 		right: 2rem;
 	}
-	
+
 
 	nav a {
 		font-size: 1.5rem;

@@ -53,7 +53,7 @@ Coded by www.creative-tim.com
 // import brandWhite from "assets/images/logo-ct.png";
 // import brandDark from "assets/images/logo-ct-dark.png";
 
-import Navbar from "examples/Navbars/DefaultNavbar/Components/Navbar";
+import Navbar from "examples/Navbars/DefaultNavbar";
 
 function App() {
   return <Navbar />;
