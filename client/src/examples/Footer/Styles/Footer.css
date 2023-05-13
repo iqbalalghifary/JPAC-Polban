@@ -48,10 +48,13 @@ ul {
     max-width: 200px;
 }
 .footer-text p {
-  margin-bottom: 14px;
-  font-size: 14px;
-      color: #7e7e7e;
-  line-height: 28px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 160%;
+    color: #FFFFFF;
+    margin-bottom: 14px;
 }
 .footer-social-icon span {
   color: #fff;
@@ -116,9 +119,10 @@ ul {
   padding: 25px 0;
 }
 .copyright-text p {
+    text-align: center;
   margin: 0;
   font-size: 14px;
-  color: #878787;
+  color:  #FFFFFF;
 }
 .copyright-text p a{
   color: #ff5e14;
