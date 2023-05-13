@@ -1,19 +1,18 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 import Navbar from "examples/Navbars/DefaultNavbar";
 import Footer from "examples/Footer";
-import Sections from 'examples/Sections/Section';
+import Sections from "examples/Sections/Section";
 
 function App() {
   return (
-    <Fragment>
-    <Navbar />
-    <main>
-      <Sections />
-    </main>
-    <Footer />
-  </Fragment>
+    <>
+      <Navbar />
+      <main>
+        <Sections />
+      </main>
+      <Footer />
+    </>
   );
 }
 
 export default App;
-
