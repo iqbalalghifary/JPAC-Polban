@@ -54,9 +54,16 @@ Coded by www.creative-tim.com
 // import brandDark from "assets/images/logo-ct-dark.png";
 
 import Navbar from "examples/Navbars/DefaultNavbar";
+import Footer from "examples/Footer";
 
 function App() {
-  return <Navbar />;
+  return (
+    <div>
+      <Navbar />
+      <h1>Ini adalah halaman utama</h1>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
