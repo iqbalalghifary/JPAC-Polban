@@ -1,7 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import Section from 'examples/HOC/Section';
-// import aboutImage from '../../../assets/img/about.jpg';
+import Section from "examples/HOC/Section";
 
 const about = () => {
   return (
