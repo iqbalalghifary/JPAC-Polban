@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/button-has-type */
 /* eslint-disable global-require */
 /* eslint-disable jsx-a11y/alt-text */
@@ -21,10 +22,10 @@ function Navbar() {
       }
     };
 
-    window.addEventListener('click', handleWindowClick);
+    window.addEventListener("click", handleWindowClick);
 
     return () => {
-      window.removeEventListener('click', handleWindowClick);
+      window.removeEventListener("click", handleWindowClick);
     };
   }, [navRef]);
 
@@ -37,8 +38,8 @@ function Navbar() {
       {/* first navbar */}
       <header className="header-1">
         <img
-          src={require("examples/Navbars/DefaultNavbar/Images/logo.png")}
-          width={42}
+          src={require("examples/Navbars/DefaultNavbar/images/logos.png")}
+          width={145}
           height={52}
         />
         <h3>Pusat Karir POLBAN</h3>
