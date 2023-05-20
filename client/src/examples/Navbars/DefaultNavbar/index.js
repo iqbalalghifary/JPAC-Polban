@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useRef, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import "examples/Navbars/DefaultNavbar/Styles/Navbar.css";
+import "./Styles/Navbar.css";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,11 +37,7 @@ function Navbar() {
     <div>
       {/* first navbar */}
       <header className="header-1">
-        <img
-          src={require("examples/Navbars/DefaultNavbar/images/logos.png")}
-          width={145}
-          height={52}
-        />
+        <img src={require("./Images/logos.png")} width={145} height={52} />
         <h3>Pusat Karir POLBAN</h3>
         <nav ref={navRef}>
           <a href="/#">Lowongan Pekerjaan</a>
