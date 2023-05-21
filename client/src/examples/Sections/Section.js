@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 
-import About from 'examples/Sections/About/About.js';
-import Membership from './Membership/Membership';
-import Mitra from './Mitra/Mitra';
+// import About from "./About/About";
+// import Membership from "./Membership/Membership";
+import Mitra from "./Mitra/Mitra";
 
 const Sections = () => {
   return (

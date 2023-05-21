@@ -1,79 +1,107 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
+import "./Styles/Mitra.css";
 import Section from "../../HOC/Section";
-import image1 from "./Images/toko.jpg";
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-    padding: "20px",
-  },
-  card: {
-    maxWidth: 500,
-  },
-  media: {
-    height: 200,
-  },
-});
+// import logo perusahaan
+// import image1 from "./Images/tokopedia.png";
+// import image2 from "./Images/logo_esdm.png";
 
-const cards = [
+const images = [
   {
     id: 1,
-    title: "Card 1",
-    description: "This is card 1 description.",
-    image: image1,
+    src: "https://ecs7.tokopedia.net/img/attachment/2019/10/14/40768394/40768394_a4b8c9ee-581e-4be6-b320-b467276927ec.jpg",
+    alt: "Image 1",
     link: "/page1",
   },
   {
     id: 2,
-    title: "Card 2",
-    description: "This is card 2 description.",
-    image: "/path/to/image2.jpg",
+    src: "https://seeklogo.com/images/S/shopee-logo-DD5CAE562A-seeklogo.com.png",
+    alt: "Image 2",
     link: "/page2",
   },
   {
-    id: 3,
-    title: "Card 3",
-    description: "This is card 3 description.",
-    image: "/path/to/image3.jpg",
-    link: "/page3",
+    id: 2,
+    src: "https://i0.wp.com/ebizmark.id/wp-content/uploads/2022/09/Ebizmark.jpg?fit=1380%2C1380&ssl=1",
+    alt: "Image 2",
+    link: "/page2",
   },
+  {
+    id: 2,
+    src: "https://seeklogo.com/images/S/shopee-logo-DD5CAE562A-seeklogo.com.png",
+    alt: "Image 2",
+    link: "/page2",
+  },
+  {
+    id: 2,
+    src: "https://seeklogo.com/images/S/shopee-logo-DD5CAE562A-seeklogo.com.png",
+    alt: "Image 2",
+    link: "/page2",
+  },
+  {
+    id: 2,
+    src: "https://seeklogo.com/images/S/shopee-logo-DD5CAE562A-seeklogo.com.png",
+    alt: "Image 2",
+    link: "/page2",
+  },
+  {
+    id: 2,
+    src: "https://seeklogo.com/images/S/shopee-logo-DD5CAE562A-seeklogo.com.png",
+    alt: "Image 2",
+    link: "/page2",
+  },
+  {
+    id: 2,
+    src: "https://seeklogo.com/images/S/shopee-logo-DD5CAE562A-seeklogo.com.png",
+    alt: "Image 2",
+    link: "/page2",
+  },
+  {
+    id: 2,
+    src: "https://seeklogo.com/images/S/shopee-logo-DD5CAE562A-seeklogo.com.png",
+    alt: "Image 2",
+    link: "/page2",
+  },
+  {
+    id: 2,
+    src: "https://seeklogo.com/images/S/shopee-logo-DD5CAE562A-seeklogo.com.png",
+    alt: "Image 2",
+    link: "/page2",
+  },
+  {
+    id: 2,
+    src: "https://seeklogo.com/images/S/shopee-logo-DD5CAE562A-seeklogo.com.png",
+    alt: "Image 2",
+    link: "/page2",
+  },
+  {
+    id: 2,
+    src: "https://seeklogo.com/images/S/shopee-logo-DD5CAE562A-seeklogo.com.png",
+    alt: "Image 2",
+    link: "/page2",
+  },
+  // Tambahkan lebih banyak objek gambar jika diperlukan
 ];
 
 function Mitra() {
-  const classes = useStyles();
-
   return (
     <Section id="mitra">
-      <div className={classes.root}>
-        <Grid container spacing={3}>
-          {cards.map((card) => (
-            <Grid item xs={12} sm={6} md={4} key={card.id}>
-              <Card className={classes.card}>
-                <Link to={card.link}>
-                  <CardActionArea>
-                    <CardMedia className={classes.media} image={card.image} title={card.title} />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {card.title}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary" component="p">
-                        {card.description}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Link>
-              </Card>
-            </Grid>
+      <div className="container">
+        <div className="row">
+          {images.map((image) => (
+            // ngatur ukuran box nya
+            <div className="col-md-2 mb-4 mt-4" key={image.id}>
+              <Link to={image.link}>
+                <div className="card">
+                  <img src={image.src} alt={image.alt} className="card-img-top" />
+                  {/* <div className="card-body">
+                    <h5 className="card-title">{image.alt}</h5>
+                  </div> */}
+                </div>
+              </Link>
+            </div>
           ))}
-        </Grid>
+        </div>
       </div>
     </Section>
   );
