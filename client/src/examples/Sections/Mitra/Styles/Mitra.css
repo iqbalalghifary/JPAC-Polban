@@ -60,6 +60,22 @@
 
 .card-body {
   padding: 1rem;
-  color: #fff; /* Warna teks card */
+  color: #000; /* Warna teks card */
+  text-align: center;
 }
+
+.search-input {
+  border: 1px solid #000033; /* Ubah warna dan style border sesuai keinginan */
+  color: #333; /* Ubah warna teks sesuai keinginan */
+}
+
+.search-button {
+  background-color: #000033; /* Ubah warna background tombol sesuai keinginan */
+  border-color: #007bff; /* Ubah warna border tombol sesuai keinginan */
+}
+
+.search-icon {
+  color: #fff; /* Ubah warna ikon search sesuai keinginan */
+}
+
 
