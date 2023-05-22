@@ -1,7 +1,8 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 
-import Section from "examples/HOC/Section";
-import "examples/Sections/Membership/Membership.css";
+import Section from "../../HOC/Section";
+import "./Membership.css";
 
 function Membership() {
   return (

@@ -38,7 +38,7 @@ function Navbar() {
       {/* first navbar */}
       <header className="header-1">
         <img src={require("./Images/logos.png")} width={145} height={52} />
-        {/* <h3>Pusat Karir POLBAN</h3> */}
+        <h3>Pusat Karir POLBAN</h3>
         <nav ref={navRef}>
           <a href="/#">Lowongan Pekerjaan</a>
           <a href="/#">Perusahaan Mitra</a>

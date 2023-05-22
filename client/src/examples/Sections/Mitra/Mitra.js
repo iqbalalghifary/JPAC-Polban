@@ -80,3 +80,102 @@ function Mitra() {
 }
 
 export default Mitra;
+
+// import React, { useState } from "react";
+// import { Link } from "react-router-dom";
+// import { makeStyles } from "@material-ui/core/styles";
+// import TextField from "@material-ui/core/TextField";
+// import Button from "@material-ui/core/Button";
+// import Search from "@material-ui/icons/Search";
+// import Card from "@material-ui/core/Card";
+// import CardContent from "@material-ui/core/CardContent";
+// import Typography from "@material-ui/core/Typography";
+// import Grid from "@material-ui/core/Grid";
+
+// import Section from "../../HOC/Section";
+
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     flexGrow: 1,
+//   },
+//   searchInput: {
+//     marginRight: theme.spacing(2),
+//   },
+//   searchButton: {
+//     marginLeft: theme.spacing(2),
+//   },
+//   card: {
+//     height: "100%",
+//     display: "flex",
+//     flexDirection: "column",
+//   },
+// }));
+
+// const images = [
+//   {
+//     id: 1,
+//     src: "https://ecs7.tokopedia.net/img/attachment/2019/10/14/40768394/40768394_a4b8c9ee-581e-4be6-b320-b467276927ec.jpg",
+//     alt: "Image 1",
+//     title: "Tokopedia",
+//     link: "/page1",
+//   },
+//   // Tambahkan lebih banyak objek gambar jika diperlukan
+// ];
+
+// function Mitra() {
+//   const classes = useStyles();
+//   const [searchTerm, setSearchTerm] = useState("");
+
+//   const handleSearch = (event) => {
+//     setSearchTerm(event.target.value);
+//   };
+
+//   const filteredImages = images.filter((image) =>
+//     image.title.toLowerCase().includes(searchTerm.toLowerCase())
+//   );
+
+//   return (
+//     <Section id="mitra">
+//       <div className={classes.root}>
+//         <Grid container spacing={2}>
+//           <Grid item xs={12} sm={8} md={6} lg={4} xl={4}>
+//             <TextField
+//               className={classes.searchInput}
+//               variant="outlined"
+//               placeholder="Cari berdasarkan judul"
+//               value={searchTerm}
+//               onChange={handleSearch}
+//             />
+//             <Button
+//               className={classes.searchButton}
+//               variant="contained"
+//               color="primary"
+//               disableElevation
+//               startIcon={<Search />}
+//             >
+//               Cari
+//             </Button>
+//           </Grid>
+//         </Grid>
+//         <Grid container spacing={2}>
+//           {filteredImages.map((image) => (
+//             <Grid item xs={6} sm={4} md={3} lg={2} xl={2} key={image.id}>
+//               <Link to={image.link}>
+//                 <Card className={classes.card}>
+//                   <img src={image.src} alt={image.alt} className="card-img-top" />
+//                   <CardContent>
+//                     <Typography variant="h6" component="h3">
+//                       {image.title}
+//                     </Typography>
+//                   </CardContent>
+//                 </Card>
+//               </Link>
+//             </Grid>
+//           ))}
+//         </Grid>
+//       </div>
+//     </Section>
+//   );
+// }
+
+// export default Mitra;
