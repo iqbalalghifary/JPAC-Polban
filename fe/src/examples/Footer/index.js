@@ -48,7 +48,7 @@ function Footer() {
                 <div className="footer-logo">
                   <a href="index.html">
                     <img
-                      src={require("examples/Navbars/DefaultNavbar/Images/logo.png")}
+                      src={require("examples/Navbars/DefaultNavbar/images/logo.png")}
                       width={50}
                       height={72}
                       className="img-fluid"
