@@ -1,21 +1,44 @@
-import React, { Fragment } from "react";
-import Sections from "./examples/Sections/Section";
-import Navbar from "./examples/Navbars/DefaultNavbar";
-import Footer from "./examples/Footer";
+import React from "react";
+
+import { Route, Routes } from "react-router-dom";
+import { Membership } from "./examples/Sections/Membership/Membership";
+import { Portal } from "./examples/Sections/Portal/Portal";
+// import { About } from "./routes/About";
+// import { Contact } from "./routes/Contact";
+// import { Project } from "./routes/Project";
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <Sections />
-      </main>
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<Portal />} />
+      <Route path="membership" element={<Membership />} />
+      {/* <Route path="project" element={<Project />} />
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} /> */}
+    </Routes>
   );
 }
 
 export default App;
+
+// import React, { Fragment } from "react";
+// import Sections from "./examples/Sections/Section";
+// import Navbar from "./examples/Navbars/DefaultNavbar";
+// import Footer from "./examples/Footer";
+
+// function App() {
+//   return (
+//     <>
+//       <Navbar />
+//       <main>
+//         <Sections />
+//       </main>
+//       <Footer />
+//     </>
+//   );
+// }
+
+// export default App;
 
 // import React from "react";
 // import { BrowserRouter, Routes, Route } from "react-router-dom";

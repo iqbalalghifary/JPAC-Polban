@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/button-has-type */
 /* eslint-disable global-require */
@@ -7,10 +8,11 @@
 // /* eslint-disable jsx-a11y/alt-text */
 
 import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "./Styles/Navbar.css";
 
-function Navbar() {
+export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef();
 
@@ -92,7 +94,9 @@ function Navbar() {
       <header className="header-2">
         <nav ref={navRef}>
           <a href="/#">Home</a>
-          <a href="/#">Membership</a>
+          <Link to="/membership">
+            <a>Membership</a>
+          </Link>
           <a href="/#">Payment Confirmation</a>
           <a href="/#">Pengumuman</a>
           <a href="/#">Agenda</a>
@@ -109,8 +113,6 @@ function Navbar() {
     </div>
   );
 }
-
-export default Navbar;
 
 // import React, { useState, useRef, useEffect } from "react";
 // import { FaBars, FaTimes } from "react-icons/fa";

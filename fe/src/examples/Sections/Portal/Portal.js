@@ -1,12 +1,16 @@
+/* eslint-disable import/named */
+/* eslint-disable import/prefer-default-export */
 import React from "react";
+import { Navbar } from "../../Navbars/DefaultNavbar";
+// import { HeroImg } from "../components/heroImages/HeroImg";
+// import { Footer } from "../components/footer/Footer";
+// import { Work } from "../components/work/Work";
 
-function Portal() {
+// eslint-disable-next-line arrow-body-style, react/function-component-definition
+export const Portal = () => {
   return (
     <div>
-      <h1>Welcome to Portal Page</h1>
-      <p>This is the Portal page content.</p>
+      <Navbar />
     </div>
   );
-}
-
-export default Portal;
+};
