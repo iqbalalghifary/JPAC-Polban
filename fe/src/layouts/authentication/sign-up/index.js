@@ -28,12 +28,12 @@ import MDTypography from "components/MDTypography";
 import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
-import BasicLayout from "layouts/profile/components/non-navbar/non-navbar";
+import BasicLayout from "../../admin/profile/components/non-navbar/non-navbar";
 
 // Images
-import bgImage from "assets/images/bg-polbans.jpeg";
+import bgImage from "../../../assets/images/bg-polbans.jpeg";
 
-function Basic() {
+function Registration() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
@@ -124,4 +124,4 @@ function Basic() {
   );
 }
 
-export default Basic;
+export default Registration;

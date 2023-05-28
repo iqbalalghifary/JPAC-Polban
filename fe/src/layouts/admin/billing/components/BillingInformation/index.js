@@ -21,7 +21,7 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
 // Billing page components
-import Bill from "layouts/billing/components/Bill";
+import Bill from "../Bill";
 
 function BillingInformation() {
   return (

@@ -9,6 +9,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "./Styles/Navbar.css";
 
@@ -39,6 +40,12 @@ export function Navbar() {
     setIsOpen(!isOpen);
   };
 
+  // const history = useHistory();
+
+  // const handleLogin = () => {
+  //   history.push("/sign-in");
+  // };
+
   return (
     <div>
       {/* first navbar */}
@@ -68,7 +75,7 @@ export function Navbar() {
             </ul>
           )}
         </nav>
-        <button type="button" className="btn-login">
+        <Link to="/sign-in" className="btn-login">
           Login
           <svg
             width="3"
@@ -77,7 +84,17 @@ export function Navbar() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           />
-        </button>
+        </Link>
+        {/* <button type="button" className="btn-login" onClick={handleLogin}>
+          Login
+          <svg
+            width="3"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </button> */}
         <button type="button" className="btn-register">
           register
           <svg

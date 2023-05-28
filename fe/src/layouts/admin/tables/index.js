@@ -24,12 +24,13 @@ import MDTypography from "components/MDTypography";
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+import Footer from "examples/Footer/DashboardFooter";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import authorsTableData from "layouts/tables/data/authorsTableData";
-import projectsTableData from "layouts/tables/data/projectsTableData";
+
+import authorsTableData from "./data/authorsTableData";
+import projectsTableData from "./data/projectsTableData";
 
 function Tables() {
   const { columns, rows } = authorsTableData();
