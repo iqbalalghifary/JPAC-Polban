@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /**
 =========================================================
 * Material Dashboard 2 React - v2.1.0
@@ -27,6 +28,7 @@ import Icon from "@mui/material/Icon";
 import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
+import { About } from "examples/Sections/About";
 import MDBox from "./components/MDBox";
 
 // Material Dashboard 2 React example components
@@ -53,6 +55,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "./
 import brandWhite from "./assets/images/logo-ct.png";
 import brandDark from "./assets/images/logo-ct-dark.png";
 
+// section
 import { Membership } from "./examples/Sections/Membership/Membership";
 import { Portal } from "./layouts/portal";
 import Login from "./layouts/authentication/sign-in";
@@ -196,9 +199,10 @@ function App() {
       <Routes>
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="sign-in" element={<Login />} />
         <Route path="/" element={<Portal />} />
         <Route path="membership" element={<Membership />} />
-        <Route path="sign-in" element={<Login />} />
+        <Route path="about" element={<About />} />
       </Routes>
     </ThemeProvider>
   );

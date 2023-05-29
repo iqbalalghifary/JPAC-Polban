@@ -118,7 +118,9 @@ export function Navbar() {
           <a href="/#">Pengumuman</a>
           <a href="/#">Agenda</a>
           <a href="/#">Galeri</a>
-          <a href="/#">About Us</a>
+          <Link to="/About">
+            <a>About Us</a>
+          </Link>
           <button type="button" className="nav-btn nav-close-btn" onClick={showNavbar}>
             <FaTimes />
           </button>
