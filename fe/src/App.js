@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 /* eslint-disable import/no-unresolved */
 /**
 =========================================================
@@ -59,6 +60,8 @@ import brandDark from "./assets/images/logo-ct-dark.png";
 import { Membership } from "./examples/Sections/Membership/Membership";
 import { Portal } from "./layouts/portal";
 import Login from "./layouts/authentication/sign-in";
+import Registration from "./layouts/authentication/sign-up";
+import Agenda from "examples/Sections/Agenda/Agenda";
 
 function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -200,9 +203,11 @@ function App() {
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/dashboard" />} />
         <Route path="sign-in" element={<Login />} />
+        <Route path="sign-up" element={<Registration />} />
         <Route path="/" element={<Portal />} />
         <Route path="membership" element={<Membership />} />
         <Route path="about" element={<About />} />
+        <Route path="agenda" element={<Agenda />} />
       </Routes>
     </ThemeProvider>
   );

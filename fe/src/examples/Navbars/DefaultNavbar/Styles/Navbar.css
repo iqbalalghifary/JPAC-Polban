@@ -54,7 +54,7 @@ header {
 
 /* teks bar pertama */
 .header-1 nav a {
-	width: 131px;
+	width: 150px;
 	height: 16px;
 	left: 259px;
 	top: 33px;
@@ -92,7 +92,7 @@ header {
 
 .btn-login {
 	position: absolute;
-	left: 1100px;
+	left: 1250px;
 	top: 22px;
 	height: 40px;
 	width: 100px;
@@ -112,7 +112,7 @@ header {
 
 .btn-register {
 	position: absolute;
-	left: 1210px;
+	left: 1380px;
 	top: 22px;
 	height: 40px;
 	width: 100px;

@@ -40,12 +40,6 @@ export function Navbar() {
     setIsOpen(!isOpen);
   };
 
-  // const history = useHistory();
-
-  // const handleLogin = () => {
-  //   history.push("/sign-in");
-  // };
-
   return (
     <div>
       {/* first navbar */}
@@ -54,7 +48,7 @@ export function Navbar() {
           src={require("./images/logos.png")}
           alt="Logo of the company"
           width={145}
-          height={52}
+          height={50}
         />
         <nav ref={navRef}>
           <a href="/#">Lowongan Pekerjaan</a>
@@ -75,6 +69,7 @@ export function Navbar() {
             </ul>
           )}
         </nav>
+        <nav ref={navRef} />
         <Link to="/sign-in" className="btn-login">
           Login
           <svg
@@ -85,17 +80,8 @@ export function Navbar() {
             xmlns="http://www.w3.org/2000/svg"
           />
         </Link>
-        {/* <button type="button" className="btn-login" onClick={handleLogin}>
-          Login
-          <svg
-            width="3"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          />
-        </button> */}
-        <button type="button" className="btn-register">
+        <nav ref={navRef} />
+        <button to="/sign-up" className="btn-register">
           register
           <svg
             width="3"
@@ -116,7 +102,7 @@ export function Navbar() {
           </Link>
           <a href="/#">Payment Confirmation</a>
           <a href="/#">Pengumuman</a>
-          <a href="/#">Agenda</a>
+          <a href="/Agenda">Agenda</a>
           <a href="/#">Galeri</a>
           <Link to="/About">
             <a>About Us</a>
