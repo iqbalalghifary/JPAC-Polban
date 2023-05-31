@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DataServicesModule } from '../../services/data-services/data-services.module';
+import { DataServicesModule } from '../../services/data-services.module';
 import { CarouselUseCases } from './carousel.use-case';
 
 @Module({

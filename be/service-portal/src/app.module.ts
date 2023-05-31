@@ -5,7 +5,7 @@ import {
   CarouselController,
   GalleryController,
 } from './controllers';
-import { DataServicesModule } from './services/data-services/data-services.module';
+import { DataServicesModule } from './services/data-services.module';
 import { AgendaUseCasesModule } from './use-cases/agenda/agenda-use-cases.module';
 import { AnnouncementUseCasesModule } from './use-cases/announcement/announcement-use-cases.module';
 import { GalleryUseCasesModule } from './use-cases/gallery/gallery-use-cases.module';
