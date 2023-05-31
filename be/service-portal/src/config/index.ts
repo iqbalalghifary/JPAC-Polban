@@ -2,7 +2,7 @@ const dotEnv = require("dotenv");
 
 dotEnv.config();
 
-export const DATA_BASE_CONFIGURATION = {
-  mongoConnectionString: process.env
-    .CLEAN_NEST_MONGO_CONNECTION_STRING as string,
+export const config = {
+  MONGO_URI: process.env.CLEAN_NEST_MONGO_CONNECTION_STRING,
+  PORT: process.env.PORT
 };

@@ -1,29 +1,31 @@
 import { Module } from '@nestjs/common';
 import {
-  AppController,
-  BookController,
-  AuthorController,
-  GenreController,
+  AgendaController,
+  AnnouncementController,
+  CarouselController,
+  GalleryController,
 } from './controllers';
 import { DataServicesModule } from './services/data-services/data-services.module';
-import { BookUseCasesModule } from './use-cases/book/book-use-cases.module';
-import { AuthorUseCasesModule } from './use-cases/author/author-use-cases.module';
-import { GenreUseCasesModule } from './use-cases/genre/genre-use-cases.module';
-import { CrmServicesModule } from './services/crm-services/crm-services.module';
+import { AgendaUseCasesModule } from './use-cases/agenda/agenda-use-cases.module';
+import { AnnouncementUseCasesModule } from './use-cases/announcement/announcement-use-cases.module';
+import { GalleryUseCasesModule } from './use-cases/gallery/gallery-use-cases.module';
+import { CarouselUseCasesModule } from './use-cases/carousel/carousel-use-cases.module';
+import { MulterModule } from '@nestjs/platform-express/multer';
 
 @Module({
   imports: [
+    MulterModule.register({ dest: './uploads' }),
     DataServicesModule,
-    BookUseCasesModule,
-    AuthorUseCasesModule,
-    GenreUseCasesModule,
-    CrmServicesModule,
+    AgendaUseCasesModule,
+    AnnouncementUseCasesModule,
+    GalleryUseCasesModule,
+    CarouselUseCasesModule
   ],
   controllers: [
-    AppController,
-    BookController,
-    AuthorController,
-    GenreController,
+    AgendaController,
+    AnnouncementController,
+    CarouselController,
+    GalleryController,
   ],
   providers: [],
 })

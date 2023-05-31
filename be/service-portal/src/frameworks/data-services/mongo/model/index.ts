@@ -1,3 +1,4 @@
-export * from './author.model';
-export * from './book.model';
-export * from './genre.model';
+export * from './carousel.model';
+export * from './announcement.model';
+export * from './agenda.model';
+export * from './gallery.model';

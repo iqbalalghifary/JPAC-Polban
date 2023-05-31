@@ -1,25 +1,28 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { IDataServices } from '../../../core';
-import { DATA_BASE_CONFIGURATION } from '../../../config';
+import { config } from '../../../config';
 import {
-  Author,
-  AuthorSchema,
-  Book,
-  BookSchema,
-  Genre,
-  GenreSchema,
+  Agenda,
+  AgendaSchema,
+  Announcement,
+  AnnouncementSchema,
+  Carousel,
+  CarouselSchema,
+  Gallery,
+  GallerySchema
 } from './model';
 import { MongoDataServices } from './mongo-data-services.service';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: Author.name, schema: AuthorSchema },
-      { name: Book.name, schema: BookSchema },
-      { name: Genre.name, schema: GenreSchema },
+      { name: Agenda.name, schema: AgendaSchema },
+      { name: Announcement.name, schema: AnnouncementSchema },
+      { name: Carousel.name, schema: CarouselSchema },
+      { name: Gallery.name, schema: GallerySchema },
     ]),
-    MongooseModule.forRoot(DATA_BASE_CONFIGURATION.mongoConnectionString),
+    MongooseModule.forRoot(config.MONGO_URI),
   ],
   providers: [
     {

@@ -1,12 +1,22 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { MailerService } from '@nestjs-modules/mailer';
+import { Body, Controller, Post, Param } from '@nestjs/common';
+import { config } from './config';
 
-@Controller()
+@Controller('api/email')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private mailService: MailerService) {}
 
-  @Get()
-  sendMail(): void {
-    return this.appService.sendMail();
+  @Post()
+  async postHTMLEmail(@Body() datas: any) {
+    var response = await this.mailService.sendMail({
+      to: datas.to,
+      from: config.SENDER,
+      subject: datas.subject,
+      template: datas.type,
+      context: {
+        data: datas.params
+      }
+    });
+    return response;
   }
 }
