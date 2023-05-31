@@ -26,7 +26,7 @@ const Footer = () => {
               <div className="footer-column about-widget">
                 <div className="logo">
                   <a href="#">
-                    <img src="/images/logo-2.svg" alt="brand" />
+                    <img src="/images/polban-logo.svg" alt="brand" />
                   </a>
                 </div>
                 <p className="phone-num">
