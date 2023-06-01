@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export type GalleryDocument = Gallery & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Gallery {
   @Prop({ required: true })
   photo: string;

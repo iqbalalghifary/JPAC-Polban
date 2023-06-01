@@ -11,7 +11,6 @@ export class AnnouncementFactoryService {
     newAnnouncement.description = createAnnouncementDto.description;
     newAnnouncement.slug = slugify(createAnnouncementDto.title);
     newAnnouncement.photo = photo.path;
-    newAnnouncement.publishDate = new Date(Date.now());
     newAnnouncement.status = true;
 
     return newAnnouncement;
@@ -23,7 +22,6 @@ export class AnnouncementFactoryService {
     newAnnouncement.description = updateAnnouncementDto.description;
     newAnnouncement.slug = slugify(updateAnnouncementDto.title);
     newAnnouncement.photo = photo.path;
-    newAnnouncement.publishDate = new Date(Date.now());
     newAnnouncement.status = true;
 
     return newAnnouncement;

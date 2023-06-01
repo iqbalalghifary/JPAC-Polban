@@ -3,6 +3,5 @@ export class Announcement {
   description: string;
   slug: string;
   photo: string;
-  publishDate: Date;
   status: boolean;
 }

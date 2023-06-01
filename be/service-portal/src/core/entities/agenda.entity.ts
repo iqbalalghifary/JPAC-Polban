@@ -4,5 +4,4 @@ export class Agenda {
   slug: string;
   startDate: Date;
   endDate: Date;
-  publishDate: Date;
 }

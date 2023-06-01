@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export type AgendaDocument = Agenda & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Agenda {
   @Prop({ required: true })
   title: string;
@@ -18,9 +18,6 @@ export class Agenda {
 
   @Prop({ required: true })
   endDate: Date;
-
-  @Prop({ required: true })
-  publishDate: Date;
 }
 
 export const AgendaSchema = SchemaFactory.createForClass(Agenda);

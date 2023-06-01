@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Agenda } from '../../core/entities';
 import { IDataServices } from '../../core/abstracts';
-import { AgendaFactoryService } from './agenda-factory.service';
 
 @Injectable()
 export class AgendaUseCases {

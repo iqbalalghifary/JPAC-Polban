@@ -1,4 +1,3 @@
-export * from './announcement.controller';
-export * from './agenda.controller';
-export * from './carousel.controller';
-export * from './gallery.controller';
+export * from './partner.controller';
+export * from './auth.controller';
+export * from './alumni.controller';

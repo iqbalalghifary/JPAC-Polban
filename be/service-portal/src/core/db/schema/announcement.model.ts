@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export type AnnouncementDocument = Announcement & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Announcement {
   @Prop({ required: true })
   title: string;
@@ -15,9 +15,6 @@ export class Announcement {
 
   @Prop({ required: true })
   photo: string;
-
-  @Prop({ required: true })
-  publishDate: Date;
 
   @Prop({ required: true, default: false })
   status: boolean;

@@ -1,4 +1,4 @@
-export * from './carousel.model';
-export * from './announcement.model';
-export * from './agenda.model';
+export * from './job-application.model';
+export * from './internship-schedule.model';
+export * from './vacancy.model';
 export * from './gallery.model';

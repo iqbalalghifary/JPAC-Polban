@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export type CarouselDocument = Carousel & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Carousel {
   @Prop({ required: true })
   photo: string;

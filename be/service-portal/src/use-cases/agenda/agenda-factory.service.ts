@@ -12,7 +12,6 @@ export class AgendaFactoryService {
     newAgenda.slug = slugify(createAgendaDto.title);
     newAgenda.startDate = createAgendaDto.startDate;
     newAgenda.endDate = createAgendaDto.endDate;
-    newAgenda.publishDate = new Date(Date.now());
     return newAgenda;
   }
 
@@ -23,8 +22,6 @@ export class AgendaFactoryService {
     newAgenda.slug = slugify(updateAgendaDto.title);
     newAgenda.startDate = updateAgendaDto.startDate;
     newAgenda.endDate = updateAgendaDto.endDate;
-    newAgenda.publishDate = new Date(Date.now());
-
     return newAgenda;
   }
 }
