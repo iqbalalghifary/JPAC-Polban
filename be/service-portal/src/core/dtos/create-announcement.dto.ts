@@ -9,18 +9,6 @@ export class CreateAnnouncementDto {
   @IsString()
   @IsNotEmpty()
   description: string;
-
-  @IsString()
-  @IsNotEmpty()
-  slug: string;
-  
-  @IsDate()
-  @IsNotEmpty()
-  publishDate: Date;
-  
-  @IsString()
-  @IsNotEmpty()
-  status: boolean;
 }
 
 export class UpdateAnnouncementDto extends PartialType(CreateAnnouncementDto) {}

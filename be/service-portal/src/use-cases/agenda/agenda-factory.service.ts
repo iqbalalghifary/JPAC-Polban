@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Agenda } from '../../core/entities';
 import { CreateAgendaDto, UpdateAgendaDto } from '../../core/dtos';
+import slugify from 'slugify';
 
 @Injectable()
 export class AgendaFactoryService {
@@ -8,10 +9,10 @@ export class AgendaFactoryService {
     const newAgenda = new Agenda();
     newAgenda.title = createAgendaDto.title;
     newAgenda.description = createAgendaDto.description;
-    newAgenda.slug = createAgendaDto.slug;
+    newAgenda.slug = slugify(createAgendaDto.title);
     newAgenda.startDate = createAgendaDto.startDate;
     newAgenda.endDate = createAgendaDto.endDate;
-    newAgenda.publishDate = createAgendaDto.publishDate;
+    newAgenda.publishDate = new Date(Date.now());
     return newAgenda;
   }
 
@@ -19,10 +20,10 @@ export class AgendaFactoryService {
     const newAgenda = new Agenda();
     newAgenda.title = updateAgendaDto.title;
     newAgenda.description = updateAgendaDto.description;
-    newAgenda.slug = updateAgendaDto.slug;
+    newAgenda.slug = slugify(updateAgendaDto.title);
     newAgenda.startDate = updateAgendaDto.startDate;
     newAgenda.endDate = updateAgendaDto.endDate;
-    newAgenda.publishDate = updateAgendaDto.publishDate;
+    newAgenda.publishDate = new Date(Date.now());
 
     return newAgenda;
   }

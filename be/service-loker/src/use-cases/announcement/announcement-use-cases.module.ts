@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { DataServicesModule } from '../../services/data-services/data-services.module';
+import { MongoDataServicesModule } from '../../core/db/db-data-services.module';
 import { AnnouncementFactoryService } from './announcement-factory.service';
 import { AnnouncementUseCases } from './announcement.use-case';
 
 @Module({
-  imports: [DataServicesModule],
+  imports: [MongoDataServicesModule],
   providers: [AnnouncementFactoryService, AnnouncementUseCases],
   exports: [AnnouncementFactoryService, AnnouncementUseCases],
 })

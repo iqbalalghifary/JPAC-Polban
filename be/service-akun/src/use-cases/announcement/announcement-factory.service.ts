@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Announcement } from '../../core/entities';
 import { CreateAnnouncementDto, UpdateAnnouncementDto } from '../../core/dtos';
+import slugify from 'slugify';
 
 @Injectable()
 export class AnnouncementFactoryService {
@@ -8,10 +9,10 @@ export class AnnouncementFactoryService {
     const newAnnouncement = new Announcement();
     newAnnouncement.title = createAnnouncementDto.title;
     newAnnouncement.description = createAnnouncementDto.description;
-    newAnnouncement.slug = createAnnouncementDto.slug;
+    newAnnouncement.slug = slugify(createAnnouncementDto.title);
     newAnnouncement.photo = photo.path;
-    newAnnouncement.publishDate = createAnnouncementDto.publishDate;
-    newAnnouncement.status = createAnnouncementDto.status;
+    newAnnouncement.publishDate = new Date(Date.now());
+    newAnnouncement.status = true;
 
     return newAnnouncement;
   }
@@ -20,10 +21,10 @@ export class AnnouncementFactoryService {
     const newAnnouncement = new Announcement();
     newAnnouncement.title = updateAnnouncementDto.title;
     newAnnouncement.description = updateAnnouncementDto.description;
-    newAnnouncement.slug = updateAnnouncementDto.slug;
+    newAnnouncement.slug = slugify(updateAnnouncementDto.title);
     newAnnouncement.photo = photo.path;
-    newAnnouncement.publishDate = updateAnnouncementDto.publishDate;
-    newAnnouncement.status = updateAnnouncementDto.status;
+    newAnnouncement.publishDate = new Date(Date.now());
+    newAnnouncement.status = true;
 
     return newAnnouncement;
   }

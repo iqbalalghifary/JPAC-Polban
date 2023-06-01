@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Carousel } from '../../core/entities';
 import { IDataServices } from '../../core/abstracts';
-import { CreateCarouselDto, UpdateCarouselDto } from '../../core/dtos';
 
 @Injectable()
 export class CarouselUseCases {
@@ -17,12 +16,12 @@ export class CarouselUseCases {
     return this.dataServices.carousels.get(id);
   }
 
-  createCarousel(createCarouselDto: CreateCarouselDto): Promise<Carousel> {
-    return this.dataServices.carousels.create(createCarouselDto);
+  createCarousel(carousel: Carousel): Promise<Carousel> {
+    return this.dataServices.carousels.create(carousel);
   }
 
-  updateCarousel(carouselId: string, updateCarouselDto: CreateCarouselDto): Promise<Carousel> {
-    return this.dataServices.carousels.update(carouselId, updateCarouselDto);
+  updateCarousel(carouselId: string, carousel: Carousel): Promise<Carousel> {
+    return this.dataServices.carousels.update(carouselId, carousel);
   }
 
   deleteCarousel(id: any): Promise<Carousel> {

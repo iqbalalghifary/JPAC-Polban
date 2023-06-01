@@ -1,8 +1,8 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { IDataServices, IGenericRepository } from '../../../core';
-import { MongoGenericRepository } from './mongo-generic-repository';
+import { IDataServices, IGenericRepository } from '../../core';
+import { MongoGenericRepository } from './db-generic-repository';
 import {
   Agenda,
   AgendaDocument,
@@ -12,7 +12,7 @@ import {
   CarouselDocument,
   Gallery,
   GalleryDocument
-} from './model';
+} from './schema';
 
 @Injectable()
 export class MongoDataServices

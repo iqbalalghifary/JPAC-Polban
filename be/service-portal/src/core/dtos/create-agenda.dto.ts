@@ -10,10 +10,6 @@ export class CreateAgendaDto {
   @IsNotEmpty()
   description: string;
 
-  @IsString()
-  @IsNotEmpty()
-  slug: string;
-
   @IsDate()
   @IsNotEmpty()
   startDate: Date;
@@ -21,10 +17,6 @@ export class CreateAgendaDto {
   @IsDate()
   @IsNotEmpty()
   endDate: Date;
-
-  @IsDate()
-  @IsNotEmpty()
-  publishDate: Date;
 }
 
 export class UpdateAgendaDto extends PartialType(CreateAgendaDto) {}

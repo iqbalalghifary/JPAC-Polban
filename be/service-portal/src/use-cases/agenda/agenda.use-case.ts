@@ -1,14 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Agenda } from '../../core/entities';
 import { IDataServices } from '../../core/abstracts';
-import { CreateAgendaDto, UpdateAgendaDto } from '../../core/dtos';
 import { AgendaFactoryService } from './agenda-factory.service';
 
 @Injectable()
 export class AgendaUseCases {
   constructor(
-    private dataServices: IDataServices,
-    private agendaFactoryService: AgendaFactoryService,
+    private dataServices: IDataServices
   ) {}
 
   getAllAgendas(): Promise<Agenda[]> {
@@ -19,13 +17,11 @@ export class AgendaUseCases {
     return this.dataServices.agendas.get(id);
   }
 
-  createAgenda(createAgendaDto: CreateAgendaDto): Promise<Agenda> {
-    const agenda = this.agendaFactoryService.createNewAgenda(createAgendaDto);
+  createAgenda(agenda: Agenda): Promise<Agenda> {
     return this.dataServices.agendas.create(agenda);
   }
 
-  updateAgenda(agendaId: string, updateAgendaDto: UpdateAgendaDto): Promise<Agenda> {
-    const agenda = this.agendaFactoryService.updateAgenda(updateAgendaDto);
+  updateAgenda(agendaId: string, agenda: Agenda): Promise<Agenda> {
     return this.dataServices.agendas.update(agendaId, agenda);
   }
 

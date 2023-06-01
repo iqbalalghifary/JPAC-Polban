@@ -7,11 +7,12 @@ import {
   UseInterceptors, 
   UploadedFile
 } from '@nestjs/common';
-import { CreateCarouselDto, CarouselResponseDto } from '../core/dtos';
+import { CarouselResponseDto } from '../core/dtos';
 import { CarouselUseCases } from '../use-cases/carousel';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { Carousel } from 'src/core';
 
 @Controller('api/carousel')
 export class CarouselController {
@@ -44,7 +45,7 @@ export class CarouselController {
   async createCarousel(@UploadedFile() file: Express.Multer.File) : Promise<CarouselResponseDto> {
     const carouselResponseDto = new CarouselResponseDto();
     try {
-      const carousel = new CreateCarouselDto();
+      const carousel = new Carousel();
       carousel.photo = file.path;
       carousel.status = true;
       const createdCarousel = await this.carouselUseCases.createCarousel(carousel);
@@ -61,7 +62,7 @@ export class CarouselController {
   @UseInterceptors(FileInterceptor('image', {
     storage: diskStorage({
       destination: './uploads/carousel',
-      filename: (req, file, callback) => {
+      filename: (_, file, callback) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
         const ext = extname(file.originalname);
         const filename = `${uniqueSuffix}${ext}`;
@@ -73,7 +74,7 @@ export class CarouselController {
     @Param('id') carouselId: string,
     @UploadedFile() file: Express.Multer.File
   ) {
-    const carousel = new CreateCarouselDto();
+    const carousel = new Carousel();
     carousel.photo = file.path;
     carousel.status = true;
     return this.carouselUseCases.updateCarousel(carouselId, carousel);

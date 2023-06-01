@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { DataServicesModule } from '../../services/data-services.module';
+import { MongoDataServicesModule } from '../../core/db/db-data-services.module';
 import { GalleryFactoryService } from './gallery-factory.service';
 import { GalleryUseCases } from './gallery.use-case';
 
 @Module({
-  imports: [DataServicesModule],
+  imports: [MongoDataServicesModule],
   providers: [GalleryFactoryService, GalleryUseCases],
   exports: [GalleryFactoryService, GalleryUseCases],
 })

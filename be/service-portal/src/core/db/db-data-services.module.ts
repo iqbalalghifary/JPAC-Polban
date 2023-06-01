@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { IDataServices } from '../../../core';
-import { config } from '../../../config';
+import { IDataServices } from '../../core';
+import { config } from '../../config';
 import {
   Agenda,
   AgendaSchema,
@@ -11,8 +11,8 @@ import {
   CarouselSchema,
   Gallery,
   GallerySchema
-} from './model';
-import { MongoDataServices } from './mongo-data-services.service';
+} from './schema';
+import { MongoDataServices } from './db-data-services.service';
 
 @Module({
   imports: [
