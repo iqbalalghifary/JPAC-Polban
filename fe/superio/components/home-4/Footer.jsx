@@ -30,14 +30,14 @@ const Footer = () => {
                   </a>
                 </div>
                 <p className="phone-num">
-                  <span>Call us </span>
-                  <a href="thebeehost@support.com">123 456 7890</a>
+                  <span>Phone / Fax </span>
+                  <a href="thebeehost@support.com">022.2006391</a>
                 </p>
                 <p className="address">
-                  329 Queensberry Street, North Melbourne VIC
-                  <br /> 3051, Australia. <br />
-                  <a href="mailto:support@superio.com" className="email">
-                    support@superio.com
+                Gd. P2T, lantai 3,Jl. Gegerkalong Hilir
+                Ds. Ciwaruga Bandung
+                  <a href="jpac@polban.ac.id" className="email">
+                    Email : jpac@polban.ac.id
                   </a>
                 </p>
               </div>

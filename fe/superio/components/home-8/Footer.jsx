@@ -23,7 +23,7 @@ const Footer = () => {
               <div className="footer-column about-widget">
                 <div className="logo">
                   <Link href="/">
-                    <img src="/images/logo.svg" alt="brand" />
+                    <img src="/images/polban-logo.svg" alt="brand" />
                   </Link>
                 </div>
                 <p className="phone-num">

@@ -1,31 +1,31 @@
 module.exports = [
   {
     id: 1,
-    img: "/images/resource/blog/1.jpg",
-    title: "Attract Sales And Profits ",
+    img: "/images/resource/blog/agenda1.jpg",
+    title: "VIRTUAL POLBAN CAREER COACHING ",
     blogSingleTitle:
       "Attract Sales And Profits toward the sunshine - and shadows will fall behind you.",
     blogText: `A job ravenously while Far much that one rank beheld after outside....`,
   },
   {
     id: 2,
-    img: "/images/resource/blog/2.jpg",
-    title: "5 Tips For Your Job Interviews",
+    img: "/images/resource/blog/agenda2.jpg",
+    title: "SHARING SESSION STUDY IN TAIWAN",
     blogSingleTitle:
       "5 Tips For Your Job Interviews toward the sunshine - and shadows will fall behind you.",
     blogText: `A job ravenously while Far much that one rank beheld after outside....`,
   },
   {
     id: 3,
-    img: "/images/resource/blog/3.jpg",
-    title: "Overworked Newspaper Editor",
+    img: "/images/resource/blog/agenda3.jpg",
+    title: "INFO SESSION APPRENTICE IN CZECH",
     blogSingleTitle:
       "Overworked Newspaper Editor toward the sunshine - and shadows will fall behind you.",
     blogText: `A job ravenously while Far much that one rank beheld after outside....`,
   },
   {
     id: 4,
-    img: "/images/resource/blog/4.jpg",
+    img: "/images/resource/blog/agenda1.jpg",
     title: "Attract Sales And Profits",
     blogSingleTitle:
       "Attract Sales And Profits toward the sunshine - and shadows will fall behind you.",
@@ -33,7 +33,7 @@ module.exports = [
   },
   {
     id: 5,
-    img: "/images/resource/blog/5.jpg",
+    img: "/images/resource/blog/agenda2.jpg",
     title: "An Overworked Newspaper Editor",
     blogSingleTitle:
       "An Overworked Newspaper Editor toward the sunshine - and shadows will fall behind you.",
@@ -41,7 +41,7 @@ module.exports = [
   },
   {
     id: 6,
-    img: "/images/resource/blog/2.jpg",
+    img: "/images/resource/blog/agenda3.jpg",
     title: "The Best Account Providers",
     blogSingleTitle:
       "The Best Account Providers toward the sunshine - and shadows will fall behind you.",

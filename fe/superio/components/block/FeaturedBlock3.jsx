@@ -17,7 +17,7 @@ const FeaturedBlock3 = () => {
     {
       id: 3,
       img: "images/index-15/cities/3.png",
-      city: "London",
+      city: "Bandung",
       jobNumber: "16",
     },
     {

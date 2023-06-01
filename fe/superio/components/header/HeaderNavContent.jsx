@@ -63,7 +63,7 @@ const HeaderNavContent = () => {
             } dropdown has-mega-menu`}
             id="has-mega-menu"
           >
-            <span>Find Jobs</span>
+            <span>Lowongan Pekerjaan</span>
             <div className="mega-menu">
               <div className="mega-menu-bar row">
                 {findJobItems.map((item) => (
@@ -204,7 +204,7 @@ const HeaderNavContent = () => {
               isActiveParentChaild(blogItems, router.asPath) ? "current" : ""
             } dropdown`}
           >
-            <span>Blog</span>
+            <span>Agenda</span>
             <ul>
               {blogItems.map((item, i) => (
                 <li

@@ -15,7 +15,7 @@ const JobOverView = () => {
         <li>
           <i className="icon icon-location"></i>
           <h5>Location:</h5>
-          <span>London, UK</span>
+          <span>Bandung</span>
         </li>
         <li>
           <i className="icon icon-user-2"></i>

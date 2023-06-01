@@ -53,12 +53,12 @@ const Header = () => {
               >
                 Login / Register
               </a>
-              <Link
+              {/* <Link
                 href="/employers-dashboard/post-jobs"
                 className="theme-btn btn-style-five"
               >
                 Job Post
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

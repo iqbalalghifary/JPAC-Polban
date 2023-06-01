@@ -40,7 +40,7 @@ const DashboardCandidatesHeader = () => {
                                 <Link href="/">
                                     <Image
                                         alt="brand"
-                                        src="/images/logo.svg"
+                                        src="/images/polban-logo.svg"
                                         width={154}
                                         height={50}
                                         priority

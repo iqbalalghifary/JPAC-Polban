@@ -32,7 +32,7 @@ const Header = () => {
                   <img src="images/logo-2.svg" alt="logo" title="brand" />
                 </Link>
                 <Link href="/" className="isSticky">
-                  <img src="images/logo.svg" alt="logo" title="brand" />
+                  <img src="images/polban-logo.svg" alt="logo" title="brand" />
                 </Link>
               </div>
             </div>

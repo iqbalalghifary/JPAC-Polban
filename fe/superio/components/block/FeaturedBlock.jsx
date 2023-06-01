@@ -32,7 +32,7 @@ const FeaturedBlock = () => {
       block: [
         {
           img: "images/resource/featured-3.png",
-          city: "London",
+          city: "Bandung",
           jobNumber: "14",
         },
         {

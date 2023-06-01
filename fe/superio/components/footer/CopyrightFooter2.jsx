@@ -9,7 +9,7 @@ const CopyrightFooter2 = () => {
           <div className="bottom-left">
             <div className="logo">
               <Link href="/">
-                <img src="images/logo.svg" alt="brand" />
+                <img src="images/polban-logo.svg" alt="brand" />
               </Link>
             </div>
             <div className="copyright-text">

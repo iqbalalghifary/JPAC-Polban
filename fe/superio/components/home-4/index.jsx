@@ -101,9 +101,9 @@ const index = () => {
             <section className="news-section style-two">
                 <div className="auto-container">
                     <div className="sec-title text-center">
-                        <h2>Recent News Articles</h2>
+                        <h2>Agenda</h2>
                         <div className="text">
-                            Fresh job related news content posted each day.
+                            Ikuti kegiatan kami dan nantikan agenda-agenda menarik selanjutnya!
                         </div>
                     </div>
                     {/* End ."sec-title */}

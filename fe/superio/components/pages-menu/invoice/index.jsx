@@ -23,7 +23,7 @@ const index = () => {
               <div className="logo-box">
                 <div className="logo">
                   <Link href="/">
-                    <img src="images/logo.svg" alt="logo" />
+                    <img src="images/polban-logo.svg" alt="logo" />
                   </Link>
                 </div>
                 <div className="invoice-id">

@@ -19,7 +19,7 @@ const CompanyInfo = () => {
         Email: <span>info@joio.com</span>
       </li>
       <li>
-        Location: <span>London, UK</span>
+        Location: <span>Bandung</span>
       </li>
       <li>
         Social media:

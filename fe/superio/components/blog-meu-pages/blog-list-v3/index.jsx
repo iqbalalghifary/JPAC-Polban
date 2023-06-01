@@ -21,7 +21,7 @@ const index = () => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Breadcrumb title="Blog" meta="Blog" />
+      <Breadcrumb title="Agenda" meta="Agenda" />
       {/* <!--End Page Title--> */}
 
       <div className="sidebar-page-container">

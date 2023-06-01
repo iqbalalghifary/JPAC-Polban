@@ -57,7 +57,7 @@ const JobAlertsTable = () => {
                               </li>
                               <li>
                                 <span className="icon flaticon-map-locator"></span>
-                                London, UK
+                                Bandung
                               </li>
                             </ul>
                           </div>

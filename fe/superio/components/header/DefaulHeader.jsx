@@ -31,7 +31,7 @@ const DefaulHeader = () => {
           <div className="logo-box">
             <div className="logo">
               <Link href="/">
-                <img src="/images/logo.svg" alt="brand" />
+                <img src="/images/polban-logo.svg" alt="brand" />
               </Link>
             </div>
           </div>
@@ -53,12 +53,12 @@ const DefaulHeader = () => {
             >
               Login / Register
             </a>
-            <Link
+            {/* <Link
               href="/employers-dashboard/post-jobs"
               className="theme-btn btn-style-one"
             >
               Job Post
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
