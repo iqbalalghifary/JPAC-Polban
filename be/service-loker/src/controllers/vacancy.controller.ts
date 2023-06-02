@@ -3,7 +3,7 @@ import { CreateAgendaDto, UpdateAgendaDto, AgendaResponseDto } from '../core/dto
 import { AgendaUseCases, AgendaFactoryService } from '../use-cases/internship-shedule';
 
 @Controller('api/agenda')
-export class AgendaController {
+export class VacancyController {
   constructor(
     private agendaUseCases: AgendaUseCases,
     private agendaFactoryService: AgendaFactoryService,
