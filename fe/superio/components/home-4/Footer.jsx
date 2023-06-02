@@ -12,13 +12,13 @@ const Footer = () => {
       <div className="auto-container">
         {/* <!--Widgets Section--> */}
         <div className="widgets-section" data-aos="fade-up">
-          <div className="newsletter-form wow fadeInUp">
+          {/* <div className="newsletter-form wow fadeInUp">
             <div className="sec-title light text-center">
               <h2>Subscribe Our Newsletter</h2>
               <div className="text">We don’t send spam so don’t worry.</div>
             </div>
             <SearchForm2 />
-          </div>
+          </div> */}
           {/* End .newsletter-form */}
 
           <div className="row">
@@ -50,7 +50,7 @@ const Footer = () => {
 
                 <div className="footer-column col-lg-3 col-md-6 col-sm-12">
                   <div className="footer-widget">
-                    <h4 className="widget-title">Mobile Apps</h4>
+                    <h4 className="widget-title">Website Resmi Lainnya</h4>
                     <FooterApps />
                   </div>
                 </div>

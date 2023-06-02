@@ -14,10 +14,10 @@ export const homeItems = [
             //     name: "Home Page 03",
             //     routePath: "/home-3",
             // },
-            {
-                name: "home-4",
-                routePath: "/home-4",
-            },
+            // {
+            //     name: "home-4",
+            //     routePath: "/home-4",
+            // },
             // {
             //     name: "Home Page 05",
             //     routePath: "/home-5",
@@ -103,7 +103,7 @@ export const findJobItems = [
                 routePath: "/job-list-v2",
             },
             {
-                name: "Job List V3",
+                name: "Lowongan Pekerjaan",
                 routePath: "/job-list-v3",
             },
             {
@@ -298,6 +298,13 @@ export const blogItems = [
     {
         name: "Blog Details",
         routePath: "/blog-details/1",
+    },
+];
+
+export const galeriItems = [
+    {
+        name: "Galeri",
+        routePath: "/galeri",
     },
 ];
 

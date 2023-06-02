@@ -28,10 +28,9 @@ const index = () => {
             <section className="job-section alternate">
                 <div className="auto-container">
                     <div className="sec-title text-center">
-                        <h2>Most Popular Jobs</h2>
+                        <h2>Ayo Bangun Karier mu!</h2>
                         <div className="text">
-                            Know your worth and find the job that qualify your
-                            life
+                            Ketahui kesempatan yang akan menentukan masa depanmu
                         </div>
                     </div>
                     {/* End sec-title */}
@@ -47,8 +46,11 @@ const index = () => {
             <section className="process-section pt-0">
                 <div className="auto-container">
                     <div className="sec-title text-center">
-                        <h2>How It Works?</h2>
-                        <div className="text">Job for anyone, anywhere</div>
+                        <h2>Bagaimana caranya memulai?</h2>
+                        <div className="text">
+                            Ayo mulai dengan mudah bersama Pusat Karir 
+                            Polban
+                        </div>
                     </div>
 
                     <div className="row" data-aos="fade-up">
@@ -61,10 +63,10 @@ const index = () => {
             <section className="top-companies style-two">
                 <div className="auto-container">
                     <div className="sec-title">
-                        <h2>Top Company Registered</h2>
+                        <h2>Perusahaan Mitra Populer</h2>
                         <div className="text">
-                            Some of the companies we have helped recruit
-                            excellent applicants over the years.
+                            Banyak sekali perusahaan telah bekerja sama dengan 
+                            Politeknik Negeri Bandung
                         </div>
                     </div>
 
@@ -80,9 +82,9 @@ const index = () => {
             <section className="job-categories">
                 <div className="auto-container">
                     <div className="sec-title text-center">
-                        <h2>Popular Job Categories</h2>
+                        <h2>Bidang Pekerjaan Populer</h2>
                         <div className="text">
-                            2020 jobs live - 293 added today.
+                            Temukan jenis pekerjaan yang cocok denganmu
                         </div>
                     </div>
 
