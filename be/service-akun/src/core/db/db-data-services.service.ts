@@ -30,7 +30,7 @@ import {
   UserDocument,
   Volunteer,
   VolunteerDocument  
-} from './schema';
+} from './model';
 
 @Injectable()
 export class MongoDataServices
