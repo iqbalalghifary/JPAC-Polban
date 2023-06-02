@@ -10,7 +10,7 @@ const index = () => {
       <div className="auto-container">
         <div className="cotnent-box">
           <div className="title-box" data-aso-delay="500" data-aos="fade-up">
-            <h3>Wujudkan karirmu bersama Pusat Karir Polban!</h3>
+            <h3>Wujudkan kariermu bersama Pusat Karir Polban!</h3>
           </div>
 
           {/* <!-- Job Search Form --> */}

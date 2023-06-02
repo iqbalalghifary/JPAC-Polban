@@ -625,6 +625,7 @@ Listing Pagination
 .ls-pagination li a:hover,
 .ls-pagination li a.current-page {
   background: var(--primary-color);
+  // warna pagination agenda mid
   color: #ffffff;
 }
 
@@ -705,7 +706,7 @@ Ls Section / style Three
 }
 
 .ls-section.style-three .ls-switcher .sort-by .chosen-single {
-  background-color: #ffffff;
+  background-color: #000000;
 }
 
 /***

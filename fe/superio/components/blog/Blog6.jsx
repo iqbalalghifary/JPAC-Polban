@@ -19,9 +19,6 @@ const Blog6 = () => {
                 <li>
                   <a href="#">August 31, 2021</a>
                 </li>
-                <li>
-                  <a href="#">12 Comment</a>
-                </li>
               </ul>
               {/* End post meta */}
 
