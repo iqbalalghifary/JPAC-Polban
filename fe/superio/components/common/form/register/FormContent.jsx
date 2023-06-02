@@ -96,17 +96,6 @@ const FormContent = () => {
       </div>
 
       <div className="form-group">
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div className="form-group">
         <label>Year Graduated</label>
         <input
           type="text"
