@@ -1,3 +1,3 @@
-export * from './partner.controller';
-export * from './auth.controller';
 export * from './alumni.controller';
+export * from './user.controller';
+export * from './award.controller';

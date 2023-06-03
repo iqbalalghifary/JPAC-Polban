@@ -1,69 +1,51 @@
-import { 
-  Controller, 
-  Get, 
-  Param, 
-  Post, 
-  Put, 
-  UseInterceptors, 
-  UploadedFile,
-  Body
-} from '@nestjs/common';
-import { ApplicantRegisterDto, Response } from '../core/dtos';
-import { CarouselUseCases } from '../use-cases/partner';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
-import { Carousel } from 'src/core';
+import { Controller, Get, Param, Post, Body, Put, Delete, Query } from '@nestjs/common';
+import { ResponseCreatedAwardDto } from '../core/dtos';
+import { AwardUseCases } from '../use-cases/award';
+import { AlumniUseCases } from '../use-cases/alumni';
+import { Award } from 'src/core/entities';
 
 @Controller('api/award')
-export class AlumniController {
+export class AwardController {
   constructor(
-    private carouselUseCases: CarouselUseCases
+    private awardUseCases: AwardUseCases,
+    private alumniUseCases: AlumniUseCases,
   ) {}
 
-  @Post('register')
-  async register(
-    @Body() applicantRegisterDto: ApplicantRegisterDto,
-  ) : Promise<ApplicantRegisterDto> {
-    const announcementResponseDto = new AnnouncementResponseDto();
-    try {
-      const announcement = this.announcementFactoryService.createNewAnnouncement(announcementDto, file);
-      const createdAnnouncement = await this.announcementUseCases.createAnnouncement(announcement);
-
-      announcementResponseDto.success = true;
-      announcementResponseDto.createdAnnouncement = createdAnnouncement;
-    } catch (error) {
-      announcementResponseDto.success = false;
-    }
-
-    return announcementResponseDto;
-  }
-
-  @Put(':id')
-  @UseInterceptors(FileInterceptor('image', {
-    storage: diskStorage({
-      destination: './uploads/carousel',
-      filename: (_, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))
-  async updateCarousel(
-    @Param('id') carouselId: string,
-    @UploadedFile() file: Express.Multer.File
-  ) {
-    const carousel = new Carousel();
-    carousel.photo = file.path;
-    carousel.status = true;
-    return this.carouselUseCases.updateCarousel(carouselId, carousel);
+  @Get()
+  async getAll() {
+    return this.awardUseCases.getAllAwards();
   }
 
   @Get(':id')
-  async deleteCarousel(@Param('id') id: any){
-    return this.carouselUseCases.deleteCarousel(id);
+  async getById(@Param('id') id: any) {
+    return this.awardUseCases.getAwardById(id);
+  }
+
+  @Post()
+  async createAward(@Body() datas: Award, @Query() id: string) : Promise<ResponseCreatedAwardDto> {
+    const responseCreatedAwardDto = new ResponseCreatedAwardDto();
+    try {
+      const createdAward = await this.awardUseCases.createAward(datas);
+      responseCreatedAwardDto.success = true;
+      responseCreatedAwardDto.createdAward = createdAward;
+    } catch (error) {
+      console.log(error);
+      responseCreatedAwardDto.success = false;
+    }
+    return responseCreatedAwardDto;
+  }
+
+  @Put(':id')
+  updateAward(
+    @Param('id') awardId: string,
+    @Body() datas: Award,
+  ) {
+    return this.awardUseCases.updateAward(awardId, datas);
+  }
+
+  @Delete(':id')
+  deleteAward(@Param('id') awardId: string) {
+    return this.awardUseCases.deleteAward(awardId);
   }
 
 }

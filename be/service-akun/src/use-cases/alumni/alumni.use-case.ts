@@ -1,31 +1,31 @@
 import { Injectable } from '@nestjs/common';
-import { Announcement } from '../../core/entities';
+import { Alumni } from '../../core/entities';
 import { IDataServices } from '../../core/abstracts';
 
 @Injectable()
-export class AnnouncementUseCases {
+export class AlumniUseCases {
   constructor(
     private dataServices: IDataServices
   ) {}
 
-  getAllAnnouncements(): Promise<Announcement[]> {
-    return this.dataServices.announcements.getAll();
+  getAllAlumnis(): Promise<Alumni[]> {
+    return this.dataServices.alumnis.getAll();
   }
 
-  getAnnouncementById(id: any): Promise<Announcement> {
-    return this.dataServices.announcements.get(id);
+  updateAlumni(alumniId: string, alumni: Alumni): Promise<Alumni> {
+    return this.dataServices.alumnis.update(alumniId, alumni);
   }
 
-  createAnnouncement(announcement: Announcement): Promise<Announcement> {
-    return this.dataServices.announcements.create(announcement);
+  getAlumniById(id: any): Promise<Alumni> {
+    return this.dataServices.alumnis.get(id);
   }
 
-  updateAnnouncement(announcementId: string, announcement: Announcement): Promise<Announcement> {
-    return this.dataServices.announcements.update(announcementId, announcement);
+  registerAlumni(alumni: Alumni): Promise<Alumni> {
+    return this.dataServices.alumnis.create(alumni);
   }
 
-  deleteAnnouncement(id: any): Promise<Announcement> {
-    return this.dataServices.announcements.delete(id);
+  deleteAlumni(id: string): Promise<Alumni> {
+    return this.dataServices.alumnis.delete(id);
   }
 
 }

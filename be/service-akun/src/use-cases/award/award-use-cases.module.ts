@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongoDataServicesModule } from '../../core/db/db-data-services.module';
-import { CarouselUseCases } from './award.use-case';
+import { AwardUseCases } from './award.use-case';
 
 @Module({
   imports: [MongoDataServicesModule],
-  providers: [CarouselUseCases],
-  exports: [CarouselUseCases],
+  providers: [AwardUseCases],
+  exports: [AwardUseCases],
 })
-export class CarouselUseCasesModule {}
+export class AwardUseCasesModule {}

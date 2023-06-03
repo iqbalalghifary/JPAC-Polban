@@ -1,69 +1,48 @@
-import { 
-  Controller, 
-  Get, 
-  Param, 
-  Post, 
-  Put, 
-  UseInterceptors, 
-  UploadedFile,
-  Body
-} from '@nestjs/common';
-import { ApplicantRegisterDto, Response } from '../core/dtos';
-import { CarouselUseCases } from '../use-cases/partner';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
-import { Carousel } from 'src/core';
+import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
+import { ResponseCreatedEducationDto } from '../core/dtos';
+import { EducationUseCases } from '../use-cases/education';
+import { Education } from 'src/core/entities';
 
 @Controller('api/education')
-export class AlumniController {
+export class EducationController {
   constructor(
-    private carouselUseCases: CarouselUseCases
+    private educationUseCases: EducationUseCases,
   ) {}
 
-  @Post('register')
-  async register(
-    @Body() applicantRegisterDto: ApplicantRegisterDto,
-  ) : Promise<ApplicantRegisterDto> {
-    const announcementResponseDto = new AnnouncementResponseDto();
-    try {
-      const announcement = this.announcementFactoryService.createNewAnnouncement(announcementDto, file);
-      const createdAnnouncement = await this.announcementUseCases.createAnnouncement(announcement);
-
-      announcementResponseDto.success = true;
-      announcementResponseDto.createdAnnouncement = createdAnnouncement;
-    } catch (error) {
-      announcementResponseDto.success = false;
-    }
-
-    return announcementResponseDto;
-  }
-
-  @Put(':id')
-  @UseInterceptors(FileInterceptor('image', {
-    storage: diskStorage({
-      destination: './uploads/carousel',
-      filename: (_, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))
-  async updateCarousel(
-    @Param('id') carouselId: string,
-    @UploadedFile() file: Express.Multer.File
-  ) {
-    const carousel = new Carousel();
-    carousel.photo = file.path;
-    carousel.status = true;
-    return this.carouselUseCases.updateCarousel(carouselId, carousel);
+  @Get()
+  async getAll() {
+    return this.educationUseCases.getAllEducations();
   }
 
   @Get(':id')
-  async deleteCarousel(@Param('id') id: any){
-    return this.carouselUseCases.deleteCarousel(id);
+  async getById(@Param('id') id: any) {
+    return this.educationUseCases.getEducationById(id);
+  }
+
+  @Post()
+  async createEducation(@Body() datas: Education) : Promise<ResponseCreatedEducationDto> {
+    const responseCreatedEducationDto = new ResponseCreatedEducationDto();
+    try {
+      const createdEducation = await this.educationUseCases.createEducation(datas);
+      responseCreatedEducationDto.success = true;
+      responseCreatedEducationDto.createdEducation = createdEducation;
+    } catch (error) {
+      responseCreatedEducationDto.success = false;
+    }
+    return responseCreatedEducationDto;
+  }
+
+  @Put(':id')
+  updateEducation(
+    @Param('id') EducationId: string,
+    @Body() datas: Education,
+  ) {
+    return this.educationUseCases.updateEducation(EducationId, datas);
+  }
+
+  @Delete(':id')
+  deleteEducation(@Param('id') EducationId: string) {
+    return this.educationUseCases.deleteEducation(EducationId);
   }
 
 }

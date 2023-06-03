@@ -30,7 +30,7 @@ import {
   UserDocument,
   Volunteer,
   VolunteerDocument  
-} from './schema';
+} from './model';
 
 @Injectable()
 export class MongoDataServices
@@ -80,18 +80,22 @@ export class MongoDataServices
     ) {}
 
   onApplicationBootstrap() {
-    this.alumnis = new MongoGenericRepository<Alumni>(this.AlumniRepository);
+    this.alumnis = new MongoGenericRepository<Alumni>(this.AlumniRepository, [
+      "award","certification","education","experience","organization","project","skill","volunteer"
+    ]);
+    this.students = new MongoGenericRepository<Student>(this.StudentRepository,[
+      "award","certification","education","experience","organization","project","skill","volunteer"
+    ]);
+    this.operators = new MongoGenericRepository<Operator>(this.OperatorRepository);
+    this.partners = new MongoGenericRepository<Partner>(this.PartnerRepository);
+    this.users = new MongoGenericRepository<User>(this.UserRepository);
     this.awards = new MongoGenericRepository<Award>(this.AwardRepository);
     this.certifications = new MongoGenericRepository<Certification>(this.CertificationRepository);
     this.educations = new MongoGenericRepository<Education>(this.EducationRepository);
     this.experiences = new MongoGenericRepository<Experience>(this.ExperienceRepository);
-    this.operators = new MongoGenericRepository<Operator>(this.OperatorRepository);
     this.organizations = new MongoGenericRepository<Organization>(this.OrganizationRepository);
-    this.partners = new MongoGenericRepository<Partner>(this.PartnerRepository);
     this.projects = new MongoGenericRepository<Project>(this.ProjectRepository);
     this.skills = new MongoGenericRepository<Skill>(this.SkillRepository);
-    this.students = new MongoGenericRepository<Student>(this.StudentRepository);
-    this.users = new MongoGenericRepository<User>(this.UserRepository);
     this.volunteers = new MongoGenericRepository<Volunteer>(this.VolunteerRepository);
   }
 }

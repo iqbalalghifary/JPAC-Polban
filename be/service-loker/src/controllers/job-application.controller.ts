@@ -15,7 +15,7 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 
 @Controller('api/gallery')
-export class GalleryController {
+export class JobApplicationController {
   constructor(
     private galleryUseCases: GalleryUseCases,
     private galleryFactoryService: GalleryFactoryService,

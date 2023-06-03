@@ -1,69 +1,48 @@
-import { 
-  Controller, 
-  Get, 
-  Param, 
-  Post, 
-  Put, 
-  UseInterceptors, 
-  UploadedFile,
-  Body
-} from '@nestjs/common';
-import { ApplicantRegisterDto, Response } from '../core/dtos';
-import { CarouselUseCases } from '../use-cases/partner';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
-import { Carousel } from 'src/core';
+import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
+import { ResponseCreatedVolunteerDto } from '../core/dtos';
+import { VolunteerUseCases } from '../use-cases/volunteer';
+import { Volunteer } from 'src/core/entities';
 
 @Controller('api/volunteer')
-export class AlumniController {
+export class VolunteerController {
   constructor(
-    private carouselUseCases: CarouselUseCases
+    private volunteerUseCases: VolunteerUseCases,
   ) {}
 
-  @Post('register')
-  async register(
-    @Body() applicantRegisterDto: ApplicantRegisterDto,
-  ) : Promise<ApplicantRegisterDto> {
-    const announcementResponseDto = new AnnouncementResponseDto();
-    try {
-      const announcement = this.announcementFactoryService.createNewAnnouncement(announcementDto, file);
-      const createdAnnouncement = await this.announcementUseCases.createAnnouncement(announcement);
-
-      announcementResponseDto.success = true;
-      announcementResponseDto.createdAnnouncement = createdAnnouncement;
-    } catch (error) {
-      announcementResponseDto.success = false;
-    }
-
-    return announcementResponseDto;
-  }
-
-  @Put(':id')
-  @UseInterceptors(FileInterceptor('image', {
-    storage: diskStorage({
-      destination: './uploads/carousel',
-      filename: (_, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))
-  async updateCarousel(
-    @Param('id') carouselId: string,
-    @UploadedFile() file: Express.Multer.File
-  ) {
-    const carousel = new Carousel();
-    carousel.photo = file.path;
-    carousel.status = true;
-    return this.carouselUseCases.updateCarousel(carouselId, carousel);
+  @Get()
+  async getAll() {
+    return this.volunteerUseCases.getAllVolunteers();
   }
 
   @Get(':id')
-  async deleteCarousel(@Param('id') id: any){
-    return this.carouselUseCases.deleteCarousel(id);
+  async getById(@Param('id') id: any) {
+    return this.volunteerUseCases.getVolunteerById(id);
+  }
+
+  @Post()
+  async createVolunteer(@Body() datas: Volunteer) : Promise<ResponseCreatedVolunteerDto> {
+    const responseCreatedVolunteerDto = new ResponseCreatedVolunteerDto();
+    try {
+      const createdVolunteer = await this.volunteerUseCases.createVolunteer(datas);
+      responseCreatedVolunteerDto.success = true;
+      responseCreatedVolunteerDto.createdVolunteer = createdVolunteer;
+    } catch (error) {
+      responseCreatedVolunteerDto.success = false;
+    }
+    return responseCreatedVolunteerDto;
+  }
+
+  @Put(':id')
+  updateVolunteer(
+    @Param('id') VolunteerId: string,
+    @Body() datas: Volunteer,
+  ) {
+    return this.volunteerUseCases.updateVolunteer(VolunteerId, datas);
+  }
+
+  @Delete(':id')
+  deleteVolunteer(@Param('id') VolunteerId: string) {
+    return this.volunteerUseCases.deleteVolunteer(VolunteerId);
   }
 
 }

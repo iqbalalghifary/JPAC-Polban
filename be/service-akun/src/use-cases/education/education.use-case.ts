@@ -1,31 +1,31 @@
 import { Injectable } from '@nestjs/common';
-import { Carousel } from '../../core/entities';
+import { Education } from '../../core/entities';
 import { IDataServices } from '../../core/abstracts';
 
 @Injectable()
-export class CarouselUseCases {
+export class EducationUseCases {
   constructor(
     private dataServices: IDataServices,
   ) {}
 
-  getAllCarousels(): Promise<Carousel[]> {
-    return this.dataServices.carousels.getAll();
+  getAllEducations(): Promise<Education[]> {
+    return this.dataServices.educations.getAll();
   }
 
-  getCarouselById(id: any): Promise<Carousel> {
-    return this.dataServices.carousels.get(id);
+  getEducationById(id: any): Promise<Education> {
+    return this.dataServices.educations.get(id);
   }
 
-  createCarousel(carousel: Carousel): Promise<Carousel> {
-    return this.dataServices.carousels.create(carousel);
+  createEducation(education: Education): Promise<Education> {
+    return this.dataServices.educations.create(education);
   }
 
-  updateCarousel(carouselId: string, carousel: Carousel): Promise<Carousel> {
-    return this.dataServices.carousels.update(carouselId, carousel);
+  updateEducation(educationId: string, education: Education): Promise<Education> {
+    return this.dataServices.educations.update(educationId, education);
   }
 
-  deleteCarousel(id: any): Promise<Carousel> {
-    return this.dataServices.carousels.delete(id);
+  deleteEducation(id: any): Promise<Education> {
+    return this.dataServices.educations.delete(id);
   }
 
 }

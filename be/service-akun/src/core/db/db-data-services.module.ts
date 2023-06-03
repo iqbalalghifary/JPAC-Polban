@@ -29,7 +29,7 @@ import {
   UserSchema,
   Volunteer,
   VolunteerSchema  
-} from './schema';
+} from './model';
 import { MongoDataServices } from './db-data-services.service';
 
 @Module({

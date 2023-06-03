@@ -6,10 +6,12 @@ import {
   Put, 
   UseInterceptors, 
   UploadedFile,
-  Body
+  Body,
+  Delete
 } from '@nestjs/common';
-import { AlumniRegisterDto, Response } from '../core/dtos';
-import { CarouselUseCases } from '../use-cases/partner';
+import { AlumniRegisterDto, ResponseRegisteredAlumniDto, ResponseBasic } from '../core/dtos';
+import { AlumniFactoryService, AlumniUseCases } from '../use-cases/alumni';
+import { Alumni } from 'src/core';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -17,31 +19,59 @@ import { extname } from 'path';
 @Controller('api/alumni')
 export class AlumniController {
   constructor(
-    private carouselUseCases: CarouselUseCases
+    private alumniUseCases: AlumniUseCases,
+    private alumniFactoryService: AlumniFactoryService
   ) {}
 
-  @Post('register')
-  async register(
-    @Body() applicantRegisterDto: ApplicantRegisterDto,
-  ) : Promise<ApplicantRegisterDto> {
-    const announcementResponseDto = new AnnouncementResponseDto();
-    try {
-      const announcement = this.announcementFactoryService.createNewAnnouncement(announcementDto, file);
-      const createdAnnouncement = await this.announcementUseCases.createAnnouncement(announcement);
-
-      announcementResponseDto.success = true;
-      announcementResponseDto.createdAnnouncement = createdAnnouncement;
-    } catch (error) {
-      announcementResponseDto.success = false;
-    }
-
-    return announcementResponseDto;
+  @Get()
+  async getAll() {
+    return this.alumniUseCases.getAllAlumnis();
   }
 
-  @Put(':id')
-  @UseInterceptors(FileInterceptor('image', {
+  @Get(':id')
+  async getById(@Param('id') id: any) {
+    return this.alumniUseCases.getAlumniById(id);
+  }
+
+  @Post('register')
+  async registerAlumni(@Body() alumniRegisterDto: AlumniRegisterDto) : Promise<ResponseRegisteredAlumniDto> {
+    const responseRegisteredAlumniDto = new ResponseRegisteredAlumniDto();
+    try {
+      const alumni = this.alumniFactoryService.registerAlumni(alumniRegisterDto);
+
+      const registerAlumni = await this.alumniUseCases.registerAlumni(alumni);
+
+      responseRegisteredAlumniDto.success = true;
+      responseRegisteredAlumniDto.signedUpAlumni = registerAlumni;
+    } catch (error) {
+      console.log(error);
+      responseRegisteredAlumniDto.success = false;
+    }
+
+    return responseRegisteredAlumniDto;
+  }
+
+  @Put('verify/:id')
+  async verifyAlumni(
+    @Param('id') userId: string,
+    @Body() datas: Alumni,
+  ) : Promise<ResponseBasic> {
+    const responseBasic = new ResponseBasic();
+    try {
+      await this.alumniUseCases.updateAlumni(userId, datas);
+      responseBasic.success = true;
+      responseBasic.description = "Alumni has successfuly updated";
+    } catch(error) {
+      responseBasic.success = false;
+      responseBasic.description = "Alumni failed to update";
+    }
+    return responseBasic;
+  }
+
+  @Put('upload-receipt/:id')
+  @UseInterceptors(FileInterceptor('receipt', {
     storage: diskStorage({
-      destination: './uploads/carousel',
+      destination: './uploads/receipt',
       filename: (_, file, callback) => {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
         const ext = extname(file.originalname);
@@ -50,19 +80,45 @@ export class AlumniController {
       }
     }),
   }))
-  async updateCarousel(
-    @Param('id') carouselId: string,
+  async uploadReceipt(
+    @Param('id') userId: string,
     @UploadedFile() file: Express.Multer.File
-  ) {
-    const carousel = new Carousel();
-    carousel.photo = file.path;
-    carousel.status = true;
-    return this.carouselUseCases.updateCarousel(carouselId, carousel);
+  ) : Promise<ResponseBasic> {
+    const responseBasic = new ResponseBasic();
+    try {
+      const datas = new Alumni();
+      datas.receipt = file.path;
+      await this.alumniUseCases.updateAlumni(userId, datas);
+      responseBasic.success = true;
+      responseBasic.description = "Receipt has successfuly uploaded";
+    } catch (error) {
+      responseBasic.success = true;
+      responseBasic.description = error.message;
+    }
+
+    return responseBasic;
   }
 
-  @Get(':id')
-  async deleteCarousel(@Param('id') id: any){
-    return this.carouselUseCases.deleteCarousel(id);
+  @Put('activate/:id')
+  async activateAlumniAccount(
+    @Param('id') userId: string,
+    @Body() datas: Alumni,
+  ) : Promise<ResponseBasic> {
+    const responseBasic = new ResponseBasic();
+    try {
+      await this.alumniUseCases.updateAlumni(userId, datas);
+      responseBasic.success = true;
+      responseBasic.description = "Alumni has successfuly updated";
+    } catch(error) {
+      responseBasic.success = false;
+      responseBasic.description = "Alumni failed to update";
+    }
+    return responseBasic;
+  }
+
+  @Delete(':id')
+  deleteAlumni(@Param('id') alumniId: string) {
+    return this.alumniUseCases.deleteAlumni(alumniId);
   }
 
 }

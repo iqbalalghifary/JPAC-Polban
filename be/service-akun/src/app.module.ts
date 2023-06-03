@@ -1,31 +1,23 @@
 import { Module } from '@nestjs/common';
-import {
-  AgendaController,
-  AnnouncementController,
-  CarouselController,
-  GalleryController,
-} from './controllers';
+import { AlumniController, UserController, AwardController } from './controllers';
 import { MongoDataServicesModule } from './core/db/db-data-services.module';
-import { AgendaUseCasesModule } from './use-cases/auth/auth-use-cases.module';
-import { AnnouncementUseCasesModule } from './use-cases/alumni/alumni-use-cases.module';
-import { GalleryUseCasesModule } from './use-cases/gallery/gallery-use-cases.module';
-import { CarouselUseCasesModule } from './use-cases/partner/partner-use-cases.module';
+import { AlumniUseCasesModule } from './use-cases/alumni/alumni-use-cases.module';
+import { UserUseCasesModule } from './use-cases/user/user-use-cases.module';
+import { AwardUseCasesModule } from './use-cases/award/award-use-cases.module';
 import { MulterModule } from '@nestjs/platform-express/multer';
 
 @Module({
   imports: [
     MulterModule.register({ dest: './uploads' }),
     MongoDataServicesModule,
-    AgendaUseCasesModule,
-    AnnouncementUseCasesModule,
-    GalleryUseCasesModule,
-    CarouselUseCasesModule
+    AlumniUseCasesModule,
+    UserUseCasesModule,
+    AwardUseCasesModule
   ],
   controllers: [
-    AgendaController,
-    AnnouncementController,
-    CarouselController,
-    GalleryController,
+    AlumniController,
+    UserController,
+    AwardController
   ],
   providers: [],
 })

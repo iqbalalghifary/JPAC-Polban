@@ -1,31 +1,41 @@
 import { Injectable } from '@nestjs/common';
-import { Carousel } from '../../core/entities';
+import { Operator, User } from '../../core/entities';
 import { IDataServices } from '../../core/abstracts';
 
 @Injectable()
-export class CarouselUseCases {
+export class OperatorUseCases {
   constructor(
-    private dataServices: IDataServices,
+    private dataServices: IDataServices
   ) {}
 
-  getAllCarousels(): Promise<Carousel[]> {
-    return this.dataServices.carousels.getAll();
+  getAllOperators(): Promise<Operator[]> {
+    return this.dataServices.operators.getAll();
   }
 
-  getCarouselById(id: any): Promise<Carousel> {
-    return this.dataServices.carousels.get(id);
+  getOperatorById(id: any): Promise<Operator> {
+    return this.dataServices.operators.get(id);
   }
 
-  createCarousel(carousel: Carousel): Promise<Carousel> {
-    return this.dataServices.carousels.create(carousel);
+  // getOperatorByNim(nim: Number): Promise<Operator> {
+  //   return this.dataServices.operators.getByNim(nim);
+  // }
+
+  registerOperator(datas: Operator): Promise<any>[] {
+    const newOperator = new Operator();
+    // return Operator;
+    const operator =  this.dataServices.operators.create(newOperator);
+    const newUser = new User();
+    // newApplicant.username = Operator.email;
+    const user =  this.dataServices.users.create(newUser);
+    return [operator, user];
   }
 
-  updateCarousel(carouselId: string, carousel: Carousel): Promise<Carousel> {
-    return this.dataServices.carousels.update(carouselId, carousel);
+  updateOperator(OperatorId: string, Operator: Operator): Promise<Operator> {
+    return this.dataServices.operators.update(OperatorId, Operator);
   }
 
-  deleteCarousel(id: any): Promise<Carousel> {
-    return this.dataServices.carousels.delete(id);
+  deleteOperator(id: any): Promise<Operator> {
+    return this.dataServices.operators.delete(id);
   }
 
 }

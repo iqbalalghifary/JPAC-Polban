@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import {
-  AgendaController,
-  AnnouncementController,
-  CarouselController,
-  GalleryController,
+  InternshipScheduleController,
+  JobApplicationController,
+  VacancyController
 } from './controllers';
 import { MongoDataServicesModule } from './core/db/db-data-services.module';
 import { AgendaUseCasesModule } from './use-cases/internship-shedule/internship-shedule-use-cases.module';

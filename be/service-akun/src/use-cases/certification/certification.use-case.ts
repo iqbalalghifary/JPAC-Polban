@@ -1,31 +1,30 @@
 import { Injectable } from '@nestjs/common';
-import { Carousel } from '../../core/entities';
+import { Certification } from '../../core/entities';
 import { IDataServices } from '../../core/abstracts';
 
 @Injectable()
-export class CarouselUseCases {
+export class CertificationUseCases {
   constructor(
     private dataServices: IDataServices,
   ) {}
 
-  getAllCarousels(): Promise<Carousel[]> {
-    return this.dataServices.carousels.getAll();
+  getAllCertifications(): Promise<Certification[]> {
+    return this.dataServices.certifications.getAll();
   }
 
-  getCarouselById(id: any): Promise<Carousel> {
-    return this.dataServices.carousels.get(id);
+  getCertificationById(id: any): Promise<Certification> {
+    return this.dataServices.certifications.get(id);
   }
 
-  createCarousel(carousel: Carousel): Promise<Carousel> {
-    return this.dataServices.carousels.create(carousel);
+  createCertification(certification: Certification): Promise<Certification> {
+    return this.dataServices.certifications.create(certification);
   }
 
-  updateCarousel(carouselId: string, carousel: Carousel): Promise<Carousel> {
-    return this.dataServices.carousels.update(carouselId, carousel);
+  updateCertification(certificationId: string, certification: Certification): Promise<Certification> {
+    return this.dataServices.certifications.update(certificationId, certification);
   }
 
-  deleteCarousel(id: any): Promise<Carousel> {
-    return this.dataServices.carousels.delete(id);
+  deleteCertification(id: any): Promise<Certification> {
+    return this.dataServices.certifications.delete(id);
   }
-
 }
