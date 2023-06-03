@@ -7,7 +7,7 @@ import Tag from "./Tag";
 const index = () => {
   return (
     <div className="auto-container">
-      <h4>Course Description</h4>
+      <h4>Career Coaching Dilaksanakan di Polban Secara Virtual</h4>
 
       <p>
         Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec.
@@ -67,34 +67,11 @@ const index = () => {
       </ul>
       {/* <!-- list --> */}
 
-      <div className="other-options">
-        <div className="social-share">
-          <h5>Share this post</h5>
-          <SocialShare />
-        </div>
-        {/* End social-share */}
-
-        <Tag />
-      </div>
       {/* End other share */}
 
       <div className="post-control">
         <Pagination />
       </div>
-      {/* <!-- Post Control --> */}
-
-      <div className="comments-area">
-        <CommentBox />
-      </div>
-
-      {/* <!-- Comments area --> */}
-
-      {/* <!-- Comment Form --> */}
-      <div className="comment-form default-form">
-        <h4>Leave your thought here</h4>
-        <Form />
-      </div>
-      {/* <!--End Comment Form --> */}
     </div>
   );
 };

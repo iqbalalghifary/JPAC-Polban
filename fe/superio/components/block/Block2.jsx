@@ -5,8 +5,8 @@ const Block2 = () => {
       icon: "images/resource/process-1.png",
       title: (
         <>
-          Register an account <br />
-          to start
+          Daftar Akun <br />
+          Untuk Menjadi Member
         </>
       ),
     },
@@ -15,8 +15,8 @@ const Block2 = () => {
       icon: "images/resource/process-2.png",
       title: (
         <>
-          Explore over thousands <br />
-          of resumes
+          Eksplorasi<br />
+          Lowongan Pekerjaan
         </>
       ),
     },
@@ -25,8 +25,8 @@ const Block2 = () => {
       icon: "images/resource/process-3.png",
       title: (
         <>
-          Find the most suitable <br />
-          candidate
+          Temukan Pekerjaan <br />
+          Yang Cocok Untukmu
         </>
       ),
     },

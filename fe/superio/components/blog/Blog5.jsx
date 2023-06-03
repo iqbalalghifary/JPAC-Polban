@@ -19,7 +19,6 @@ const Blog5 = () => {
             </div>
 
             <div className="block-footer">
-              <div>12 Comment</div>
               <Link href={`/blog-details/${item.id}`} className="button -arrow">
                 Read More
                 <span className="fa fa-angle-right"></span>

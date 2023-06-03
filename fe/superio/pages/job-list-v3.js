@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
 import Seo from "../components/common/Seo";
-import JobListV3 from "../components/job-listing-pages/job-list-v3";
+import JobListV3 from "../components/job-listing-pages/lowongan-kerja";
 
 const index = () => {
   return (
     <>
-      <Seo pageTitle="Job List V3" />
+      <Seo pageTitle="Lowongan Pekerjaan" />
       <JobListV3 />
     </>
   );

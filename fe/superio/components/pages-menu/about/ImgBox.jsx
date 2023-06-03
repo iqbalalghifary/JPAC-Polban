@@ -18,6 +18,38 @@ const ImgBox = () => {
       id: 4,
       block: [{ img: "about-img-6" }],
     },
+    {
+      id: 5,
+      block: [{ img: "about-img-1" }],
+    },
+    {
+      id: 6,
+      block: [{ img: "about-img-2" }, { img: "about-img-3" }],
+    },
+    {
+      id: 7,
+      block: [{ img: "about-img-4" }, { img: "about-img-5" }],
+    },
+    {
+      id: 8,
+      block: [{ img: "about-img-6" }],
+    },
+    {
+      id: 9,
+      block: [{ img: "about-img-1" }],
+    },
+    {
+      id: 10,
+      block: [{ img: "about-img-2" }, { img: "about-img-3" }],
+    },
+    {
+      id: 11,
+      block: [{ img: "about-img-4" }, { img: "about-img-5" }],
+    },
+    {
+      id: 12,
+      block: [{ img: "about-img-6" }],
+    },
   ];
 
   return (

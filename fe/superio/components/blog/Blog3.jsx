@@ -19,9 +19,6 @@ const Blog3 = () => {
                   <li>
                     <a href="#">August 31, 2021</a>
                   </li>
-                  <li>
-                    <a href="#">12 Comment</a>
-                  </li>
                 </ul>
                 {/* End post meta */}
                 <h3>
@@ -50,9 +47,6 @@ const Blog3 = () => {
                   <ul className="post-meta">
                     <li>
                       <a href="#">August 31, 2021</a>
-                    </li>
-                    <li>
-                      <a href="#">12 Comment</a>
                     </li>
                   </ul>
                   <h3>

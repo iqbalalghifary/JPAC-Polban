@@ -4,7 +4,7 @@ module.exports = [
     img: "/images/resource/blog/agenda1.jpg",
     title: "VIRTUAL POLBAN CAREER COACHING ",
     blogSingleTitle:
-      "Attract Sales And Profits toward the sunshine - and shadows will fall behind you.",
+      "VIRTUAL POLBAN CAREER COACHING 2022 X JPAC POLBAN 2022",
     blogText: `A job ravenously while Far much that one rank beheld after outside....`,
   },
   {
@@ -12,7 +12,7 @@ module.exports = [
     img: "/images/resource/blog/agenda2.jpg",
     title: "SHARING SESSION STUDY IN TAIWAN",
     blogSingleTitle:
-      "5 Tips For Your Job Interviews toward the sunshine - and shadows will fall behind you.",
+      "SHARING SESSION STUDY IN TAIWAN X JPAC POLBAN 2022",
     blogText: `A job ravenously while Far much that one rank beheld after outside....`,
   },
   {
