@@ -4,7 +4,8 @@ import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardJpacSidebar from "../../../header/DashboardJpacSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
-import JobListingsTable from "./components/JobListingsTable";
+import WidgetContentBox from "./components/WidgetContentBox";
+import WidgetTopFilterBox from "./components/WidgetTopFilterBox";
 import MenuToggler from "../../MenuToggler";
 
 const index = () => {
@@ -28,7 +29,7 @@ const index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Manage jobs!" />
+          <BreadCrumb title="All Applicants!" />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -38,7 +39,16 @@ const index = () => {
             <div className="col-lg-12">
               {/* <!-- Ls widget --> */}
               <div className="ls-widget">
-                <JobListingsTable />
+                <div className="tabs-box">
+                  <div className="widget-title">
+                    <h4>Applicant</h4>
+                    <WidgetTopFilterBox />
+                  </div>
+                  {/* End top widget filter bar */}
+
+                  <WidgetContentBox />
+                  {/* End widget-content */}
+                </div>
               </div>
             </div>
           </div>
