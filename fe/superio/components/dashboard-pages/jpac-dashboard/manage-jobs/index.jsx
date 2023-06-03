@@ -1,7 +1,7 @@
 import MobileMenu from "../../../header/MobileMenu";
 import DashboardHeader from "../../../header/DashboardHeader";
 import LoginPopup from "../../../common/form/login/LoginPopup";
-import DashboardJpacSidebar from "../../../header/DashboardJpacSidebar";
+import DashboardEmployerSidebar from "../../../header/DashboardEmployerSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
 import JobListingsTable from "./components/JobListingsTable";
@@ -22,7 +22,7 @@ const index = () => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <DashboardJpacSidebar />
+      <DashboardEmployerSidebar />
       {/* <!-- End User Sidebar Menu --> */}
 
       {/* <!-- Dashboard --> */}
