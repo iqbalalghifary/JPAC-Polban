@@ -13,7 +13,7 @@ export class User {
   @Prop({ type: [mongoose.Schema.Types.ObjectId], refPath: 'role', required: true })
   references: any;
 
-  @Prop({ type: String, enum: ['student', 'alumni', 'operator', 'company' ], required: true })
+  @Prop({ type: String, enum: ['applicant','operator', 'partner' ], required: true })
   role: any;
 }
 

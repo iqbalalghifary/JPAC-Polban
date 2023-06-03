@@ -31,8 +31,8 @@ export class Partner {
   @Prop({ required: true })
   website: string;
 
-  @Prop({ default: false })
-  status: boolean;
+  @Prop({ enum: ['diusulkan', 'diverifikasi', 'aktif'] })
+  status: string;
 
 }
 

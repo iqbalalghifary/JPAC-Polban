@@ -1,6 +1,6 @@
 export class Award {
   title: string;
-  issuedBy: Date;
-  issueDate: string;
+  issuedBy: string;
+  issueDate: Date;
   description: string;
 }

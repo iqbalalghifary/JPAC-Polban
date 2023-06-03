@@ -1,4 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import * as mongoose from 'mongoose';
+import { Alumni } from './alumni.model';
 
 export type AwardDocument = Award & Document;
 
@@ -8,10 +10,10 @@ export class Award {
   title: string;
 
   @Prop()
-  issuedBy: Date;
+  issuedBy: string;
 
   @Prop()
-  issueDate: string;
+  issueDate: Date;
 
   @Prop()
   description: string;

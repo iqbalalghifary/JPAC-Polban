@@ -11,9 +11,10 @@ export class AlumniFactoryService {
     newAlumni.address = alumniRegisterDto.address;
     newAlumni.phone = alumniRegisterDto.phone;
     newAlumni.email = alumniRegisterDto.email;
+    newAlumni.award = alumniRegisterDto.awardId;
     newAlumni.yearGraduated = alumniRegisterDto.yearGraduated;
     newAlumni.dateOfBirth = alumniRegisterDto.dateOfBirth;
+    newAlumni.status = "diusulkan";
     return newAlumni;
   }
 }
-

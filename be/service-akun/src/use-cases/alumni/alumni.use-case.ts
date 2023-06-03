@@ -8,6 +8,14 @@ export class AlumniUseCases {
     private dataServices: IDataServices
   ) {}
 
+  getAllAlumnis(): Promise<Alumni[]> {
+    return this.dataServices.alumnis.getAll();
+  }
+
+  updateAlumni(alumniId: string, alumni: Alumni): Promise<Alumni> {
+    return this.dataServices.alumnis.update(alumniId, alumni);
+  }
+
   getAlumniById(id: any): Promise<Alumni> {
     return this.dataServices.alumnis.get(id);
   }
@@ -15,4 +23,9 @@ export class AlumniUseCases {
   registerAlumni(alumni: Alumni): Promise<Alumni> {
     return this.dataServices.alumnis.create(alumni);
   }
+
+  deleteAlumni(id: string): Promise<Alumni> {
+    return this.dataServices.alumnis.delete(id);
+  }
+
 }

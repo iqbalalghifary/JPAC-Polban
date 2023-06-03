@@ -8,5 +8,5 @@ export class Partner {
   logo: string;
   mou: string;
   website: string;
-  status: boolean;
+  status: string;
 }

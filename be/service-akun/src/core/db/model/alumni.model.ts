@@ -40,38 +40,38 @@ export class Alumni {
   @Prop()
   yearGraduated: Number;
 
-  @Prop()
+  @Prop({ default: null })
   receipt: string;
 
-  @Prop()
+  @Prop({ default: null })
   validityPeriod: Date;
 
-  @Prop({ default: false })
-  status: boolean;
+  @Prop({ enum: ['diusulkan', 'diverifikasi', 'aktif'] })
+  status: string;
 
-  @Prop({ type: [mongoose.Schema.Types.ObjectId], refPath: 'award', required: true })
+  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Award' })
   award: Award;
   
-  @Prop({ type: [mongoose.Schema.Types.ObjectId], refPath: 'certification', required: true })
-  certification: Certification;
+  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Certification' })
+  certifications: Certification;
 
-  @Prop({ type: [mongoose.Schema.Types.ObjectId], refPath: 'education', required: true })
-  education: Education;
+  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Education' })
+  educations: Education;
 
-  @Prop({ type: [mongoose.Schema.Types.ObjectId], refPath: 'experience', required: true })
-  experience: Experience;
+  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Experience' })
+  experiences: Experience;
 
-  @Prop({ type: [mongoose.Schema.Types.ObjectId], refPath: 'organization', required: true })
-  organization: Organization;
+  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Organization' })
+  organizations: Organization;
 
-  @Prop({ type: [mongoose.Schema.Types.ObjectId], refPath: 'project', required: true })
-  project: Project;
+  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Project' })
+  projects: Project;
 
-  @Prop({ type: [mongoose.Schema.Types.ObjectId], refPath: 'skill', required: true })
-  skill: Skill;
+  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Skill' })
+  skills: Skill;
   
-  @Prop({ type: [mongoose.Schema.Types.ObjectId], refPath: 'volunteer', required: true })
-  volunteer: Volunteer;
+  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Volunteer' })
+  volunteers: Volunteer;
 
 }
 
