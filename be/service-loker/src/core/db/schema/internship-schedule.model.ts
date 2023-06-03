@@ -1,26 +1,20 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-export type AnnouncementDocument = Announcement & Document;
+export type IntershipScheduleDocument = IntershipSchedule & Document;
 
 @Schema()
-export class Announcement {
+export class IntershipSchedule {
   @Prop({ required: true })
-  title: string;
+  major: string;
 
   @Prop({ required: true })
-  description: string;
+  studyProgram: string;
 
   @Prop({ required: true })
-  slug: string;
+  startDate: Date;
 
   @Prop({ required: true })
-  photo: string;
-
-  @Prop({ required: true })
-  publishDate: Date;
-
-  @Prop({ required: true, default: false })
-  status: boolean;
+  endDate: Date;
 }
 
-export const AnnouncementSchema = SchemaFactory.createForClass(Announcement);
+export const IntershipScheduleSchema = SchemaFactory.createForClass(IntershipSchedule);

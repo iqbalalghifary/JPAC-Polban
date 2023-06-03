@@ -1,50 +1,48 @@
 import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
-import { CreateAgendaDto, UpdateAgendaDto, AgendaResponseDto } from '../core/dtos';
-import { AgendaUseCases, AgendaFactoryService } from '../use-cases/internship-shedule';
+import { VacancyUseCases } from '../use-cases/vacancy';
+import { Vacancy } from 'src/core';
+import { VacancyResponseDto } from 'src/core/dtos';
 
-@Controller('api/agenda')
+@Controller('api/vacancy')
 export class VacancyController {
   constructor(
-    private agendaUseCases: AgendaUseCases,
-    private agendaFactoryService: AgendaFactoryService,
+    private vacancyUseCases: VacancyUseCases
   ) {}
 
   @Get()
   async getAll() {
-    return this.agendaUseCases.getAllAgendas();
+    return this.vacancyUseCases.getAllVacancies();
   }
 
   @Get(':id')
   async getById(@Param('id') id: any) {
-    return this.agendaUseCases.getAgendaById(id);
+    return this.vacancyUseCases.getVacancyById(id);
   }
 
   @Post()
-  async createAgenda(@Body() agendaDto: CreateAgendaDto) : Promise<AgendaResponseDto> {
-    const agendaResponseDto = new AgendaResponseDto();
+  async createVacancy(@Body() vacancy: Vacancy) : Promise<VacancyResponseDto> {
+    const vacancyResponseDto = new VacancyResponseDto();
     try {
-      const agenda = this.agendaFactoryService.createNewAgenda(agendaDto);
-      const createdAgenda = await this.agendaUseCases.createAgenda(agenda);
-      agendaResponseDto.success = true;
-      agendaResponseDto.createdAgenda = createdAgenda;
+      const createdVacancy = await this.vacancyUseCases.createVacancy(vacancy);
+      vacancyResponseDto.success = true;
+      vacancyResponseDto.createdVacancy = createdVacancy;
     } catch (error) {
-      agendaResponseDto.success = false;
+      vacancyResponseDto.success = false;
     }
-    return agendaResponseDto;
+    return vacancyResponseDto;
   }
 
   @Put(':id')
-  updateAgenda(
-    @Param('id') agendaId: string,
-    @Body() updateAgendaDto: UpdateAgendaDto,
+  updateVacancy(
+    @Param('id') VacancyId: string,
+    @Body() vacancy: Vacancy,
   ) {
-    const agenda = this.agendaFactoryService.updateAgenda(updateAgendaDto);
-    return this.agendaUseCases.updateAgenda(agendaId, agenda);
+    return this.vacancyUseCases.updateVacancy(VacancyId, vacancy);
   }
 
   @Delete(':id')
-  deleteAgenda(@Param('id') agendaId: string) {
-    return this.agendaUseCases.deleteAgenda(agendaId);
+  deleteVacancy(@Param('id') VacancyId: string) {
+    return this.vacancyUseCases.deleteVacancy(VacancyId);
   }
 
 }

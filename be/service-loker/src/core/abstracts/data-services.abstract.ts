@@ -1,9 +1,8 @@
-import { Agenda, Announcement, Gallery, Carousel } from '../entities';
+import { Vacancy, InternshipSchedule, JobApplication } from '../entities';
 import { IGenericRepository } from './generic-repository.abstract';
 
 export abstract class IDataServices {
-  abstract announcements: IGenericRepository<Announcement>;
-  abstract agendas: IGenericRepository<Agenda>;
-  abstract galleries: IGenericRepository<Gallery>;
-  abstract carousels: IGenericRepository<Carousel>;
+  abstract internshipSchedules: IGenericRepository<InternshipSchedule>;
+  abstract vacancies: IGenericRepository<Vacancy>;
+  abstract jobApplications: IGenericRepository<JobApplication>;
 }

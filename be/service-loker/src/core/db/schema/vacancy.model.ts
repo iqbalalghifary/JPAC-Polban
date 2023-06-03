@@ -1,26 +1,26 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-export type AgendaDocument = Agenda & Document;
+export type VancancyDocument = Vancancy & Document;
 
 @Schema()
-export class Agenda {
+export class Vancancy {
   @Prop({ required: true })
   title: string;
+
+  @Prop({ enum: ["Full-time", "Internship"], required: true })
+  field: string;
+
+  @Prop({ required: true })
+  target: string[];
 
   @Prop({ required: true })
   description: string;
 
   @Prop({ required: true })
-  slug: string;
+  deadline: Date;
 
   @Prop({ required: true })
-  startDate: Date;
-
-  @Prop({ required: true })
-  endDate: Date;
-
-  @Prop({ required: true })
-  publishDate: Date;
+  status: boolean;
 }
 
-export const AgendaSchema = SchemaFactory.createForClass(Agenda);
+export const VancancySchema = SchemaFactory.createForClass(Vancancy);

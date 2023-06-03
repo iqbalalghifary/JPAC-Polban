@@ -1,14 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-export type CarouselDocument = Carousel & Document;
+export type JobApplicationDocument = JobApplication & Document;
 
 @Schema()
-export class Carousel {
+export class JobApplication {
   @Prop({ required: true })
-  photo: string;
+  vacancy: any;
 
   @Prop({ required: true, default: true })
-  status: boolean;
+  applicant: any;
 }
 
-export const CarouselSchema = SchemaFactory.createForClass(Carousel);
+export const JobApplicationSchema = SchemaFactory.createForClass(JobApplication);

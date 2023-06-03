@@ -1,32 +1,31 @@
 import { Injectable } from '@nestjs/common';
-import { Agenda } from '../../core/entities';
+import { Vacancy } from '../../core/entities';
 import { IDataServices } from '../../core/abstracts';
-import { AgendaFactoryService } from './vacancy-factory.service';
 
 @Injectable()
-export class AgendaUseCases {
+export class VacancyUseCases {
   constructor(
     private dataServices: IDataServices
   ) {}
 
-  getAllAgendas(): Promise<Agenda[]> {
-    return this.dataServices.agendas.getAll();
+  getAllVacancies(): Promise<Vacancy[]> {
+    return this.dataServices.vacancies.getAll();
   }
 
-  getAgendaById(id: any): Promise<Agenda> {
-    return this.dataServices.agendas.get(id);
+  getVacancyById(id: any): Promise<Vacancy> {
+    return this.dataServices.vacancies.get(id);
   }
 
-  createAgenda(agenda: Agenda): Promise<Agenda> {
-    return this.dataServices.agendas.create(agenda);
+  createVacancy(Vacancy: Vacancy): Promise<Vacancy> {
+    return this.dataServices.vacancies.create(Vacancy);
   }
 
-  updateAgenda(agendaId: string, agenda: Agenda): Promise<Agenda> {
-    return this.dataServices.agendas.update(agendaId, agenda);
+  updateVacancy(VacancyId: string, Vacancy: Vacancy): Promise<Vacancy> {
+    return this.dataServices.vacancies.update(VacancyId, Vacancy);
   }
 
-  deleteAgenda(id: any): Promise<Agenda> {
-    return this.dataServices.agendas.delete(id);
+  deleteVacancy(id: any): Promise<Vacancy> {
+    return this.dataServices.vacancies.delete(id);
   }
 
 }
