@@ -1,12 +1,12 @@
 import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
-import AllApplicants from "../../../components/dashboard-pages/jpac-dashboard/all-applicants";
+import ManagePerusahaan from "../../../components/dashboard-pages/jpac-dashboard/manage-perusahaan";
 
 const index = () => {
   return (
     <>
-      <Seo pageTitle="All Applicants" />
-      <AllApplicants />
+      <Seo pageTitle="Manage Jobs" />
+      <ManagePerusahaan />
     </>
   );
 };

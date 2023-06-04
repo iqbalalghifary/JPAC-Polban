@@ -10,14 +10,14 @@ module.exports = [
       id: 2,
       name: "Manage Perusahaan",
       icon: "la-briefcase",
-      routePath: "/jpac-dashboard/manage-jobs",
+      routePath: "/jpac-dashboard/manage-perusahaan",
       active: "",
     },
     {
       id: 3,
       name: "Manage Loker",
       icon: "la-file-invoice",
-      routePath: "/jpac-dashboard/all-applicants",
+      routePath: "/jpac-dashboard/manage-loker",
       active: "",
     },
     {
