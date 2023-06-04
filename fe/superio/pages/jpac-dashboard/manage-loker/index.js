@@ -1,12 +1,12 @@
 import dynamic from "next/dynamic";
 import Seo from "../../../components/common/Seo";
-import ManageJobs from "../../../components/dashboard-pages/employers-dashboard/manage-jobs";
+import ManageLoker from "../../../components/dashboard-pages/jpac-dashboard/manage-loker";
 
 const index = () => {
   return (
     <>
-      <Seo pageTitle="Manage Jobs" />
-      <ManageJobs />
+      <Seo pageTitle="All Applicants" />
+      <ManageLoker />
     </>
   );
 };
