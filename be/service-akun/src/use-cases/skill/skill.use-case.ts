@@ -21,7 +21,7 @@ export class SkillUseCases {
   }
 
   updateSkill(skillId: string, skill: Skill): Promise<Skill> {
-    return this.dataServices.skills.update(skillId, skill);
+    return this.dataServices.skills.updateOne(skillId, skill);
   }
 
   deleteSkill(id: any): Promise<Skill> {

@@ -21,7 +21,7 @@ export class CertificationUseCases {
   }
 
   updateCertification(certificationId: string, certification: Certification): Promise<Certification> {
-    return this.dataServices.certifications.update(certificationId, certification);
+    return this.dataServices.certifications.updateOne(certificationId, certification);
   }
 
   deleteCertification(id: any): Promise<Certification> {

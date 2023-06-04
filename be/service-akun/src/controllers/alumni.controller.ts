@@ -54,14 +54,15 @@ export class AlumniController {
   @Put('verify/:id')
   async verifyAlumni(
     @Param('id') userId: string,
-    @Body() datas: Alumni,
+    @Body() datas: any,
   ) : Promise<ResponseBasic> {
     const responseBasic = new ResponseBasic();
     try {
-      await this.alumniUseCases.updateAlumni(userId, datas);
+      await this.alumniUseCases.updateAlumniMultiple(userId, datas);
       responseBasic.success = true;
       responseBasic.description = "Alumni has successfuly updated";
     } catch(error) {
+      console.log(error);
       responseBasic.success = false;
       responseBasic.description = "Alumni failed to update";
     }
@@ -88,7 +89,7 @@ export class AlumniController {
     try {
       const datas = new Alumni();
       datas.receipt = file.path;
-      await this.alumniUseCases.updateAlumni(userId, datas);
+      await this.alumniUseCases.updateAlumniOne(userId, datas);
       responseBasic.success = true;
       responseBasic.description = "Receipt has successfuly uploaded";
     } catch (error) {
@@ -106,7 +107,7 @@ export class AlumniController {
   ) : Promise<ResponseBasic> {
     const responseBasic = new ResponseBasic();
     try {
-      await this.alumniUseCases.updateAlumni(userId, datas);
+      await this.alumniUseCases.updateAlumniOne(userId, datas);
       responseBasic.success = true;
       responseBasic.description = "Alumni has successfuly updated";
     } catch(error) {

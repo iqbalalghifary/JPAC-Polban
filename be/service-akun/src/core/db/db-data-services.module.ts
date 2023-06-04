@@ -27,6 +27,8 @@ import {
   StudentSchema,
   User,
   UserSchema,
+  Token,
+  TokenSchema,
   Volunteer,
   VolunteerSchema  
 } from './model';
@@ -47,6 +49,7 @@ import { MongoDataServices } from './db-data-services.service';
       { name: Skill.name, schema: SkillSchema },
       { name: Student.name, schema: StudentSchema },
       { name: User.name, schema: UserSchema },
+      { name: Token.name, schema: TokenSchema },
       { name: Volunteer.name, schema: VolunteerSchema }
     ]),
     MongooseModule.forRoot(config.MONGO_URI),

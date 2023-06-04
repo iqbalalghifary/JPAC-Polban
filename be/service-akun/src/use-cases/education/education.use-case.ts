@@ -21,7 +21,7 @@ export class EducationUseCases {
   }
 
   updateEducation(educationId: string, education: Education): Promise<Education> {
-    return this.dataServices.educations.update(educationId, education);
+    return this.dataServices.educations.updateOne(educationId, education);
   }
 
   deleteEducation(id: any): Promise<Education> {

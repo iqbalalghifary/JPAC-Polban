@@ -21,7 +21,7 @@ export class OrganizationUseCases {
   }
 
   updateOrganization(organiationId: string, organiation: Organization): Promise<Organization> {
-    return this.dataServices.organizations.update(organiationId, organiation);
+    return this.dataServices.organizations.updateOne(organiationId, organiation);
   }
 
   deleteOrganization(id: any): Promise<Organization> {

@@ -30,10 +30,6 @@ export class AlumniRegisterDto {
   @IsNotEmpty()
   dateOfBirth: Date;
 
-  @IsString()
-  @IsNotEmpty()
-  awardId: any;
-
 }
 
 export class UpdateAlumniDto extends PartialType(AlumniRegisterDto) {}

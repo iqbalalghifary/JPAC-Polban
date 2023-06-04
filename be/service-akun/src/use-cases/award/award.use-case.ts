@@ -21,7 +21,7 @@ export class AwardUseCases {
   }
 
   updateAward(awardId: string, award: Award): Promise<Award> {
-    return this.dataServices.awards.update(awardId, award);
+    return this.dataServices.awards.updateOne(awardId, award);
   }
 
   deleteAward(id: any): Promise<Award> {

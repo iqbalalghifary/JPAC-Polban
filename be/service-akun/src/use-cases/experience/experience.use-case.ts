@@ -21,7 +21,7 @@ export class ExperienceUseCases {
   }
 
   updateExperience(experienceId: string, experience: Experience): Promise<Experience> {
-    return this.dataServices.experiences.update(experienceId, experience);
+    return this.dataServices.experiences.updateOne(experienceId, experience);
   }
 
   deleteExperience(id: any): Promise<Experience> {

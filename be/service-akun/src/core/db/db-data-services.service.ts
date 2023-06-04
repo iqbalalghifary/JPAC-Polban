@@ -28,6 +28,8 @@ import {
   StudentDocument,
   User,
   UserDocument,
+  Token,
+  TokenDocument,  
   Volunteer,
   VolunteerDocument  
 } from './model';
@@ -48,6 +50,7 @@ export class MongoDataServices
   skills: IGenericRepository<Skill>;
   students: IGenericRepository<Student>;
   users: IGenericRepository<User>;
+  tokens: IGenericRepository<Token>;
   volunteers: IGenericRepository<Volunteer>;
 
   constructor(
@@ -75,21 +78,26 @@ export class MongoDataServices
     private StudentRepository: Model<StudentDocument>,
     @InjectModel(User.name)
     private UserRepository: Model<UserDocument>,
+    @InjectModel(Token.name)
+    private TokenRepository: Model<TokenDocument>,   
     @InjectModel(Volunteer.name)
     private VolunteerRepository: Model<VolunteerDocument>,
     ) {}
 
   onApplicationBootstrap() {
     this.alumnis = new MongoGenericRepository<Alumni>(this.AlumniRepository, [
-      "award","certification","education","experience","organization","project","skill","volunteer"
+      "awards","certifications","educations","experiences","organizations","projects","skills","volunteers"
     ]);
     this.students = new MongoGenericRepository<Student>(this.StudentRepository,[
-      "award","certification","education","experience","organization","project","skill","volunteer"
+      "awards","certifications","educations","experiences","organizations","projects","skills","volunteers"
     ]);
     this.operators = new MongoGenericRepository<Operator>(this.OperatorRepository);
     this.partners = new MongoGenericRepository<Partner>(this.PartnerRepository);
-    this.users = new MongoGenericRepository<User>(this.UserRepository);
+    this.users = new MongoGenericRepository<User>(this.UserRepository, [
+      "referenceAttributeId"
+    ]);
     this.awards = new MongoGenericRepository<Award>(this.AwardRepository);
+    this.tokens = new MongoGenericRepository<Token>(this.TokenRepository);
     this.certifications = new MongoGenericRepository<Certification>(this.CertificationRepository);
     this.educations = new MongoGenericRepository<Education>(this.EducationRepository);
     this.experiences = new MongoGenericRepository<Experience>(this.ExperienceRepository);

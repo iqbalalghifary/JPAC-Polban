@@ -13,7 +13,7 @@ export class PartnerUseCases {
   }
 
   updatePartner(partnerId: string, partner: Partner): Promise<Partner> {
-    return this.dataServices.partners.update(partnerId, partner);
+    return this.dataServices.partners.updateOne(partnerId, partner);
   }
 
   getPartnerById(id: any): Promise<Partner> {

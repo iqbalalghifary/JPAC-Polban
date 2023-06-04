@@ -7,6 +7,7 @@ export * from './response-created-experience.dto';
 export * from './response-created-student.dto';
 export * from './response-created-organization.dto';
 export * from './response-created-project.dto';
+export * from './response-created-token.dto';
 export * from './response-created-skill.dto';
 export * from './response-created-volunteer.dto';
 export * from './response-registered-partner.dto';

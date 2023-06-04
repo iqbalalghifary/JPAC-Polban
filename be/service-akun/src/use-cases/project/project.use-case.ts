@@ -21,7 +21,7 @@ export class ProjectUseCases {
   }
 
   updateProject(projectId: string, project: Project): Promise<Project> {
-    return this.dataServices.projects.update(projectId, project);
+    return this.dataServices.projects.updateOne(projectId, project);
   }
 
   deleteProject(id: any): Promise<Project> {

@@ -1,6 +1,9 @@
-import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete, UseGuards } from '@nestjs/common';
 import { UserUseCases } from '../use-cases/user';
-import { User } from 'src/core';
+import { Award, User } from 'src/core';
+import { JwtAuthGuard } from 'src/use-cases/user/jwt.auth.guard';
+import { RoleAuthGuard } from 'src/use-cases/user/roles-auth.guard';
+import { Roles } from 'src/use-cases/user/roles-decorator';
 
 @Controller('api/user')
 export class UserController {
@@ -8,13 +11,15 @@ export class UserController {
     private userUseCases: UserUseCases
   ) {}
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Sabihis')
   @Get()
-  async getAll() {
+  getAll() {
     return this.userUseCases.getAllUsers();
   }
 
   @Get(':id')
-  async getById(@Param('id') id: any) {
+  getById(@Param('id') id: any) {
     return this.userUseCases.getUserById(id);
   }
 
@@ -27,8 +32,13 @@ export class UserController {
     }
   }
 
-  @Put(':id')
-  updateUser(
+  @Post('login')
+  login(@Body() user: User) {
+    return this.userUseCases.login(user);
+  }
+
+  @Put('change-password/:id')
+  updatePassword(
     @Param('id') UserId: string,
     @Body() user: User,
   ) {
@@ -41,7 +51,11 @@ export class UserController {
 
   @Delete(':id')
   deleteUser(@Param('id') userId: string) {
-    return this.userUseCases.deleteUser(userId);
+    try {
+      return this.userUseCases.deleteUser(userId);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 }

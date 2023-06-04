@@ -10,11 +10,11 @@ export class User {
   @Prop({ required: true })
   password: string;
 
-  @Prop({ type: [mongoose.Schema.Types.ObjectId], refPath: 'role', required: true })
-  references: any;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, refPath: 'userRole', required: true })
+  referenceAttributeId: any;
 
-  @Prop({ type: String, enum: ['applicant','operator', 'partner' ], required: true })
-  role: any;
+  @Prop({ type: String, enum: ['Alumni','Student','Operator','Partner'], required: true })
+  userRole: any;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

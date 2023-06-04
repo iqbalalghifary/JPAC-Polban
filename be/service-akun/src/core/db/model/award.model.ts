@@ -1,6 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import * as mongoose from 'mongoose';
-import { Alumni } from './alumni.model';
 
 export type AwardDocument = Award & Document;
 

@@ -12,8 +12,12 @@ export class AlumniUseCases {
     return this.dataServices.alumnis.getAll();
   }
 
-  updateAlumni(alumniId: string, alumni: Alumni): Promise<Alumni> {
-    return this.dataServices.alumnis.update(alumniId, alumni);
+  updateAlumniOne(alumniId: string, alumni: Alumni): Promise<Alumni> {
+    return this.dataServices.alumnis.updateOne(alumniId, alumni);
+  }
+
+  updateAlumniMultiple(alumniId: string, alumni: Alumni): Promise<Alumni> {
+    return this.dataServices.alumnis.updateMultiple(alumniId, alumni);
   }
 
   getAlumniById(id: any): Promise<Alumni> {

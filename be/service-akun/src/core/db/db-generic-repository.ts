@@ -14,6 +14,10 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
     return this._repository.find().populate(this._populateOnFind).exec();
   }
 
+  findOne(data: any): Promise<T> {
+    return this._repository.findOne(data).exec();
+  }
+
   delete(id: any): Promise<T> {
     return this._repository.findByIdAndDelete(id).exec();
   }
@@ -26,7 +30,11 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
     return this._repository.create(item);
   }
 
-  update(id: string, item: T) {
+  updateOne(id: string, item: T) {
+    return this._repository.findByIdAndUpdate(id, item);
+  }
+
+  updateMultiple(id: string, item: T) {
     return this._repository.findByIdAndUpdate(
       id, 
       { $push: item },

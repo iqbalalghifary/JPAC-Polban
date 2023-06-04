@@ -49,30 +49,29 @@ export class Alumni {
   @Prop({ enum: ['diusulkan', 'diverifikasi', 'aktif'] })
   status: string;
 
-  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Award' })
-  award: Award;
+  @Prop([{ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Award' }])
+  awards: Award[];
   
-  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Certification' })
-  certifications: Certification;
+  @Prop([{ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Certification' }])
+  certifications: Certification[];
 
-  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Education' })
-  educations: Education;
+  @Prop([{ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Education' }])
+  educations: Education[];
 
-  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Experience' })
-  experiences: Experience;
+  @Prop([{ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Experience' }])
+  experiences: Experience[];
 
-  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Organization' })
-  organizations: Organization;
+  @Prop([{ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Organization' }])
+  organizations: Organization[];
 
-  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Project' })
-  projects: Project;
+  @Prop([{ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Project' }])
+  projects: Project[];
 
-  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Skill' })
-  skills: Skill;
+  @Prop([{ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Skill' }])
+  skills: Skill[];
   
-  @Prop({ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Volunteer' })
-  volunteers: Volunteer;
-
+  @Prop([{ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Volunteer' }])
+  volunteers: Volunteer[];
 }
 
 export const AlumniSchema = SchemaFactory.createForClass(Alumni);

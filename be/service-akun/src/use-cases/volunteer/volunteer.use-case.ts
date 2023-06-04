@@ -21,7 +21,7 @@ export class VolunteerUseCases {
   }
 
   updateVolunteer(volunteerId: string, volunteer: Volunteer): Promise<Volunteer> {
-    return this.dataServices.volunteers.update(volunteerId, volunteer);
+    return this.dataServices.volunteers.updateOne(volunteerId, volunteer);
   }
 
   deleteVolunteer(id: any): Promise<Volunteer> {

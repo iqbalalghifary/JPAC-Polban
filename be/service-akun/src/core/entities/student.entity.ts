@@ -14,12 +14,12 @@ export class Student {
   study_program: string;
   year: string;
   status: boolean;
-  award: Award;
-  certification: Certification;
-  education: Education;
-  experience: Experience;
-  organization: Organization;
-  project: Project;
-  skill: Skill;
-  volunteer: Volunteer;
+  awards: Award[];
+  certifications: Certification[];
+  educations: Education[];
+  experiences: Experience[];
+  organizations: Organization[];
+  projects: Project[];
+  skills: Skill[];
+  volunteers: Volunteer[];
 }

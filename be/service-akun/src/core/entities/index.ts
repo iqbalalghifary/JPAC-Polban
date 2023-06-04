@@ -10,4 +10,5 @@ export * from './project.entity';
 export * from './skill.entity';
 export * from './student.entity';
 export * from './user.entity';
+export * from './token.entity';
 export * from './volunteer.entity';

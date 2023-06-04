@@ -31,7 +31,7 @@ export class OperatorUseCases {
   }
 
   updateOperator(OperatorId: string, Operator: Operator): Promise<Operator> {
-    return this.dataServices.operators.update(OperatorId, Operator);
+    return this.dataServices.operators.updateOne(OperatorId, Operator);
   }
 
   deleteOperator(id: any): Promise<Operator> {

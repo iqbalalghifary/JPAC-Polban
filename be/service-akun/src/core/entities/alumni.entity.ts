@@ -13,12 +13,12 @@ export class Alumni {
   receipt: string;
   validityPeriod: Date;
   status: string;
-  award: Award;
-  certifications: Certification;
-  educations: Education;
-  experiences: Experience;
-  organizations: Organization;
-  projects: Project;
-  skills: Skill;
-  volunteers: Volunteer;
+  awards: Award[];
+  certifications: Certification[];
+  educations: Education[];
+  experiences: Experience[];
+  organizations: Organization[];
+  projects: Project[];
+  skills: Skill[];
+  volunteers: Volunteer[];
 }

@@ -1,3 +1,4 @@
+import { Token } from '../db/model';
 import { Alumni, Award, Certification, Education, Experience, Operator, Organization, Partner, Project, Skill, Student, User, Volunteer } from '../entities';
 import { IGenericRepository } from './generic-repository.abstract';
 
@@ -14,5 +15,6 @@ export abstract class IDataServices {
   abstract skills: IGenericRepository<Skill>;
   abstract students: IGenericRepository<Student>;
   abstract users: IGenericRepository<User>;
+  abstract tokens: IGenericRepository<Token>;
   abstract volunteers: IGenericRepository<Volunteer>;
 }
