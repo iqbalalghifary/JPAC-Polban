@@ -4,87 +4,54 @@ import {
   Param, 
   Post, 
   Body, 
-  Put, 
-  UseInterceptors, 
-  UploadedFile
+  Put
 } from '@nestjs/common';
-import { CreateGalleryDto, UpdateGalleryDto, GalleryResponseDto } from '../core/dtos';
-import { GalleryUseCases, GalleryFactoryService } from '../use-cases/gallery';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { InternshipScheduleResponseDto } from '../core/dtos';
+import { InternshipScheduleUseCases } from '../use-cases/internship-shedule';
+import { InternshipSchedule } from 'src/core';
 
-@Controller('api/gallery')
+@Controller('api/internship-schedule')
 export class InternshipScheduleController {
   constructor(
-    private galleryUseCases: GalleryUseCases,
-    private galleryFactoryService: GalleryFactoryService,
+    private internshipScheduleUseCases: InternshipScheduleUseCases
   ) {}
 
   @Get()
   async getAll() {
-    return this.galleryUseCases.getAllGallerys();
+    return this.internshipScheduleUseCases.getAllInternshipSchedules();
   }
 
   @Get(':id')
   async getById(@Param('id') id: any) {
-    return this.galleryUseCases.getGalleryById(id);
+    return this.internshipScheduleUseCases.getInternshipScheduleById(id);
   }
 
   @Post()
-  @UseInterceptors(FileInterceptor('image', {
-    storage: diskStorage({
-      destination: './uploads/gallery',
-      filename: (req, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))
-  async createGallery(
-    @Body() galleryDto: CreateGalleryDto,
-    @UploadedFile() file: Express.Multer.File
-  ) : Promise<GalleryResponseDto> {
-    const galleryResponseDto = new GalleryResponseDto();
+  async createInternshipSchedule(@Body() internshipSchedule: InternshipSchedule) : Promise<InternshipScheduleResponseDto> {
+    const internshipScheduleResponseDto = new InternshipScheduleResponseDto();
     try {
-      const gallery = this.galleryFactoryService.createNewGallery(galleryDto, file);
-      const createdGallery = await this.galleryUseCases.createGallery(gallery);
+      const createdInternshipSchedule = await this.internshipScheduleUseCases.createInternshipSchedule(internshipSchedule);
 
-      galleryResponseDto.success = true;
-      galleryResponseDto.createdGallery = createdGallery;
+      internshipScheduleResponseDto.success = true;
+      internshipScheduleResponseDto.createdInternshipSchedule = createdInternshipSchedule;
     } catch (error) {
-      galleryResponseDto.success = false;
+      internshipScheduleResponseDto.success = false;
     }
 
-    return galleryResponseDto;
+    return internshipScheduleResponseDto;
   }
 
   @Put(':id')
-  @UseInterceptors(FileInterceptor('image', {
-    storage: diskStorage({
-      destination: './uploads/gallery',
-      filename: (req, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))
-  async updateGallery(
-    @Param('id') galleryId: string,
-    @Body() updateGalleryDto: UpdateGalleryDto,
-    @UploadedFile() file: Express.Multer.File
+  async updateInternshipSchedule(
+    @Param('id') internshipScheduleId: string,
+    @Body() internshipSchedule: InternshipSchedule,
   ) {
-    const gallery = this.galleryFactoryService.updateGallery(updateGalleryDto, file);
-    return this.galleryUseCases.updateGallery(galleryId, gallery);
+    return this.internshipScheduleUseCases.updateInternshipSchedule(internshipScheduleId, internshipSchedule);
   }
 
   @Get(':id')
-  async deleteGallery(@Param('id') id: any) {
-    return this.galleryUseCases.deleteGallery(id);
+  async deleteInternshipSchedule(@Param('id') id: any) {
+    return this.internshipScheduleUseCases.deleteInternshipSchedule(id);
   }
 
 }

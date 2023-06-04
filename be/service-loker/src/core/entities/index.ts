@@ -1,4 +1,3 @@
-export * from './agenda.entity';
-export * from './announcement.entity';
-export * from './carousel.entity';
-export * from './gallery.entity';
+export * from './vacancy.entity';
+export * from './job-application.entity';
+export * from './internship-schedule.entity';
