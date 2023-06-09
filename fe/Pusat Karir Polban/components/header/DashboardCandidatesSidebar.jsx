@@ -45,29 +45,6 @@ const DashboardCandidatesSidebar = () => {
           ))}
         </ul>
         {/* End navigation */}
-
-        <div className="skills-percentage">
-          <h4>Skills Percentage</h4>
-          <p>
-            `Put value for <strong>Cover Image</strong> field to increase your
-            skill up to <strong>85%</strong>`
-          </p>
-          <div style={{ width: 200, height: 200, margin: "auto" }}>
-            <CircularProgressbar
-              background
-              backgroundPadding={6}
-              styles={buildStyles({
-                backgroundColor: "#7367F0",
-                textColor: "#fff",
-                pathColor: "#fff",
-                trailColor: "transparent",
-              })}
-              value={percentage}
-              text={`${percentage}%`}
-            />
-          </div>{" "}
-          {/* <!-- Pie Graph --> */}
-        </div>
       </div>
     </div>
   );

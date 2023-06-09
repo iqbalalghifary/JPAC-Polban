@@ -1,7 +1,7 @@
 import MobileMenu from "../../../header/MobileMenu";
 import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardCandidatesSidebar from "../../../header/DashboardCandidatesSidebar";
-import BreadCrumb from "../../BreadCrumb";
+// import BreadCrumb from "../../BreadCrumb";
 import MyProfile from "./components/my-profile";
 import SocialNetworkBox from "./components/SocialNetworkBox";
 import ContactInfoBox from "./components/ContactInfoBox";
@@ -30,7 +30,7 @@ const index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="My Profile!" />
+          {/* <BreadCrumb title="My Profile!" /> */}
           {/* breadCrumb */}
 
           <MenuToggler />

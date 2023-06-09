@@ -333,6 +333,10 @@ export default [
                 name: "Register",
                 routePath: "/register",
             },
+            {
+                name: "Upload Pembayaran",
+                routePath: "/uploadPembayaran",
+            },
         ],
     },
     {

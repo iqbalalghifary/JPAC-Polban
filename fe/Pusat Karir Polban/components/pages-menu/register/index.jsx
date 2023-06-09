@@ -6,9 +6,6 @@ import Header from "./Header";
 const index = () => {
   return (
     <>
-      <Header />
-      {/* <!--End Main Header -->  */}
-
       <LoginPopup />
       {/* End Login Popup Modal */}
 

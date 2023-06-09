@@ -192,20 +192,12 @@ export const candidateItems = [
 ];
 
 export const blogItems = [
-    // {
-    //     name: "Blog List V1",
-    //     routePath: "/blog-list-v1",
-    // },
-    // {
-    //     name: "Blog List V2",
-    //     routePath: "/blog-list-v2",
-    // },
     {
-        name: "Blog List V3",
+        name: "Agenda List V3",
         routePath: "/blog-list-v3",
     },
     {
-        name: "Blog Details",
+        name: "Agenda Details",
         routePath: "/blog-details/1",
     },
 ];

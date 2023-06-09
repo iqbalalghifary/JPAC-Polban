@@ -67,7 +67,7 @@ const HeaderNavContent = () => {
                 : ""
             } dropdown`}
           >
-            <span>About Us</span>
+            <span>Tentang Kami</span>
             <ul>
               {/* {shopItems.map((item) => (
                 <li className="dropdown" key={item.id}>

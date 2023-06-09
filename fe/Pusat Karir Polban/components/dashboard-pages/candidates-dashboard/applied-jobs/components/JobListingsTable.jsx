@@ -76,7 +76,7 @@ const JobListingsTable = () => {
                           </li>
                           <li>
                             <button data-text="Delete Aplication">
-                              <span className="la la-trash"></span>
+                              <span className="la la-remove"></span>
                             </button>
                           </li>
                         </ul>

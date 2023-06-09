@@ -12,7 +12,7 @@ module.exports = [
   },
   {
     id: 2,
-    title: "About Us",
+    title: "Tentang Kami",
     menuList: [
       { name: "About Us", route: "/about" },
       { name: "Faq", route: "/faq" },
@@ -22,7 +22,7 @@ module.exports = [
   {
     
     id: 3,
-    title: "Find Us",
+    title: "Temukan Kami",
     menuList: [
       { name: "Facebook", route: "https://www.facebook.com/jpac.polban" },
       { name: "Twitter", route: "https://twitter.com/jpacpolban" },

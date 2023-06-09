@@ -15,19 +15,19 @@ const FormInfoBox = () => {
   return (
     <form action="#" className="default-form">
       <div className="row">
-        {/* <!-- Input --> */}
+        {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Full Name</label>
           <input type="text" name="name" placeholder="Jerome" required />
         </div>
 
-        {/* <!-- Input --> */}
+        {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Job Title</label>
           <input type="text" name="name" placeholder="UI Designer" required />
         </div>
 
-        {/* <!-- Input --> */}
+        {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Phone</label>
           <input
@@ -38,7 +38,7 @@ const FormInfoBox = () => {
           />
         </div>
 
-        {/* <!-- Input --> */}
+        {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Email address</label>
           <input
@@ -49,7 +49,7 @@ const FormInfoBox = () => {
           />
         </div>
 
-        {/* <!-- Input --> */}
+        {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
           <label>Website</label>
           <input
@@ -60,68 +60,89 @@ const FormInfoBox = () => {
           />
         </div>
 
-        {/* <!-- Input --> */}
-        <div className="form-group col-lg-3 col-md-12">
-          <label>Current Salary($)</label>
+        {/* Input */}
+        <div className="form-group col-lg-6 col-md-12">
+          <label>Date of Birth</label>
+          <div>
+            <input type="date" name="dob" required />
+          </div>
+        </div>
+
+        {/* Input */}
+        <div className="form-group col-lg-6 col-md-12">
+          <label>Gender</label>
           <select className="chosen-single form-select" required>
-            <option>40-70 K</option>
-            <option>50-80 K</option>
-            <option>60-90 K</option>
-            <option>70-100 K</option>
-            <option>100-150 K</option>
+            <option>Male</option>
+            <option>Female</option>
           </select>
         </div>
 
-        {/* <!-- Input --> */}
-        <div className="form-group col-lg-3 col-md-12">
-          <label>Expected Salary($)</label>
+        {/* Input */}
+        <div className="form-group col-lg-6 col-md-12">
+          <label>Year Graduated</label>
+          <input type="text" name="gradYear" placeholder="2022" required />
+        </div>
+
+        {/* Input */}
+        <div className="form-group col-lg-6 col-md-12">
+          <label>Receipt</label>
+          <input type="text" name="receipt" placeholder="1234567890" required />
+        </div>
+
+        {/* Input */}
+        <div className="form-group col-lg-6 col-md-12">
+          <label>Validity Period</label>
+          <input type="text" name="validityPeriod" placeholder="2023-2025" required />
+        </div>
+
+        {/* Input */}
+        <div className="form-group col-lg-6 col-md-12">
+          <label>Status</label>
           <select className="chosen-single form-select" required>
-            <option>120-350 K</option>
-            <option>40-70 K</option>
-            <option>50-80 K</option>
-            <option>60-90 K</option>
-            <option>70-100 K</option>
-            <option>100-150 K</option>
+            <option>Graduated</option>
+            <option>Student</option>
           </select>
         </div>
 
-        {/* <!-- Input --> */}
+        {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Experience</label>
-          <input type="text" name="name" placeholder="5-10 Years" required />
+          <label>Award</label>
+          <input type="text" name="award" placeholder="Best Employee" required />
         </div>
 
-        {/* <!-- Input --> */}
+        {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Age</label>
-          <select className="chosen-single form-select" required>
-            <option>23 - 27 Years</option>
-            <option>24 - 28 Years</option>
-            <option>25 - 29 Years</option>
-            <option>26 - 30 Years</option>
-          </select>
+          <label>Certifications</label>
+          <input type="text" name="certifications" placeholder="Certified Developer" required />
         </div>
 
-        {/* <!-- Input --> */}
+        {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Education Levels</label>
-          <input type="text" name="name" placeholder="Certificate" required />
+          <label>Organizations</label>
+          <input type="text" name="organizations" placeholder="ABC Organization" required />
         </div>
 
-        {/* <!-- Input --> */}
+        {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Languages</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="English, Turkish"
-            required
-          />
+          <label>Projects</label>
+          <input type="text" name="projects" placeholder="Project XYZ" required />
         </div>
 
-        {/* <!-- Search Select --> */}
+        {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Categories </label>
+          <label>Skills</label>
+          <input type="text" name="skills" placeholder="HTML, CSS, JavaScript" required />
+        </div>
+
+        {/* Input */}
+        <div className="form-group col-lg-6 col-md-12">
+          <label>Volunteers</label>
+          <input type="text" name="volunteers" placeholder="XYZ Volunteer Organization" required />
+        </div>
+
+        {/* Search Select */}
+        <div className="form-group col-lg-6 col-md-12">
+          <label>Categories</label>
           <Select
             defaultValue={[catOptions[1]]}
             isMulti
@@ -133,27 +154,19 @@ const FormInfoBox = () => {
           />
         </div>
 
-        {/* <!-- Input --> */}
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Allow In Search & Listing</label>
-          <select className="chosen-single form-select" required>
-            <option>Yes</option>
-            <option>No</option>
-          </select>
-        </div>
-
-        {/* <!-- About Company --> */}
+        {/* About Company */}
         <div className="form-group col-lg-12 col-md-12">
           <label>Description</label>
           <textarea placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugo's on Wall Street. Managed a small team buying and selling Pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed several new methods for working it banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer collaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"></textarea>
         </div>
 
-        {/* <!-- Input --> */}
+        {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
           <button type="submit" className="theme-btn btn-style-one">
             Save
           </button>
         </div>
+        
       </div>
     </form>
   );

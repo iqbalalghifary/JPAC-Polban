@@ -1,12 +1,5 @@
 module.exports = [
   {
-    id: 1,
-    name: "Dashboard",
-    icon: "la-home",
-    routePath: "/candidates-dashboard/dashboard",
-    active: "active",
-  },
-  {
     id: 2,
     name: "My Profile",
     icon: "la-user-tie",
@@ -46,20 +39,6 @@ module.exports = [
     name: "CV manager",
     icon: "la la-file-invoice",
     routePath: "/candidates-dashboard/cv-manager",
-    active: "",
-  },
-  {
-    id: 8,
-    name: "Packages",
-    icon: "la-box",
-    routePath: "/candidates-dashboard/packages",
-    active: "",
-  },
-  {
-    id: 9,
-    name: "Messages",
-    icon: "la-comment-o",
-    routePath: "/candidates-dashboard/messages",
     active: "",
   },
   {
