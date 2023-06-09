@@ -1,10 +1,10 @@
 import MobileMenu from "../../../header/MobileMenu";
 import DashboardHeader from "../../../header/DashboardHeader";
 import LoginPopup from "../../../common/form/login/LoginPopup";
-import DashboardJpacSidebar from "../../../header/DashboardJpacSidebar";
+import DashboardEmployerSidebar from "../../../header/DashboardJpacSidebar";
 import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
-import JobListingsTable from "./components/JobListingsTable";
+import Form from "./components/Form";
 import MenuToggler from "../../MenuToggler";
 
 const index = () => {
@@ -22,27 +22,28 @@ const index = () => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <DashboardJpacSidebar />
+      <DashboardEmployerSidebar />
       {/* <!-- End User Sidebar Menu --> */}
 
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Manage jobs!" />
+          <BreadCrumb title="Change Password!" />
           {/* breadCrumb */}
 
           <MenuToggler />
           {/* Collapsible sidebar button */}
 
-          <div className="row">
-            <div className="col-lg-12">
-              {/* <!-- Ls widget --> */}
-              <div className="ls-widget">
-                <JobListingsTable />
-              </div>
+          <div className="ls-widget">
+            <div className="widget-title">
+              <h4>Change Password</h4>
+            </div>
+
+            <div className="widget-content">
+              <Form />
             </div>
           </div>
-          {/* End .row */}
+          {/* <!-- Ls widget --> */}
         </div>
         {/* End dashboard-outer */}
       </section>
