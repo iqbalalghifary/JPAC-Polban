@@ -1,27 +1,79 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Link from "next/link";
-import jobsData from "../../../../../data/list-pending-alumni";
 
 const JobListingsTable = () => {
-  const [jobs, setJobs] = useState(jobsData);
+  const [jobs, setJobs] = useState([]);
 
-  const handleEdit = (item) => {
-    const confirmed = window.confirm("Apakah Anda yakin untuk memverifikasi?");
-    if (confirmed) {
-      const updatedJobs = jobs.map((job) =>
-        job.id === item.id ? { ...job, status: toggleStatus(job.status) } : job
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://6485a137a795d24810b72358.mockapi.io/pusatkarirpolban/manage-alumni"
       );
-      setJobs(updatedJobs);
+      setJobs(response.data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  const handleReject = (item) => {
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleEdit = async (item) => {
+    const confirmed = window.confirm("Apakah Anda yakin untuk memverifikasi?");
+    if (confirmed) {
+      try {
+        const updatedJobs = jobs.map((job) =>
+          job.id === item.id ? { ...job, status: toggleStatus(job.status) } : job
+        );
+        setJobs(updatedJobs);
+        console.log("Alumni di verifikasi");
+        await axios.put(
+          `https://6485a137a795d24810b72358.mockapi.io/pusatkarirpolban/manage-alumni/${item.id}`,
+          item
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const handleReject = async (item) => {
     const confirmed = window.confirm("Apakah Anda yakin untuk menolak aktivasi akun alumni?");
     if (confirmed) {
-      const updatedJobs = jobs.map((job) =>
-        job.id === item.id ? { ...job, status: "rejected" } : job
+      try {
+        const updatedJobs = jobs.filter((job) => job.id !== item.id);
+        setJobs(updatedJobs);
+        console.log("Alumni rejected");
+        await axios.delete(
+          `https://6485a137a795d24810b72358.mockapi.io/pusatkarirpolban/manage-alumni/${item.id}`
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const postAlumni = async () => {
+    try {
+      const newAlumni = {
+        nama: "John Doe",
+        tanggalLahir: "1990-01-01",
+        institusi: "Politeknik Negeri Bandung",
+        tahunLulus: "2010",
+        email: "john.doe@example.com",
+        phone: "123456789",
+        created: "2023-06-11",
+        status: "not verified",
+      };
+      const response = await axios.post(
+        "https://6485a137a795d24810b72358.mockapi.io/pusatkarirpolban/manage-alumni",
+        newAlumni
       );
-      setJobs(updatedJobs);
+      setJobs([...jobs, response.data]);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -62,7 +114,7 @@ const JobListingsTable = () => {
               </tr>
             </thead>
             <tbody>
-              {jobs.slice(0, 4).map((item) => (
+              {jobs.map((item) => (
                 <tr key={item.id}>
                   <td>
                     {/* <!-- Job Block --> */}
@@ -81,10 +133,6 @@ const JobListingsTable = () => {
                             <li>
                               <span className="icon flaticon-briefcase"></span>
                               {item.institusi}
-                            </li>
-                            <li>
-                              <span className="icon flaticon-map-locator"></span>
-                              {item.alamat}
                             </li>
                           </ul>
                         </div>
@@ -106,7 +154,7 @@ const JobListingsTable = () => {
                     <a>{item.phone}</a>
                   </td>
                   <td>
-                    <a>{item.created}</a>
+                    <a>{item.tanggalpendaftaran}</a>
                   </td>
                   <td
                     className="status"
@@ -114,29 +162,31 @@ const JobListingsTable = () => {
                       color: item.status === "verified" ? "green" : "red",
                     }}
                   >
-                    {item.status}
+                    {item.status || "Belum di verifikasi"}
                   </td>
                   <td>
-                    <div className="option-box">
-                      <ul className="option-list">
-                        <li>
-                          <button
-                            data-text="Edit"
-                            onClick={() => handleEdit(item)}
-                          >
-                            <span className="la la-pencil"></span>
-                          </button>
-                        </li>
-                        <li>
-                          <button
-                            data-text="Reject"
-                            onClick={() => handleReject(item)}
-                          >
-                            <span className="la la-trash"></span>
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
+                    {item.status !== "verified" && (
+                      <div className="option-box">
+                        <ul className="option-list">
+                          <li>
+                            <button
+                              data-text="Terima"
+                              onClick={() => handleEdit(item)}
+                            >
+                              <span className="la la-check"></span>
+                            </button>
+                          </li>
+                          <li>
+                            <button
+                              data-text="Tolak"
+                              onClick={() => handleReject(item)}
+                            >
+                              <span className="la la-remove"></span>
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -145,6 +195,7 @@ const JobListingsTable = () => {
         </div>
       </div>
       {/* End table widget content */}
+      {/* <button onClick={postAlumni}>Add Alumni</button> */}
     </div>
   );
 };

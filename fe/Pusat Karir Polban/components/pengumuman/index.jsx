@@ -1,4 +1,4 @@
-import FooterDefault from "../../components/footer/common-footer";
+import Footer from "../../components/home-4/Footer";
 import Breadcrumb from "../common/Breadcrumb";
 import LoginPopup from "../common/form/login/LoginPopup";
 import DefaulHeader2 from "../header/DefaulHeader2";
@@ -58,7 +58,7 @@ const index = () => {
       </section>
       {/* <!--End Listing Page Section --> */}
 
-      <FooterDefault footerStyle="alternate5" />
+      <Footer />
       {/* <!-- End Main Footer --> */}
     </>
   );

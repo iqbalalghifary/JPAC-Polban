@@ -78,7 +78,7 @@ const DashboardHeader = () => {
                                 <Image
                                     alt="avatar"
                                     className="thumb"
-                                    src="/images/resource/company-6.png"
+                                    src="/images/resource/company-60.png"
                                     width={50}
                                     height={50}
                                 />

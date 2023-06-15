@@ -77,7 +77,7 @@ const JobListingsTable = () => {
                       <ul className="option-list">
                         <li>
                           <button data-text="View Aplication">
-                            <span className="la la-eye"></span>
+                            <span className="la la-download"></span>
                           </button>
                         </li>
                         <li>

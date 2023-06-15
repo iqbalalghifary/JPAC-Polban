@@ -21,24 +21,10 @@ module.exports = [
     active: "",
   },
   {
-    id: 5,
-    name: "Job Alerts",
-    icon: "la la-bell",
-    routePath: "/candidates-dashboard/job-alerts",
-    active: "",
-  },
-  {
     id: 6,
     name: "Shortlisted Jobs",
     icon: "la-bookmark-o",
     routePath: "/candidates-dashboard/short-listed-jobs",
-    active: "",
-  },
-  {
-    id: 7,
-    name: "CV manager",
-    icon: "la la-file-invoice",
-    routePath: "/candidates-dashboard/cv-manager",
     active: "",
   },
   {
@@ -53,13 +39,6 @@ module.exports = [
     name: "Logout",
     icon: "la-sign-out",
     routePath: "/login",
-    active: "",
-  },
-  {
-    id: 12,
-    name: "Delete Profile",
-    icon: "la-trash",
-    routePath: "/",
     active: "",
   },
 ];

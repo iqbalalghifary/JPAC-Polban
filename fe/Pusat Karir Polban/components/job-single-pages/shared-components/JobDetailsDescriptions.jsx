@@ -1,7 +1,7 @@
 const JobDetailsDescriptions = () => {
   return (
     <div className="job-detail">
-      <h4>Job Description</h4>
+      <h4>Deskripsi Pekerjaan</h4>
       <p>
         As a Product Designer, you will work within a Product Delivery Team
         fused with UX, engineering, product and data talent. You will help the
@@ -11,7 +11,7 @@ const JobDetailsDescriptions = () => {
         role is ideal if you are looking to segue your career into the FinTech
         or Big Data arenas.
       </p>
-      <h4>Key Responsibilities</h4>
+      <h4>Tanggung Jawab</h4>
       <ul className="list-style-three">
         <li>
           Be involved in every step of the product design cycle from discovery
@@ -46,7 +46,7 @@ const JobDetailsDescriptions = () => {
           Present your work to the wider business at Show & Tell sessions.
         </li>
       </ul>
-      <h4>Skill & Experience</h4>
+      <h4>Skill dan Pengalaman</h4>
       <ul className="list-style-three">
         <li>
           You have at least 3 years’ experience working as a Product Designer.

@@ -4,7 +4,7 @@ const SidebarHeader = () => {
   return (
     <div className="pro-header">
       <Link href="/">
-        <img src="/images/polban-logo.svg" alt="brand" />
+        <img src="/images/polban-logo1.svg" alt="brand" />
       </Link>
       {/* End logo */}
 

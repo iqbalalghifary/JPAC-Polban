@@ -78,7 +78,7 @@ const DashboardCandidatesHeader = () => {
                                 <Image
                                     alt="avatar"
                                     className="thumb"
-                                    src="/images/resource/candidate-1.png"
+                                    src="/images/resource/candidate-11.png"
                                     width={50}
                                     height={50}
                                 />

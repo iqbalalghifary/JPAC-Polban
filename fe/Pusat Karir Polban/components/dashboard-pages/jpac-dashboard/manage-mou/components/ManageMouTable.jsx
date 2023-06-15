@@ -1,35 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Link from "next/link";
-import jobsData from "../../../../../data/list-pending-activation-companies";
 
 const JobListingsTable = () => {
-  const [jobs, setJobs] = useState(jobsData);
+  const [jobs, setJobs] = useState([]);
   const [statusChanges, setStatusChanges] = useState([]);
+
+  const postStatus = (id, status) => {
+    axios
+      .put(`https://6482fef0f2e76ae1b95bcbd3.mockapi.io/pusatkarirpolban/applied/${id}`, { status })
+      .then((response) => {
+        const updatedJobs = jobs.map((job) =>
+          job.id === id ? { ...job, status: response.data.status } : job
+        );
+        setJobs(updatedJobs);
+        setStatusChanges([...statusChanges, id]);
+        console.log(`Status berhasil diubah menjadi ${status}`);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const deleteJob = (id) => {
+    axios
+      .delete(`https://6482fef0f2e76ae1b95bcbd3.mockapi.io/pusatkarirpolban/applied/${id}`)
+      .then(() => {
+        const updatedJobs = jobs.filter((job) => job.id !== id);
+        setJobs(updatedJobs);
+        setStatusChanges([...statusChanges, id]);
+        console.log("MoU berhasil ditolak");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    axios
+      .get("https://6482fef0f2e76ae1b95bcbd3.mockapi.io/pusatkarirpolban/applied")
+      .then((response) => {
+        setJobs(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   const handleEdit = (item) => {
     const confirmed = window.confirm("Apakah Anda yakin untuk mengaktivasi akun perusahaan?");
     if (confirmed) {
-      const updatedJobs = jobs.map((job) =>
-        job.id === item.id ? { ...job, status: toggleStatus(job.status) } : job
-      );
+      postStatus(item.id, "verified");
+      const updatedJobs = jobs.filter((job) => job.id !== item.id);
       setJobs(updatedJobs);
-      setStatusChanges([...statusChanges, item.id]);
     }
-  };
+  };  
 
   const handleReject = (item) => {
     const confirmed = window.confirm("Apakah Anda yakin untuk menolak aktivasi akun perusahaan?");
     if (confirmed) {
-      const updatedJobs = jobs.map((job) =>
-        job.id === item.id ? { ...job, status: "rejected" } : job
-      );
-      setJobs(updatedJobs);
-      setStatusChanges([...statusChanges, item.id]);
+      deleteJob(item.id);
     }
-  };
-
-  const toggleStatus = (status) => {
-    return status === "activated" ? "not-activated" : "activated";
   };
 
   function getFileNameFromURL(url) {
@@ -39,6 +64,45 @@ const JobListingsTable = () => {
     }
     return "";
   }
+
+  const renderActionButton = (item) => {
+  if (item.status !== "not verified" || statusChanges.includes(item.id)) {
+    return (
+      <div className="option-box">
+        <ul className="option-list">
+          <li>
+            <button data-text="Terima" onClick={() => handleEdit(item)}>
+              <span className="la la-check"></span>
+            </button>
+          </li>
+          <li>
+            <button data-text="Tolak" onClick={() => handleReject(item)}>
+              <span className="la la-remove"></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    );
+  } else {
+    return (
+      <div className="option-box">
+        <ul className="option-list">
+          <li>
+            <button data-text="Terima" onClick={() => handleEdit(item)}>
+              <span className="la la-check"></span>
+            </button>
+          </li>
+          <li>
+            <button data-text="Tolak" onClick={() => handleReject(item)}>
+              <span className="la la-remove"></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+};
+
 
   return (
     <div className="tabs-box">
@@ -70,7 +134,7 @@ const JobListingsTable = () => {
               </tr>
             </thead>
             <tbody>
-              {jobs.slice(0, 4).map((item) => (
+              {jobs.map((item) => (
                 <tr key={item.id}>
                   <td>
                     {/* <!-- Job Block --> */}
@@ -80,16 +144,8 @@ const JobListingsTable = () => {
                           <span className="company-logo">
                             <img src={item.logo} alt="logo" />
                           </span>
-                          <h4>
-                            {/* <Link href={`/job-single-v3/${item.id}`}> */}
-                            {item.nama}
-                            {/* </Link> */}
-                          </h4>
+                          <h4>{item.namaperusahaan}</h4>
                           <ul className="job-info">
-                            <li>
-                              <span className="icon flaticon-briefcase"></span>
-                              {item.jenis}
-                            </li>
                             <li>
                               <span className="icon flaticon-map-locator"></span>
                               {item.alamat}
@@ -100,8 +156,8 @@ const JobListingsTable = () => {
                     </div>
                   </td>
                   <td className="document">
-                    <a href={item.document} download={getFileNameFromURL(item.document)}>
-                      {getFileNameFromURL(item.document)}
+                    <a href={item.mou} download={getFileNameFromURL(item.mou)}>
+                      {getFileNameFromURL(item.mou)}
                     </a>
                   </td>
                   <td>
@@ -110,37 +166,12 @@ const JobListingsTable = () => {
                   <td
                     className="status"
                     style={{
-                      color: item.status === "activated" ? "green" : "red",
+                      color: item.status === "verified" ? "green" : "red",
                     }}
                   >
-                    {item.status}
+                    {item.status || "Belum di verifikasi"}
                   </td>
-                  <td>
-                    <div className="option-box">
-                      <ul className="option-list">
-                        {!statusChanges.includes(item.id) && ( // Hanya tampilkan tombol jika perubahan status belum dilakukan
-                          <>
-                            <li>
-                              <button
-                                data-text="Edit"
-                                onClick={() => handleEdit(item)}
-                              >
-                                <span className="la la-pencil"></span>
-                              </button>
-                            </li>
-                            <li>
-                              <button
-                                data-text="Reject"
-                                onClick={() => handleReject(item)}
-                              >
-                                <span className="la la-trash"></span>
-                              </button>
-                            </li>
-                          </>
-                        )}
-                      </ul>
-                    </div>
-                  </td>
+                  <td>{renderActionButton(item)}</td>
                 </tr>
               ))}
             </tbody>
@@ -153,4 +184,3 @@ const JobListingsTable = () => {
 };
 
 export default JobListingsTable;
-

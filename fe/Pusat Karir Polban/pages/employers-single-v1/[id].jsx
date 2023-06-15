@@ -12,14 +12,14 @@ import RelatedJobs from "../../components/employer-single-pages/related-jobs/Rel
 import MapJobFinder from "../../components/job-listing-pages/components/MapJobFinder";
 import Social from "../../components/employer-single-pages/social/Social";
 import PrivateMessageBox from "../../components/employer-single-pages/shared-components/PrivateMessageBox";
-import PDFViewer from "../../components/employer-single-pages/shared-components/JobDetailsDescriptions";
+import PDFViewer from "./components/PDFviewer";
 
 
 const EmployersSingleV1 = () => {
   const router = useRouter();
   const [employer, setEmployersInfo] = useState({});
   const id = router.query.id;
-  const pdfUrl = "/public/pspdfkit-lib/pspdfkit-web-demo.pdf";
+  const pdfUrl = "../../public/pengumuman-daihatsu.pdf";
 
   useEffect(() => {
     if (!id) <h1>Loading...</h1>;
@@ -143,11 +143,7 @@ const EmployersSingleV1 = () => {
           <div className="auto-container">
             <div className="row">
               <div className="content-column col-lg-8 col-md-12 col-sm-12">
-                {/*  job-detail */}
-                {/* <JobDetailsDescriptions /> */}
                 <PDFViewer pdfUrl={pdfUrl} />
-                {/* End job-detail */}
-                {/* <PDFViewer /> */}
 
                 {/* <!-- Related Jobs --> */}
                 <div className="related-jobs">

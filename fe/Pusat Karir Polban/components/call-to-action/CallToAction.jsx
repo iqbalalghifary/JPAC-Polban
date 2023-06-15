@@ -17,15 +17,6 @@ const CallToAction = () => {
             </div>
           </div>
           {/* End .content-column */}
-
-          <div
-            className="image-column"
-            style={{ backgroundImage: " url(images/resource/image-1.png)" }}
-          >
-            <figure className="image">
-              <img src="images/resource/image-1.png" alt="resource" />
-            </figure>
-          </div>
           {/* End .image-column */}
         </div>
       </div>

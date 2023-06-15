@@ -1,7 +1,7 @@
 module.exports = [
     {
         id: 1,
-        avatar: "/images/resource/candidate-1.png",
+        avatar: "/images/resource/company-logo/3-41.png",
         name: "Darlene Robertson",
         designation: "UI Designer",
         location: "Bandung",
@@ -9,7 +9,7 @@ module.exports = [
         tags: ["App", "Design", "Digital"],
         destination: {
             min: 0,
-            max: 10,
+            max: 1000,
         },
         category: "Residential",
         gender: "Male",
@@ -19,7 +19,7 @@ module.exports = [
     },
     {
         id: 2,
-        avatar: "/images/resource/candidate-2.png",
+        avatar: "/images/resource/company-logo/3-7.png",
         name: "Wade Warren",
         designation: "Developer",
         location: "Bandung",
@@ -73,7 +73,7 @@ module.exports = [
     },
     {
         id: 5,
-        avatar: "/images/resource/candidate-1.png",
+        avatar: "/images/resource/company-logo/3-41.png",
         name: "Darlene Robertson",
         designation: "UI Designer",
         location: "Bandung",
@@ -145,7 +145,7 @@ module.exports = [
     },
     {
         id: 9,
-        avatar: "/images/resource/candidate-1.png",
+        avatar: "/images/resource/company-logo/3-41.png",
         name: "Darlene Robertson",
         designation: "UI Designer",
         location: "Bandung",
@@ -253,7 +253,7 @@ module.exports = [
     },
     {
         id: 15,
-        avatar: "/images/index-12/candidates/3.png",
+        avatar: "/images/index-12/company-logo/3-41.png",
         name: "Darlene Robertson",
         designation: "Dog Trainer",
         location: "Bandung",
@@ -308,7 +308,7 @@ module.exports = [
     // candidate list v1 data
     {
         id: 18,
-        avatar: "/images/resource/candidate-1.png",
+        avatar: "/images/resource/company-logo/3-41.png",
         name: "Darlene Robertson",
         designation: "Ui Designer",
         location: "Bandung",
@@ -326,7 +326,7 @@ module.exports = [
     },
     {
         id: 19,
-        avatar: "/images/resource/candidate-2.png",
+        avatar: "/images/resource/company-logo/3-3.png",
         name: "Wade Warren",
         designation: "Developer",
         location: "Bandung",
@@ -344,7 +344,7 @@ module.exports = [
     },
     {
         id: 20,
-        avatar: "/images/resource/candidate-3.png",
+        avatar: "/images/resource/company-logo/3-2.png",
         name: "Leslie Alexander",
         designation: "Digital Marketer",
         location: "Bandung",
@@ -362,7 +362,7 @@ module.exports = [
     },
     {
         id: 21,
-        avatar: "/images/resource/candidate-4.png",
+        avatar: "/images/resource/company-logo/3-1.png",
         name: "Floyd Miles",
         designation: "Front-end Developer",
         location: "Bandung",

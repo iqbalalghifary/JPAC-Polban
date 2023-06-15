@@ -10,7 +10,7 @@
 //                     <div className="top-filters">
 //                         <div className="form-group">
 //                             <select className="chosen-single form-select">
-//                                 <option>Job Type</option>
+//                                 <option>Tipe Pekerjaan</option>
 //                                 <option>New Jobs</option>
 //                                 <option>Freelance</option>
 //                                 <option>Full Time</option>
@@ -19,7 +19,7 @@
 //                                 <option>Temporary</option>
 //                             </select>
 //                         </div>
-//                         {/* End job type filter */}
+//                         {/* End Tipe Pekerjaan filter */}
 
 //                         <div className="form-group">
 //                             <select className="chosen-single form-select">

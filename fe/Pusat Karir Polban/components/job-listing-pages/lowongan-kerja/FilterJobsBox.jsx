@@ -192,7 +192,7 @@ const FilterJobsBox = () => {
     const clearAll = () => {
         dispatch(addKeyword(""));
         dispatch(addLocation(""));
-        dispatch(addDestination({ min: 0, max: 100 }));
+        dispatch(addDestination({ min: 0, max: 1000 }));
         dispatch(addCategory(""));
         dispatch(clearJobType());
         dispatch(clearJobTypeToggle());
@@ -232,7 +232,7 @@ const FilterJobsBox = () => {
                     {keyword !== "" ||
                     location !== "" ||
                     destination?.min !== 0 ||
-                    destination?.max !== 100 ||
+                    destination?.max !== 1000 ||
                     category !== "" ||
                     jobType?.length !== 0 ||
                     datePosted !== "" ||

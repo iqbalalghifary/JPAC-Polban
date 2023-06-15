@@ -1,22 +1,51 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import jobsData from "../../../../../data/list-pending-companies";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const JobListingsTable = () => {
-  const [jobs, setJobs] = useState(jobsData);
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://6485a137a795d24810b72358.mockapi.io/pusatkarirpolban/manageperusahaan")
+      .then((response) => {
+        const updatedJobs = response.data.map((job) => ({
+          ...job,
+          status: "not verified" // Set status awal menjadi "not verified"
+        }));
+        setJobs(updatedJobs);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   const handleEdit = (item) => {
     const confirmed = window.confirm("Apakah Anda yakin untuk memverifikasi?");
     if (confirmed) {
-      const updatedJobs = jobs.map((job) =>
-        job.id === item.id ? { ...job, status: toggleStatus(job.status) } : job
-      );
-      setJobs(updatedJobs);
+      const updatedStatus = item.status === "verified" ? "not verified" : "verified";
+      axios
+        .put(`https://6485a137a795d24810b72358.mockapi.io/pusatkarirpolban/manageperusahaan/${item.id}`, {
+          status: updatedStatus
+        })
+        .then(() => {
+          const updatedJobs = jobs.map((job) =>
+            job.id === item.id ? { ...job, status: updatedStatus } : job
+          );
+          setJobs(updatedJobs);
+        })
+        .catch((error) => console.log(error));
     }
   };
 
-  const toggleStatus = (status) => {
-    return status === "verified" ? "not verified" : "verified";
+  const handleReject = (item) => {
+    const confirmed = window.confirm("Apakah Anda yakin untuk menolak?");
+    if (confirmed) {
+      axios
+        .delete(`https://6485a137a795d24810b72358.mockapi.io/pusatkarirpolban/manageperusahaan/${item.id}`)
+        .then(() => {
+          const updatedJobs = jobs.filter((job) => job.id !== item.id);
+          setJobs(updatedJobs);
+        })
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
@@ -49,7 +78,7 @@ const JobListingsTable = () => {
               </tr>
             </thead>
             <tbody>
-              {jobs.slice(0, 4).map((item) => (
+              {jobs.map((item) => (
                 <tr key={item.id}>
                   <td>
                     {/* <!-- Job Block --> */}
@@ -59,16 +88,8 @@ const JobListingsTable = () => {
                           <span className="company-logo">
                             <img src={item.logo} alt="logo" />
                           </span>
-                          <h4>
-                            {/* <Link href={`/job-single-v3/${item.id}`}> */}
-                            {item.nama}
-                            {/* </Link> */}
-                          </h4>
+                          <h4>{item.nama}</h4>
                           <ul className="job-info">
-                            <li>
-                              <span className="icon flaticon-briefcase"></span>
-                              {item.jenis}
-                            </li>
                             <li>
                               <span className="icon flaticon-map-locator"></span>
                               {item.alamat}
@@ -83,13 +104,11 @@ const JobListingsTable = () => {
                     <br />
                     <a>{item.phone}</a>
                   </td>
-                  <td>
-                    <a>{item.created}</a>
-                  </td>
+                  <td>{item.tanggalpengajuan}</td>
                   <td
                     className="status"
                     style={{
-                      color: item.status === "verified" ? "green" : "red",
+                      color: item.status === "verified" ? "green" : "red"
                     }}
                   >
                     {item.status}
@@ -99,10 +118,18 @@ const JobListingsTable = () => {
                       <ul className="option-list">
                         <li>
                           <button
-                            data-text="Edit"
+                            data-text="Check"
                             onClick={() => handleEdit(item)}
                           >
-                            <span className="la la-pencil"></span>
+                            <span className="la la-check"></span>
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            data-text="Remove"
+                            onClick={() => handleReject(item)}
+                          >
+                            <span className="la la-remove"></span>
                           </button>
                         </li>
                       </ul>

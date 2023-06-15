@@ -69,33 +69,6 @@ const HeaderNavContent = () => {
           >
             <span>Tentang Kami</span>
             <ul>
-              {/* {shopItems.map((item) => (
-                <li className="dropdown" key={item.id}>
-                  <span
-                    className={`${
-                      isActiveParentChaild(router.asPath)
-                        ? "current "
-                        : ""
-                    }`}
-                  >
-                    {item.title}
-                  </span>
-                  <ul>
-                    {item.items.map((menu, i) => (
-                      <li
-                        className={
-                          isActiveLink(menu.routePath, router.asPath)
-                            ? "current"
-                            : ""
-                        }
-                        key={i}
-                      >
-                        <Link href={menu.routePath}>{menu.name}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))} */}
               {pageItems.map((item, i) => (
                 <li
                   className={

@@ -29,12 +29,12 @@ const FormContent = () => {
         </div>
 
         <div className="form-group">
-          <label>Upload File (PNG/JPG/JPEG)</label>
+          <label>Upload File (PNG/JPG/JPEG/HEIC)</label>
           <div>
             <label>
               <input
                 type="file"
-                accept=".png, .jpg, .jpeg"
+                accept=".png, .jpg, .jpeg .heic"
                 name="file"
                 required
               />

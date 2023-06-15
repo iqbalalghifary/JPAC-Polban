@@ -124,7 +124,7 @@ const FilterTopBox = () => {
     const clearAll = () => {
         dispatch(addKeyword(""));
         dispatch(addLocation(""));
-        dispatch(addDestination({ min: 0, max: 100 }));
+        dispatch(addDestination({ min: 0, max: 1000 }));
         dispatch(addCategory(""));
         dispatch(addFoundationDate({ min: 1900, max: 2028 }));
         dispatch(addSort(""));
@@ -202,7 +202,7 @@ const FilterTopBox = () => {
                     {keyword !== "" ||
                     location !== "" ||
                     destination.min !== 0 ||
-                    destination.max !== 100 ||
+                    destination.max !== 1000 ||
                     category !== "" ||
                     foundationDate.min !== 1900 ||
                     foundationDate.max !== 2028 ||

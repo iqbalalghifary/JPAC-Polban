@@ -26,7 +26,7 @@ const DestinationRangeSlider = () => {
             <InputRange
                 formatLabel={(value) => ``}
                 minValue={0}
-                maxValue={100}
+                maxValue={1000}
                 value={getDestination}
                 onChange={(value) => handleOnChange(value)}
             />

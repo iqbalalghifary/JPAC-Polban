@@ -3,7 +3,7 @@ import React from 'react';
 const FormContent = () => {
   return (
     <div className="form-inner">
-      <h3>Upload Pembayaran</h3>
+      <h3>Upload Memorandum of Understanding (MoU)</h3>
 
       {/* Login Form */}
       <form method="post">

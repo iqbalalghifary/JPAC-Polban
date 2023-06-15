@@ -1,40 +1,113 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import jobsData from "../../../../../data/list-pending-mahasiswa";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const JobListingsTable = () => {
-  const [jobs, setJobs] = useState(jobsData);
+  const [jobs, setJobs] = useState([]);
 
-  const handleEdit = (item) => {
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://6485cb9ca795d24810b75269.mockapi.io/pusatkarirpolban/manage-mahasiswa"
+      );
+      setJobs(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const handleEdit = async (item) => {
     const confirmed = window.confirm("Apakah Anda yakin untuk mengaktivasi?");
     if (confirmed) {
-      const updatedJobs = jobs.map((job) =>
-        job.id === item.id ? { ...job, status: toggleStatus(job.status) } : job
-      );
-      setJobs(updatedJobs);
+      try {
+        const updatedStatus = toggleStatus(item.status);
+        await axios.put(
+          `https://6485cb9ca795d24810b75269.mockapi.io/pusatkarirpolban/manage-mahasiswa/${item.id}`,
+          { status: updatedStatus }
+        );
+        const updatedJobs = jobs.map((job) =>
+          job.id === item.id ? { ...job, status: updatedStatus } : job
+        );
+        setJobs(updatedJobs);
+      } catch (error) {
+        console.error("Error updating data:", error);
+      }
     }
   };
+  
 
-  const handleReject = (item) => {
-    const confirmed = window.confirm("Apakah Anda yakin untuk menolak aktivasi akun mahasiswa?");
+  const handleReject = async (item) => {
+    const confirmed = window.confirm(
+      "Apakah Anda yakin untuk menolak aktivasi akun mahasiswa?"
+    );
     if (confirmed) {
-      const updatedJobs = jobs.map((job) =>
-        job.id === item.id ? { ...job, status: "rejected" } : job
-      );
-      setJobs(updatedJobs);
+      try {
+        await axios.delete(
+          `https://6485cb9ca795d24810b75269.mockapi.io/pusatkarirpolban/manage-mahasiswa/${item.id}`
+        );
+        const updatedJobs = jobs.filter((job) => job.id !== item.id);
+        setJobs(updatedJobs);
+      } catch (error) {
+        console.error("Error deleting data:", error);
+      }
     }
   };
+  
 
   const toggleStatus = (status) => {
     return status === "verified" ? "not verified" : "verified";
   };
 
+  const getStatusText = (status) => {
+    return status ? "Actived" : "Not Activated";
+  };
+
+  const renderActionButton = (item) => {
+    if (item.status !== "not verified" || statusChanges.includes(item.id)) {
+      return (
+        <div className="option-box">
+          <ul className="option-list">
+            <li>
+              <button data-text="Terima" onClick={() => handleEdit(item)}>
+                <span className="la la-check"></span>
+              </button>
+            </li>
+            <li>
+              <button data-text="Tolak" onClick={() => handleReject(item)}>
+                <span className="la la-remove"></span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      );
+    } else {
+      return (
+        <div className="option-box">
+          <ul className="option-list">
+            <li>
+              <button data-text="Terima" onClick={() => handleEdit(item)}>
+                <span className="la la-check"></span>
+              </button>
+            </li>
+            <li>
+              <button data-text="Tolak" onClick={() => handleReject(item)}>
+                <span className="la la-remove"></span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="tabs-box">
       <div className="widget-title">
-        <h4>Daftar Alumni yang belum diverifikasi</h4>
+        <h4>Daftar Mahasiswa yang belum diverifikasi</h4>
         <div className="chosen-outer">
-          {/* <!--Tabs Box--> */}
           <select className="chosen-single form-select">
             <option>Last 6 Months</option>
             <option>Last 12 Months</option>
@@ -44,8 +117,6 @@ const JobListingsTable = () => {
           </select>
         </div>
       </div>
-      {/* End filter top bar */}
-      {/* Start table widget content */}
       <div className="widget-content">
         <div className="table-outer">
           <table className="default-table manage-job-table">
@@ -55,27 +126,23 @@ const JobListingsTable = () => {
                 <th>NIM</th>
                 <th>Jurusan</th>
                 <th>Prodi</th>
-                <th>Tanggal Pendaftaran</th>
+                <th>Tahun Masuk</th>
+                <th>Tahun Lulus</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {jobs.slice(0, 4).map((item) => (
+              {jobs.map((item) => (
                 <tr key={item.id}>
                   <td>
-                    {/* <!-- Job Block --> */}
                     <div className="job-block">
                       <div className="inner-box">
                         <div className="content">
                           <span className="company-logo">
-                            <img src={item.logo} alt="logo" />
+                            <img src={item.avatar} alt="avatar" />
                           </span>
-                          <h4>
-                            {/* <Link href={`/job-single-v3/${item.id}`}> */}
-                            {item.nama}
-                            {/* </Link> */}
-                          </h4>
+                          <h4>{item.nama}</h4>
                         </div>
                       </div>
                     </div>
@@ -90,45 +157,26 @@ const JobListingsTable = () => {
                     <a>{item.prodi}</a>
                   </td>
                   <td>
-                    <a>{item.created}</a>
+                    <a>{item.tahunMasuk}</a>
+                  </td>
+                  <td>
+                    <a>{item.tahunLulus}</a>
                   </td>
                   <td
                     className="status"
                     style={{
-                      color: item.status === "verified" ? "green" : "red",
+                      color: item.status ? "green" : "red",
                     }}
                   >
-                    {item.status}
+                    {getStatusText(item.status)}
                   </td>
-                  <td>
-                    <div className="option-box">
-                      <ul className="option-list">
-                        <li>
-                          <button
-                            data-text="Edit"
-                            onClick={() => handleEdit(item)}
-                          >
-                            <span className="la la-pencil"></span>
-                          </button>
-                        </li>
-                        <li>
-                          <button
-                            data-text="Reject"
-                            onClick={() => handleReject(item)}
-                          >
-                            <span className="la la-trash"></span>
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
+                  <td>{renderActionButton(item)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
-      {/* End table widget content */}
     </div>
   );
 };

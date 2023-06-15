@@ -1,8 +1,31 @@
-import candidatesData from "../../../../../data/candidates";
+import React from "react";
+import jsPDF from "jspdf";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Link from "next/link";
+import { autoTable } from "jspdf-autotable";
+
+import candidatesData from "../../../../../data/candidates";
 
 const WidgetContentBox = () => {
+  const convertToPDF = () => {
+    const pdf = new jsPDF();
+
+    const columns = ["Name", "Designation", "Location"];
+    const data = candidatesData.map((candidate) => [
+      candidate.name,
+      candidate.designation,
+      candidate.location,
+    ]);
+
+    pdf.autoTable({
+      head: [columns],
+      body: data,
+      startY: 20,
+    });
+
+    pdf.save("candidates.pdf");
+  };
+
   return (
     <div className="widget-content">
       <div className="tabs-box">
@@ -49,7 +72,6 @@ const WidgetContentBox = () => {
                             {candidate.hourlyRate} / hour
                           </li>
                         </ul>
-                        {/* End candidate-info */}
 
                         <ul className="post-tags">
                           {candidate.tags.map((val, i) => (
@@ -59,7 +81,6 @@ const WidgetContentBox = () => {
                           ))}
                         </ul>
                       </div>
-                      {/* End content */}
 
                       <div className="option-box">
                         <ul className="option-list">
@@ -85,13 +106,11 @@ const WidgetContentBox = () => {
                           </li>
                         </ul>
                       </div>
-                      {/* End admin options box */}
                     </div>
                   </div>
                 ))}
               </div>
             </TabPanel>
-            {/* End total applicants */}
 
             <TabPanel>
               <div className="row">
@@ -124,7 +143,6 @@ const WidgetContentBox = () => {
                             {candidate.hourlyRate} / hour
                           </li>
                         </ul>
-                        {/* End candidate-info */}
 
                         <ul className="post-tags">
                           {candidate.tags.map((val, i) => (
@@ -134,7 +152,6 @@ const WidgetContentBox = () => {
                           ))}
                         </ul>
                       </div>
-                      {/* End content */}
 
                       <div className="option-box">
                         <ul className="option-list">
@@ -160,13 +177,11 @@ const WidgetContentBox = () => {
                           </li>
                         </ul>
                       </div>
-                      {/* End admin options box */}
                     </div>
                   </div>
                 ))}
               </div>
             </TabPanel>
-            {/* End approved applicants */}
 
             <TabPanel>
               <div className="row">
@@ -199,7 +214,6 @@ const WidgetContentBox = () => {
                             {candidate.hourlyRate} / hour
                           </li>
                         </ul>
-                        {/* End candidate-info */}
 
                         <ul className="post-tags">
                           {candidate.tags.map((val, i) => (
@@ -209,7 +223,6 @@ const WidgetContentBox = () => {
                           ))}
                         </ul>
                       </div>
-                      {/* End content */}
 
                       <div className="option-box">
                         <ul className="option-list">
@@ -235,16 +248,15 @@ const WidgetContentBox = () => {
                           </li>
                         </ul>
                       </div>
-                      {/* End admin options box */}
                     </div>
                   </div>
                 ))}
               </div>
             </TabPanel>
-            {/* End rejected applicants */}
           </div>
         </Tabs>
       </div>
+      <button onClick={convertToPDF}>Convert to PDF</button>
     </div>
   );
 };

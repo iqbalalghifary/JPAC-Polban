@@ -18,7 +18,7 @@ const FilterSidebar = () => {
         {/* End .close filter */}
 
         <div className="switchbox-outer">
-          <h4>Job type</h4>
+          <h4>Tipe Pekerjaan</h4>
           <JobType />
         </div>
         {/* <!-- Switchbox Outer --> */}

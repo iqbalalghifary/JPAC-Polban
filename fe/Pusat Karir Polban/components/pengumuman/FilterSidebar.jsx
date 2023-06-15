@@ -1,4 +1,4 @@
-import CallToActions from "../../components/call-to-action/CallToAction";
+// import CallToActions from "../../components/call-to-action/CallToAction";
 import Categories from "../../components/employers-listing-pages/components/Categories";
 import DestinationRangeSlider from "../../components/employers-listing-pages/components/DestinationRangeSlider";
 import LocationBox from "../../components/employers-listing-pages/components/LocationBox";
@@ -60,8 +60,6 @@ const FilterSidebar = () => {
                 {/* <!-- Filter Block --> */}
             </div>
             {/* Filter Outer */}
-
-            <CallToActions />
             {/* <!-- End Call To Action --> */}
         </div>
     );

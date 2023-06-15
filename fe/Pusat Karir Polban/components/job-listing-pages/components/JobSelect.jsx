@@ -14,7 +14,7 @@ export default function JobSelect() {
 
     const dispatch = useDispatch();
 
-    // job type handler
+    // Tipe Pekerjaan handler
     const jobTypeHandler = (e) => {
         dispatch(addJobTypeSelect(e.target.value));
     };
@@ -45,7 +45,7 @@ export default function JobSelect() {
                             className="chosen-single form-select"
                             value={jobList?.jobTypeSelect}
                         >
-                            <option value="">Job Type</option>
+                            <option value="">Tipe Pekerjaan</option>
                             {jobTypeList?.map((item) => (
                                 <option value={item.value} key={item.id}>
                                     {item.name}
@@ -53,7 +53,7 @@ export default function JobSelect() {
                             ))}
                         </select>
                     </div>
-                    {/* End job type filter */}
+                    {/* End Tipe Pekerjaan filter */}
 
                     <div className="form-group">
                         <select

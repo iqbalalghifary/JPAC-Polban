@@ -181,7 +181,7 @@ const FilterTopBox = () => {
     const clearHandler = () => {
         dispatch(addKeyword(""));
         dispatch(addLocation(""));
-        dispatch(addDestination({ min: 0, max: 100 }));
+        dispatch(addDestination({ min: 0, max: 1000 }));
         dispatch(addCategory(""));
         dispatch(addCandidateGender(""));
         dispatch(addDatePost(""));
@@ -220,7 +220,7 @@ const FilterTopBox = () => {
                     {keyword !== "" ||
                     location !== "" ||
                     destination.min !== 0 ||
-                    destination.max !== 100 ||
+                    destination.max !== 1000 ||
                     category !== "" ||
                     candidateGender !== "" ||
                     datePost !== "" ||

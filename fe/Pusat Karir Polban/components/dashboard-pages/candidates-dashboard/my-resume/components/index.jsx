@@ -12,52 +12,52 @@ const index = () => {
   return (
     <form className="default-form" onClick={handleSubmit}>
       <div className="row">
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Select Your CV</label>
-          <select className="chosen-single form-select">
-            <option>My CV</option>
-          </select>
-        </div>
-        {/* <!-- Input --> */}
-
+        {/* Input */}
         <div className="form-group col-lg-12 col-md-12">
           <label>Description</label>
           <textarea placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugo's on Wall Street. Managed a small team buying and selling Pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed several new methods for working it banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer collaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"></textarea>
         </div>
-        {/* <!-- About Company --> */}
 
+        {/* About Company */}
         <div className="form-group col-lg-12 col-md-12">
           <Education />
-          {/* <!-- Resume / Education --> */}
+          {/* Resume / Education */}
 
           <Experiences />
-          {/* <!-- Resume / Work & Experience --> */}
+          {/* Resume / Work & Experience */}
         </div>
-        {/* <!--  education and word-experiences --> */}
+        {/* education and word-experiences */}
 
-        <div className="form-group col-lg-6 col-md-12">
+        {/* <div className="form-group col-lg-6 col-md-12">
           <AddPortfolio />
-        </div>
-        {/* <!-- End more portfolio upload --> */}
+        </div> */}
+        {/* End more portfolio upload */}
 
         <div className="form-group col-lg-12 col-md-12">
-          {/* <!-- Resume / Awards --> */}
+          {/* Resume / Awards */}
           <Awards />
         </div>
-        {/* <!-- End Award --> */}
+        {/* End Award */}
 
         <div className="form-group col-lg-6 col-md-12">
-          <label>Skills </label>
+          <label>Skills</label>
           <SkillsMultiple />
         </div>
-        {/* <!-- Multi Selectbox --> */}
+        {/* Multi Selectbox */}
 
         <div className="form-group col-lg-12 col-md-12">
           <button type="submit" className="theme-btn btn-style-one">
             Save
           </button>
+          <button
+            type="button"
+            className="theme-btn btn-style-one generate-cv-btn"
+            style={{ backgroundColor: "#FF6600", color: "white", marginLeft: "10px" }}
+          >
+            Generate CV
+          </button>
         </div>
-        {/* <!-- Input --> */}
+        {/* Input */}
       </div>
       {/* End .row */}
     </form>
