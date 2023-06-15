@@ -8,24 +8,28 @@ export class OrganizationUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllOrganizations(): Promise<Organization[]> {
+  getAllOrganizations() {
     return this.dataServices.organizations.getAll();
   }
 
-  getOrganizationById(id: any): Promise<Organization> {
+  getOrganizationById(id: any) {
     return this.dataServices.organizations.get(id);
   }
 
-  createOrganization(organiation: Organization): Promise<Organization> {
+  createOrganization(organiation: Organization) {
     return this.dataServices.organizations.create(organiation);
   }
 
-  updateOrganization(data: any): Promise<Organization> {
+  updateOrganization(data: any) {
     return this.dataServices.organizations.updateOne(data.id, data.payload);
   }
 
-  deleteOrganization(id: any): Promise<Organization> {
+  deleteOrganization(id: any) {
     return this.dataServices.organizations.delete(id);
+  }
+
+  deleteAllOrganization() {
+    return this.dataServices.organizations.deleteAll();
   }
 
 }

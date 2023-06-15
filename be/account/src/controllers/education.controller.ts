@@ -54,4 +54,13 @@ export class EducationController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_education' })
+  async deleteAllAlumni() {
+    try {
+      return await this.educationUseCases.deleteAllEducation();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

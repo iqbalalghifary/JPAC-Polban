@@ -49,4 +49,11 @@ export class CertificationController {
     return this.certificationUseCases.deleteCertification(CertificationId);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllCertification() {
+    return this.certificationUseCases.deleteAllCertification();
+  }
+
 }

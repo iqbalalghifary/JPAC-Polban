@@ -8,24 +8,28 @@ export class ExperienceUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllExperiences(): Promise<Experience[]> {
+  getAllExperiences() {
     return this.dataServices.experiences.getAll();
   }
 
-  getExperienceById(id: any): Promise<Experience> {
+  getExperienceById(id: any) {
     return this.dataServices.experiences.get(id);
   }
 
-  createExperience(experience: Experience): Promise<Experience> {
+  createExperience(experience: Experience) {
     return this.dataServices.experiences.create(experience);
   }
 
-  updateExperience(data: any): Promise<Experience> {
+  updateExperience(data: any) {
     return this.dataServices.experiences.updateOne(data.id, data.payload);
   }
 
-  deleteExperience(id: any): Promise<Experience> {
+  deleteExperience(id: any) {
     return this.dataServices.experiences.delete(id);
+  }
+
+  deleteAllExperience() {
+    return this.dataServices.experiences.deleteAll();
   }
 
 }

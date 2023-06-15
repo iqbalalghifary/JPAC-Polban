@@ -54,4 +54,11 @@ export class UserController {
     return this.userUseCases.deleteUser(userId);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllUser() {
+    return this.userUseCases.deleteAllUser();
+  }
+
 }

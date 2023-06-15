@@ -53,4 +53,13 @@ export class AwardController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_award' })
+  async deleteAllAlumni() {
+    try {
+      return await this.awardUseCases.deleteAllAward();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

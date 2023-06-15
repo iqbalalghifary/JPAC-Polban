@@ -54,4 +54,13 @@ export class OrganizationController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_organization' })
+  async deleteAllAlumni() {
+    try {
+      return await this.organizationUseCases.deleteAllOrganization();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

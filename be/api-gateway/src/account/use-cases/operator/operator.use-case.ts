@@ -55,4 +55,15 @@ export class OperatorUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllOperator() {
+    const pattern = { cmd: 'delete_all_operator' };
+    const payload = {};
+    return this.clientOperator
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

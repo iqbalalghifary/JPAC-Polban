@@ -13,7 +13,7 @@ export class Student {
   major: string;
   study_program: string;
   year: string;
-  status: boolean;
+  status: string;
   awards: Award[];
   certifications: Certification[];
   educations: Education[];

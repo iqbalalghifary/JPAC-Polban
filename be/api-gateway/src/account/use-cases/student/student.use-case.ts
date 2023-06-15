@@ -1,9 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Student } from '../../core/entities';
 import { ClientProxy } from '@nestjs/microservices';
 import { map } from 'rxjs';
-const excelToJson = require('convert-excel-to-json')
-const fs = require('fs-extra')
 
 @Injectable()
 export class StudentUseCases {
@@ -11,26 +8,14 @@ export class StudentUseCases {
     @Inject('SERVICE_ACCOUNT') private readonly clientStudent: ClientProxy,
   ) {}
 
-  async importExcel(file: any): Promise<any> {
-    const excelData = await excelToJson({
-      sourceFile: file.path,
-      header: {
-        rows: 1
-      },
-      columnToKey: {
-        "*": "{{columnHeader}}"
-      }
-    });
-
-    fs.remove(file.path);
-
-    // for(let i = 0; i < excelData.length(); i++){
-    //   const newStudent = new Student();
-    //   newStudent.email = excelData[i].email;
-    //   this.registerStudent(newStudent);
-    // }
-
-    return excelData;
+  async importExcel(payload: any): Promise<any> {
+    console.log(payload)
+    const pattern = { cmd: 'import_student' };
+    return this.clientStudent
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );
   }
 
   updateStudentOne(payload: any) {
@@ -71,8 +56,26 @@ export class StudentUseCases {
       );    
   }
 
-  createStudent(payload: any) {
+  activateStudent(payload: any) {
+    const pattern = { cmd: 'activate_student' };
+    return this.clientStudent
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );
+  }
+
+  registerStudent(payload: any) {
     const pattern = { cmd: 'register_student' };
+    return this.clientStudent
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );
+  }
+
+  createStudent(payload: any) {
+    const pattern = { cmd: 'create_student' };
     return this.clientStudent
     .send<string>(pattern, payload)
       .pipe(
@@ -92,6 +95,16 @@ export class StudentUseCases {
   deleteStudent(id: string) {
     const pattern = { cmd: 'delete_student' };
     const payload = id;
+    return this.clientStudent
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
+  deleteAllStudent() {
+    const pattern = { cmd: 'delete_all_student' };
+    const payload = {};
     return this.clientStudent
     .send<string>(pattern, payload)
       .pipe(

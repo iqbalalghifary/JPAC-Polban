@@ -55,4 +55,15 @@ export class ExperienceUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllExperience() {
+    const pattern = { cmd: 'delete_all_experience' };
+    const payload = {};
+    return this.clientExperience
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

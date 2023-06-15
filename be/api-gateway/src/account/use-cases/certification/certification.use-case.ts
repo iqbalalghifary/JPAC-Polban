@@ -55,4 +55,15 @@ export class CertificationUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllCertification() {
+    const pattern = { cmd: 'delete_all_certification' };
+    const payload = {};
+    return this.clientCertification
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

@@ -13,8 +13,6 @@ import {
 import { StudentUseCases } from '../use-cases/student';
 import { Student } from '../core';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
 import { JwtAuthGuard } from 'src/app/guard/jwt.auth.guard';
 import { RoleAuthGuard } from 'src/app/guard/roles-auth.guard';
 import { Roles } from 'src/app/guard/roles-decorator';
@@ -28,17 +26,7 @@ export class StudentController {
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Post('import-data')
-  @UseInterceptors(FileInterceptor('file', {
-    storage: diskStorage({
-      destination: './uploads/import',
-      filename: (_, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))  
+  @UseInterceptors(FileInterceptor('excel'))  
   readExcelFile(@UploadedFile() file: Express.Multer.File): Promise<any>{
     const result = this.studentUseCases.importExcel(file);
     return result;
@@ -60,9 +48,16 @@ export class StudentController {
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
-  @Post('register')
-  registerStudent(@Body() student: Student) {
+  @Post('create')
+  createStudent(@Body() student: Student) {
     return this.studentUseCases.createStudent(student);
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Put('register/:id')
+  registerStudent(@Param('id') studentId: string,) {
+    return this.studentUseCases.registerStudent(studentId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
@@ -80,6 +75,13 @@ export class StudentController {
   @Delete(':id')
   deleteStudent(@Param('id') StudentId: string) {
     return this.studentUseCases.deleteStudent(StudentId);
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllStudent() {
+    return this.studentUseCases.deleteAllStudent();
   }
 
 }

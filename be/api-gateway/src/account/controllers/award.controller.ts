@@ -49,4 +49,11 @@ export class AwardController {
     return this.awardUseCases.deleteAward(awardId);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllAward() {
+    return this.awardUseCases.deleteAllAward();
+  }
+
 }

@@ -8,24 +8,28 @@ export class SkillUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllSkills(): Promise<Skill[]> {
+  getAllSkills() {
     return this.dataServices.skills.getAll();
   }
 
-  getSkillById(id: any): Promise<Skill> {
+  getSkillById(id: any) {
     return this.dataServices.skills.get(id);
   }
 
-  createSkill(skill: Skill): Promise<Skill> {
+  createSkill(skill: Skill) {
     return this.dataServices.skills.create(skill);
   }
 
-  updateSkill(data: any): Promise<Skill> {
+  updateSkill(data: any) {
     return this.dataServices.skills.updateOne(data.id, data.payload);
   }
 
-  deleteSkill(id: any): Promise<Skill> {
+  deleteSkill(id: any) {
     return this.dataServices.skills.delete(id);
+  }
+
+  deleteAllSkill() {
+    return this.dataServices.skills.deleteAll();
   }
 
 }

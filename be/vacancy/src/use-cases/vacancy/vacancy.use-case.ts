@@ -8,24 +8,28 @@ export class VacancyUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllVacancies(): Promise<Vacancy[]> {
+  getAllVacancies() {
     return this.dataServices.vacancies.getAll();
   }
 
-  getVacancyById(id: any): Promise<Vacancy> {
+  getVacancyById(id: any) {
     return this.dataServices.vacancies.get(id);
   }
 
-  createVacancy(Vacancy: Vacancy): Promise<Vacancy> {
+  createVacancy(Vacancy: Vacancy) {
     return this.dataServices.vacancies.create(Vacancy);
   }
 
-  updateVacancy(data: any): Promise<Vacancy> {
+  updateVacancy(data: any) {
     return this.dataServices.vacancies.update(data.id, data.payload);
   }
 
-  deleteVacancy(id: any): Promise<Vacancy> {
+  deleteVacancy(id: any) {
     return this.dataServices.vacancies.delete(id);
+  }
+
+  deleteAllVacancy() {
+    return this.dataServices.vacancies.deleteAll();
   }
 
 }

@@ -8,23 +8,28 @@ export class CertificationUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllCertifications(): Promise<Certification[]> {
+  getAllCertifications() {
     return this.dataServices.certifications.getAll();
   }
 
-  getCertificationById(id: any): Promise<Certification> {
+  getCertificationById(id: any) {
     return this.dataServices.certifications.get(id);
   }
 
-  createCertification(certification: Certification): Promise<Certification> {
+  createCertification(certification: Certification) {
     return this.dataServices.certifications.create(certification);
   }
 
-  updateCertification(data: any): Promise<Certification> {
+  updateCertification(data: any) {
     return this.dataServices.certifications.updateOne(data.id, data.payload);
   }
 
-  deleteCertification(id: any): Promise<Certification> {
+  deleteCertification(id: any) {
     return this.dataServices.certifications.delete(id);
   }
+
+  deleteAllCertification() {
+    return this.dataServices.certifications.deleteAll();
+  }
+
 }

@@ -1,20 +1,8 @@
 import { 
-  Controller, 
-  Get, 
-  Param, 
-  Post, 
-  Put, 
-  UseInterceptors, 
-  UploadedFile,
-  Body,
-  Delete
+  Controller
 } from '@nestjs/common';
-import { ResponseCreatedStudentDto } from '../core/dtos';
 import { StudentUseCases } from '../use-cases/student';
-import { Student } from 'src/core';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller('api/student')
 export class StudentController {
@@ -22,60 +10,76 @@ export class StudentController {
     private studentUseCases: StudentUseCases
   ) {}
 
-  @Post('import-data')
-  @UseInterceptors(FileInterceptor('file', {
-    storage: diskStorage({
-      destination: './uploads/import',
-      filename: (_, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))  
-  async readExcelFile(@UploadedFile() file: Express.Multer.File): Promise<any>{
-    const result = await this.studentUseCases.importExcel(file);
-    return result;
-  }
-
-  @Get()
-  async getAll() {
-    return this.studentUseCases.getAllStudents();
-  }
-
-  @Get(':id')
-  async getById(@Param('id') id: any) {
-    return this.studentUseCases.getStudentById(id);
-  }
-
-  @Post('register')
-  async registerStudent(@Body() student: Student) : Promise<ResponseCreatedStudentDto> {
-    const responseRegisteredStudentDto = new ResponseCreatedStudentDto();
+  @MessagePattern({ cmd: 'import_data' })  
+  async readExcelFile(data: any) {
     try {
-      const registerStudent = await this.studentUseCases.registerStudent(student);
-
-      responseRegisteredStudentDto.success = true;
-      responseRegisteredStudentDto.createdStudent = registerStudent;
-    } catch (error) {
+      return await this.studentUseCases.importExcel(data);
+    } catch (error){
       console.log(error);
-      responseRegisteredStudentDto.success = false;
     }
-
-    return responseRegisteredStudentDto;
   }
 
-  @Put(':id')
-  updateStudent(
-    @Param('id') studentId: string,
-    @Body() datas: Student,
-  ) {
-    return this.studentUseCases.updateStudentOne(studentId, datas);
+  @MessagePattern({ cmd: 'get_all_student' })
+  async getAll() {
+    try {
+      return await this.studentUseCases.getAllStudents();
+    } catch (error){
+      console.log(error);
+    }
   }
 
-  @Delete(':id')
-  deleteStudent(@Param('id') StudentId: string) {
-    return this.studentUseCases.deleteStudent(StudentId);
+  @MessagePattern({ cmd: 'get_by_id_student' })
+  async getById(id: any) {
+    try {
+      return await this.studentUseCases.getStudentById(id);
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+  @MessagePattern({ cmd: 'register_student' })
+  async registerStudent(studentId: any){
+    try {
+      return await this.studentUseCases.updateStudentOne({ id: studentId, payload: { status: 'diusulkan' } });
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+  @MessagePattern({ cmd: 'create_student' })
+  async createStudent(data: any){
+    try {
+      return await this.studentUseCases.createStudent(data);
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+  @MessagePattern({ cmd: 'update_student' })
+  async updateStudent(data: any) {
+    try {
+      return await this.studentUseCases.updateStudentOne(data);
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+  @MessagePattern({ cmd: 'delete_student' })
+  async deleteStudent(data: any){
+    try {
+      return await this.studentUseCases.deleteStudent(data);
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+  @MessagePattern({ cmd: 'delete_all_student' })
+  async deleteAllAlumni() {
+    try {
+      return await this.studentUseCases.deleteAllStudent();
+    } catch (error){
+      console.log(error);
+    }
   }
 
 }

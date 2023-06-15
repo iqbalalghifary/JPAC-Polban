@@ -8,24 +8,28 @@ export class VolunteerUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllVolunteers(): Promise<Volunteer[]> {
+  getAllVolunteers() {
     return this.dataServices.volunteers.getAll();
   }
 
-  getVolunteerById(id: any): Promise<Volunteer> {
+  getVolunteerById(id: any) {
     return this.dataServices.volunteers.get(id);
   }
 
-  createVolunteer(volunteer: Volunteer): Promise<Volunteer> {
+  createVolunteer(volunteer: Volunteer) {
     return this.dataServices.volunteers.create(volunteer);
   }
 
-  updateVolunteer(data: any): Promise<Volunteer> {
+  updateVolunteer(data: any) {
     return this.dataServices.volunteers.updateOne(data.id, data.payload);
   }
 
-  deleteVolunteer(id: any): Promise<Volunteer> {
+  deleteVolunteer(id: any) {
     return this.dataServices.volunteers.delete(id);
+  }
+
+  deleteAllVolunteer() {
+    return this.dataServices.volunteers.deleteAll();
   }
 
 }

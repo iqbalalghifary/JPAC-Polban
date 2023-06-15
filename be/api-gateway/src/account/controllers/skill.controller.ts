@@ -49,4 +49,11 @@ export class SkillController {
     return this.skillUseCases.deleteSkill(skillId);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllSkill() {
+    return this.skillUseCases.deleteAllSkill();
+  }
+
 }

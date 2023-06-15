@@ -8,24 +8,28 @@ export class JobApplicationUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllJobApplications(): Promise<JobApplication[]> {
+  getAllJobApplications() {
     return this.dataServices.jobApplications.getAll();
   }
 
-  getJobApplicationById(id: any): Promise<JobApplication> {
+  getJobApplicationById(id: any) {
     return this.dataServices.jobApplications.get(id);
   }
 
-  createJobApplication(JobApplication: JobApplication): Promise<JobApplication> {
+  createJobApplication(JobApplication: JobApplication) {
     return this.dataServices.jobApplications.create(JobApplication);
   }
 
-  updateJobApplication(data: any): Promise<JobApplication> {
+  updateJobApplication(data: any) {
     return this.dataServices.jobApplications.update(data.id, data.payload);
   }
 
-  deleteJobApplication(id: any): Promise<JobApplication> {
+  deleteJobApplication(id: any) {
     return this.dataServices.jobApplications.delete(id);
+  }
+
+  deleteAllJobApplication() {
+    return this.dataServices.jobApplications.deleteAll();
   }
 
 }

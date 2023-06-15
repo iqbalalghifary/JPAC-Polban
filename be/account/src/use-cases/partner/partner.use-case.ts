@@ -8,19 +8,28 @@ export class PartnerUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllPartners(): Promise<Partner[]> {
+  getAllPartners() {
     return this.dataServices.partners.getAll();
   }
 
-  updatePartner(data: any): Promise<Partner> {
+  updatePartner(data: any) {
     return this.dataServices.partners.updateOne(data.id, data.payload);
   }
 
-  getPartnerById(id: any): Promise<Partner> {
+  getPartnerById(id: any) {
     return this.dataServices.partners.get(id);
   }
 
-  registerPartner(Partner: Partner): Promise<Partner> {
+  createPartner(Partner: Partner) {
     return this.dataServices.partners.create(Partner);
   }
+
+  deletePartner(id: any) {
+    return this.dataServices.partners.delete(id);
+  }
+
+  deleteAllPartner() {
+    return this.dataServices.partners.deleteAll();
+  }
+
 }

@@ -49,4 +49,11 @@ export class ProjectController {
     return this.projectUseCases.deleteProject(projectId);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllProject() {
+    return this.projectUseCases.deleteAllProject();
+  }
+
 }

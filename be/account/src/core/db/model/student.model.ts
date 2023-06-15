@@ -49,8 +49,8 @@ export class Student {
   @Prop()
   year: string;
 
-  @Prop()
-  status: boolean;
+  @Prop({ default: 'non-aktif', enum: ['non-aktif', 'diusulkan', 'aktif'] })
+  status: string;
 
   @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Award'}])
   awards: Award[];

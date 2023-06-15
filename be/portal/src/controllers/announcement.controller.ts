@@ -54,4 +54,13 @@ export class AnnouncementController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_announcement' })
+  async deleteAllAnnouncement() {
+    try {
+      return await this.announcementUseCases.deleteAllAnnouncement();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

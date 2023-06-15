@@ -56,4 +56,14 @@ export class AwardUseCases {
       );    
   }
 
+  deleteAllAward() {
+    const pattern = { cmd: 'delete_all_award' };
+    const payload = {};
+    return this.clientAward
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

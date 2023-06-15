@@ -8,11 +8,11 @@ export class OperatorUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllOperators(): Promise<Operator[]> {
+  getAllOperators() {
     return this.dataServices.operators.getAll();
   }
 
-  getOperatorById(id: any): Promise<Operator> {
+  getOperatorById(id: any) {
     return this.dataServices.operators.get(id);
   }
 
@@ -20,12 +20,16 @@ export class OperatorUseCases {
     return this.dataServices.operators.create(data);
   }
 
-  updateOperator(data: any): Promise<Operator> {
+  updateOperator(data: any) {
     return this.dataServices.operators.updateOne(data.id, data.payload);
   }
 
-  deleteOperator(id: any): Promise<Operator> {
+  deleteOperator(id: any) {
     return this.dataServices.operators.delete(id);
+  }
+
+  deleteAllOperator() {
+    return this.dataServices.operators.deleteAll();
   }
 
 }

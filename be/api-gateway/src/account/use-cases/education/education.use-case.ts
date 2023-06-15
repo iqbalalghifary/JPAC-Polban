@@ -55,4 +55,15 @@ export class EducationUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllEducation() {
+    const pattern = { cmd: 'delete_all_education' };
+    const payload = {};
+    return this.clientEducation
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

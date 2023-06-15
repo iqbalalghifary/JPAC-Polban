@@ -8,24 +8,28 @@ export class AgendaUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllAgendas(): Promise<Agenda[]> {
+  getAllAgendas() {
     return this.dataServices.agendas.getAll();
   }
 
-  getAgendaById(id: any): Promise<Agenda> {
+  getAgendaById(id: any) {
     return this.dataServices.agendas.get(id);
   }
 
-  createAgenda(agenda: Agenda): Promise<Agenda> {
+  createAgenda(agenda: Agenda) {
     return this.dataServices.agendas.create(agenda);
   }
 
-  updateAgenda(data: any): Promise<Agenda> {
+  updateAgenda(data: any) {
     return this.dataServices.agendas.update(data.id, data.payload);
   }
 
-  deleteAgenda(id: any): Promise<Agenda> {
+  deleteAgenda(id: any) {
     return this.dataServices.agendas.delete(id);
+  }
+
+  deleteAllAgenda() {
+    return this.dataServices.agendas.deleteAll();
   }
 
 }

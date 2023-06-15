@@ -54,4 +54,13 @@ export class CertificationController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_certification' })
+  async deleteAllAlumni() {
+    try {
+      return await this.certificationUseCases.deleteAllCertification();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

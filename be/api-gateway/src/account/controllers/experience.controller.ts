@@ -49,4 +49,11 @@ export class ExperienceController {
     return this.experienceUseCases.deleteExperience(experienceId);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllExperience() {
+    return this.experienceUseCases.deleteAllExperience();
+  }
+
 }

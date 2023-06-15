@@ -55,4 +55,15 @@ export class TokenUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllToken() {
+    const pattern = { cmd: 'delete_all_token' };
+    const payload = {};
+    return this.clientToken
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+  
 }

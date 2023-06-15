@@ -65,4 +65,15 @@ export class UserUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllUser() {
+    const pattern = { cmd: 'delete_all_user' };
+    const payload = {};
+    return this.clientUser
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

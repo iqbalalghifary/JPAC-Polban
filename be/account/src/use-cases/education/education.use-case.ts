@@ -8,24 +8,28 @@ export class EducationUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllEducations(): Promise<Education[]> {
+  getAllEducations() {
     return this.dataServices.educations.getAll();
   }
 
-  getEducationById(id: any): Promise<Education> {
+  getEducationById(id: any) {
     return this.dataServices.educations.get(id);
   }
 
-  createEducation(education: Education): Promise<Education> {
+  createEducation(education: Education) {
     return this.dataServices.educations.create(education);
   }
 
-  updateEducation(data: any): Promise<Education> {
+  updateEducation(data: any) {
     return this.dataServices.educations.updateOne(data.id, data.payload);
   }
 
-  deleteEducation(id: any): Promise<Education> {
+  deleteEducation(id: any) {
     return this.dataServices.educations.delete(id);
+  }
+
+  deleteAllEducation() {
+    return this.dataServices.educations.deleteAll();
   }
 
 }

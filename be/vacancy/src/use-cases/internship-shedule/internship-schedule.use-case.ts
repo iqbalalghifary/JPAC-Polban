@@ -8,24 +8,28 @@ export class InternshipScheduleUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllInternshipSchedules(): Promise<InternshipSchedule[]> {
+  getAllInternshipSchedules() {
     return this.dataServices.internshipSchedules.getAll();
   }
 
-  getInternshipScheduleById(id: any): Promise<InternshipSchedule> {
+  getInternshipScheduleById(id: any) {
     return this.dataServices.internshipSchedules.get(id);
   }
 
-  createInternshipSchedule(InternshipSchedule: InternshipSchedule): Promise<InternshipSchedule> {
+  createInternshipSchedule(InternshipSchedule: InternshipSchedule) {
     return this.dataServices.internshipSchedules.create(InternshipSchedule);
   }
 
-  updateInternshipSchedule(data: any): Promise<InternshipSchedule> {
+  updateInternshipSchedule(data: any) {
     return this.dataServices.internshipSchedules.update(data.id, data.payload);
   }
 
-  deleteInternshipSchedule(id: any): Promise<InternshipSchedule> {
+  deleteInternshipSchedule(id: any) {
     return this.dataServices.internshipSchedules.delete(id);
+  }
+
+  deleteAllInternshipSchedule() {
+    return this.dataServices.internshipSchedules.deleteAll();
   }
 
 }

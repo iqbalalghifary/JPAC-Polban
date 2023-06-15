@@ -54,4 +54,13 @@ export class VolunteerController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_volunteer' })
+  async deleteAllAlumni() {
+    try {
+      return await this.volunteerUseCases.deleteAllVolunteer();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

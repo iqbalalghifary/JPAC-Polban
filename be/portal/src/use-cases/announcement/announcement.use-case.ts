@@ -8,24 +8,28 @@ export class AnnouncementUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllAnnouncements(): Promise<Announcement[]> {
+  getAllAnnouncements() {
     return this.dataServices.announcements.getAll();
   }
 
-  getAnnouncementById(id: any): Promise<Announcement> {
+  getAnnouncementById(id: any) {
     return this.dataServices.announcements.get(id);
   }
 
-  createAnnouncement(announcement: Announcement): Promise<Announcement> {
+  createAnnouncement(announcement: Announcement) {
     return this.dataServices.announcements.create(announcement);
   }
 
-  updateAnnouncement(data: any): Promise<Announcement> {
+  updateAnnouncement(data: any) {
     return this.dataServices.announcements.update(data.id, data.payload);
   }
 
-  deleteAnnouncement(id: any): Promise<Announcement> {
+  deleteAnnouncement(id: any) {
     return this.dataServices.announcements.delete(id);
+  }
+
+  deleteAllAnnouncement() {
+    return this.dataServices.announcements.deleteAll();
   }
 
 }

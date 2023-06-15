@@ -76,4 +76,13 @@ export class UserController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_user' })
+  async deleteAllAlumni() {
+    try {
+      return await this.userUseCases.deleteAllUser();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

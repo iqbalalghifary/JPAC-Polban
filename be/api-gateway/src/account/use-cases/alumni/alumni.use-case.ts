@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { map } from 'rxjs';
 import { AlumniRegisterDto } from '../../core/dtos';
+import { Alumni } from 'src/account/core';
 
 @Injectable()
 export class AlumniUseCases {
@@ -38,7 +39,8 @@ export class AlumniUseCases {
   }
 
   uploadReceipt(payload: any) {
-    const pattern = { cmd: 'upload_receipt_alumni' };
+    console.log(payload)
+    const pattern = { cmd: 'receipt_alumni' };
     return this.clientAlumni
     .send<string>(pattern, payload)
       .pipe(
@@ -65,7 +67,7 @@ export class AlumniUseCases {
       );    
   }
 
-  registerAlumni(data: AlumniRegisterDto) {
+  registerAlumni(data: any) {
     const pattern = { cmd: 'register_alumni' };
     const payload = data;
     return this.clientAlumni
@@ -84,4 +86,15 @@ export class AlumniUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllAlumni() {
+    const pattern = { cmd: 'delete_all_alumni' };
+    const payload = {};
+    return this.clientAlumni
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

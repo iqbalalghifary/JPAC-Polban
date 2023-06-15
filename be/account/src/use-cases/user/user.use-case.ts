@@ -11,8 +11,7 @@ export class UserUseCases {
     private jwtService: JwtService
   ) {}
 
-  async generatePDF(): Promise<Buffer>
-  {
+  async generatePDF() {
       const pdfBuffer: Buffer = await new Promise( resolve => {
         const doc = new PDFDocument(
           {
@@ -42,7 +41,7 @@ export class UserUseCases {
       return pdfBuffer;
   }
 
-  async login(data: any){
+  async login(data: any) {
     const user = await this.dataServices.users.findOne({ username: data.username })
     if(user && user.password == data.password){
       const payload = { role: user.userRole };
@@ -53,24 +52,28 @@ export class UserUseCases {
     return 'data tidak valid'
   }
 
-  getAllUsers(): Promise<User[]> {
+  getAllUsers() {
     return this.dataServices.users.getAll();
   }
 
-  getUserById(id: any): Promise<User> {
+  getUserById(id: any) {
     return this.dataServices.users.get(id);
   }
 
-  createUser(User: User): Promise<User> {
+  createUser(User: User) {
     return this.dataServices.users.create(User);
   }
 
-  updateUser(data: any): Promise<User> {
+  updateUser(data: any) {
     return this.dataServices.users.updateOne(data.id, data.payload);
   }
 
-  deleteUser(id: any): Promise<User> {
+  deleteUser(id: any) {
     return this.dataServices.users.delete(id);
+  }
+
+  deleteAllUser() {
+    return this.dataServices.users.deleteAll();
   }
 
 }

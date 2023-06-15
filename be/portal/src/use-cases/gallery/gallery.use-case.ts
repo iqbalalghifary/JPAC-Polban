@@ -8,24 +8,28 @@ export class GalleryUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllGallerys(): Promise<Gallery[]> {
+  getAllGallerys() {
     return this.dataServices.galleries.getAll();
   }
 
-  getGalleryById(id: any): Promise<Gallery> {
+  getGalleryById(id: any) {
     return this.dataServices.galleries.get(id);
   }
 
-  createGallery(gallery: Gallery): Promise<Gallery> {
+  createGallery(gallery: Gallery) {
     return this.dataServices.galleries.create(gallery);
   }
 
-  updateGallery(data: any): Promise<Gallery> {
+  updateGallery(data: any) {
     return this.dataServices.galleries.update(data.id, data.payload);
   }
 
-  deleteGallery(id: any): Promise<Gallery> {
+  deleteGallery(id: any) {
     return this.dataServices.galleries.delete(id);
+  }
+
+  deleteAllGallery() {
+    return this.dataServices.galleries.deleteAll();
   }
 
 }

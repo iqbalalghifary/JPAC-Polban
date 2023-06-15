@@ -54,4 +54,13 @@ export class InternshipScheduleController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_internship_schedule' })
+  async deleteAllInternshipSchedule() {
+    try {
+      return await this.internshipScheduleUseCases.deleteAllInternshipSchedule();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

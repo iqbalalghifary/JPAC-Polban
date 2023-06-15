@@ -55,4 +55,15 @@ export class OrganizationUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllOrganization() {
+    const pattern = { cmd: 'delete_all_organization' };
+    const payload = {};
+    return this.clientOrganization
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+  
 }

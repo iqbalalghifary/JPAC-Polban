@@ -49,4 +49,11 @@ export class OrganizationController {
     return this.organizationUseCases.deleteOrganization(organizationId);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllOrganization() {
+    return this.organizationUseCases.deleteAllOrganization();
+  }
+
 }

@@ -49,4 +49,11 @@ export class EducationController {
     return this.educationUseCases.deleteEducation(EducationId);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllEducation() {
+    return this.educationUseCases.deleteAllEducation();
+  }
+
 }

@@ -4,6 +4,8 @@ import { IDataServices } from '../../core/abstracts';
 import { ClientProxy } from '@nestjs/microservices';
 import { map } from 'rxjs';
 import { nanoid } from 'nanoid'
+import { extname } from 'path';
+const fs = require('fs')
 
 @Injectable()
 export class AlumniUseCases {
@@ -12,15 +14,31 @@ export class AlumniUseCases {
     @Inject('SERVICE_EMAIL') private readonly clientEmail: ClientProxy,
   ) {}
 
-  getAllAlumnis(): Promise<Alumni[]> {
+  getAllAlumnis() {
     return this.dataServices.alumnis.getAll();
   }
 
-  updateAlumniOne(data: any): Promise<Alumni> {
+  uploadReceipt(data: any){
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    const ext = extname(data.payload.originalname);
+    const filename = `uploads/receipt/${uniqueSuffix}${ext}`;
+
+    const alumni = new Alumni();
+    alumni.receipt = filename;
+    const updateAlumni = this.dataServices.alumnis.updateOne(data.id, alumni);
+
+    if(updateAlumni.message != null){
+      const arrBuffer = data.payload.buffer.data
+      fs.appendFileSync(filename, Buffer.from(arrBuffer));
+    }
+    return updateAlumni;
+  }
+
+  updateAlumniOne(data: any) {
     return this.dataServices.alumnis.updateOne(data.id, data.payload);
   }
 
-  updateAlumniMultiple(data: any): Promise<Alumni> {
+  updateAlumniMultiple(data: any) {
     return this.dataServices.alumnis.updateMultiple(data.id, data.payload);
   }
 
@@ -52,15 +70,26 @@ export class AlumniUseCases {
       );
   }
 
-  getAlumniById(id: any): Promise<Alumni> {
+  getAlumniById(id: any) {
     return this.dataServices.alumnis.get(id);
   }
 
-  registerAlumni(alumni: Alumni): Promise<Alumni> {
+  registerAlumni(alumni: Alumni, bufferData: any) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    const ext = extname(bufferData.originalname);
+    const filename = `uploads/certificate/${uniqueSuffix}${ext}`;
+    alumni.graduationLetter = filename;
+    const arrBuffer = bufferData.buffer.data
+    fs.appendFileSync(filename, Buffer.from(arrBuffer));
     return this.dataServices.alumnis.create(alumni);
   }
 
-  deleteAlumni(id: string): Promise<Alumni> {
+  deleteAlumni(id: string) {
     return this.dataServices.alumnis.delete(id);
   }
+
+  deleteAllAlumni() {
+    return this.dataServices.alumnis.deleteAll();
+  }
+
 }

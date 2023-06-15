@@ -8,24 +8,28 @@ export class AwardUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllAwards(): Promise<Award[]> {
+  getAllAwards() {
     return this.dataServices.awards.getAll();
   }
 
-  getAwardById(id: any): Promise<Award> {
+  getAwardById(id: any) {
     return this.dataServices.awards.get(id);
   }
 
-  createAward(award: Award): Promise<Award> {
+  createAward(award: Award) {
     return this.dataServices.awards.create(award);
   }
 
-  updateAward(data: any): Promise<Award> {
+  updateAward(data: any) {
     return this.dataServices.awards.updateOne(data.id, data.payload);
   }
 
-  deleteAward(id: any): Promise<Award> {
+  deleteAward(id: any) {
     return this.dataServices.awards.delete(id);
+  }
+
+  deleteAllAward() {
+    return this.dataServices.awards.deleteAll();
   }
 
 }

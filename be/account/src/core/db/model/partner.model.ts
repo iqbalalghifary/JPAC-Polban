@@ -22,7 +22,7 @@ export class Partner {
   @Prop({ required: true })
   sector: string;
 
-  @Prop({ required: true })
+  @Prop({ default: null })
   logo: string;
 
   @Prop({ default: null })
@@ -31,7 +31,7 @@ export class Partner {
   @Prop({ required: true })
   website: string;
 
-  @Prop({ enum: ['diusulkan', 'diverifikasi', 'aktif'] })
+  @Prop({ default: 'diusulkan', enum: ['diusulkan', 'diverifikasi', 'aktif'] })
   status: string;
 
 }

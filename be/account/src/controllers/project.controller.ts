@@ -54,4 +54,13 @@ export class ProjectController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_project' })
+  async deleteAllAlumni() {
+    try {
+      return await this.projectUseCases.deleteAllProject();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

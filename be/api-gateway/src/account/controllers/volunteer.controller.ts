@@ -49,4 +49,11 @@ export class VolunteerController {
     return this.volunteerUseCases.deleteVolunteer(volunteerId);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllVolunteer() {
+    return this.volunteerUseCases.deleteAllVolunteer();
+  }
+
 }

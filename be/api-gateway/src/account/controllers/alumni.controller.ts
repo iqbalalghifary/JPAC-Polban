@@ -40,11 +40,10 @@ export class AlumniController {
     return this.alumniUseCases.getAlumniById(alumniId);
   }
 
-  @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
   @Post('register')
-  registerAlumni(@Body() datas: AlumniRegisterDto) {
-    return this.alumniUseCases.registerAlumni(datas);
+  @UseInterceptors(FileInterceptor('certificate'))
+  registerAlumni(@Body() datas: Alumni, @UploadedFile() file: Express.Multer.File) {
+    return this.alumniUseCases.registerAlumni({ alumni: datas, buffer: file });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
@@ -70,23 +69,20 @@ export class AlumniController {
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
+  @Delete()
+  deleteAllAlumni() {
+    return this.alumniUseCases.deleteAllAlumni();
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Put('upload-receipt/:id')
-  @UseInterceptors(FileInterceptor('receipt', {
-    storage: diskStorage({
-      destination: './uploads/receipt',
-      filename: (_, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))
+  @UseInterceptors(FileInterceptor('receipt'))
   uploadReceipt(
     @Param('id') alumniId: string,
     @UploadedFile() file: Express.Multer.File
   ) {
-    return this.alumniUseCases.uploadReceipt({ id: alumniId, receipt: file.path });
+    return this.alumniUseCases.uploadReceipt({ id: alumniId, payload: file });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

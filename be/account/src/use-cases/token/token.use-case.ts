@@ -8,24 +8,28 @@ export class TokenUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllTokens(): Promise<Token[]> {
+  getAllTokens() {
     return this.dataServices.tokens.getAll();
   }
 
-  getTokenById(id: any): Promise<Token> {
+  getTokenById(id: any) {
     return this.dataServices.tokens.get(id);
   }
 
-  createToken(Token: Token): Promise<Token> {
+  createToken(Token: Token) {
     return this.dataServices.tokens.create(Token);
   }
 
-  updateToken(data: any): Promise<Token> {
+  updateToken(data: any) {
     return this.dataServices.tokens.updateOne(data.id, data.payload);
   }
 
-  deleteToken(id: any): Promise<Token> {
+  deleteToken(id: any) {
     return this.dataServices.tokens.delete(id);
+  }
+
+  deleteAllToken() {
+    return this.dataServices.tokens.deleteAll();
   }
 
 }

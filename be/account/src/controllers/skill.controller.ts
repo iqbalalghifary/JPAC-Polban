@@ -54,4 +54,13 @@ export class SkillController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_skill' })
+  async deleteAllAlumni() {
+    try {
+      return await this.skillUseCases.deleteAllSkill();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

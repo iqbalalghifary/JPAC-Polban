@@ -5,6 +5,8 @@ export abstract class IGenericRepository<T> {
 
   abstract delete(id: string): Promise<T>;
 
+  abstract deleteAll(): Promise<T>;
+
   abstract findOne(item: any): Promise<T>;
 
   abstract create(item: T): Promise<T>;

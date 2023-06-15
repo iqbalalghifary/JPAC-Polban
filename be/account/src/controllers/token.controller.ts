@@ -6,13 +6,13 @@ import { MessagePattern } from '@nestjs/microservices';
 @Controller('api/Token')
 export class TokenController {
   constructor(
-    private TokenUseCases: TokenUseCases,
+    private tokenUseCases: TokenUseCases,
   ) {}
 
   @MessagePattern({ cmd: 'get_all_pattern' })
   async getAll() {
     try {
-      return await this.TokenUseCases.getAllTokens();      
+      return await this.tokenUseCases.getAllTokens();      
     } catch (error) {
       console.log(error); 
     }
@@ -21,7 +21,7 @@ export class TokenController {
   @MessagePattern({ cmd: 'get_by_id_token' })
   async getById(id: any) {
     try {
-      return await this.TokenUseCases.getTokenById(id);      
+      return await this.tokenUseCases.getTokenById(id);      
     } catch (error) {
       console.log(error); 
     }
@@ -30,7 +30,7 @@ export class TokenController {
   @MessagePattern({ cmd: 'create_token' })
   async createToken(data: Token) {
     try {
-      return await this.TokenUseCases.createToken(data);
+      return await this.tokenUseCases.createToken(data);
     } catch (error) {
       console.log(error);
     }
@@ -39,7 +39,7 @@ export class TokenController {
   @MessagePattern({ cmd: 'update_token' })
   async updateToken(data: any) {
     try {
-      return await this.TokenUseCases.updateToken(data);      
+      return await this.tokenUseCases.updateToken(data);      
     } catch (error) {
       console.log(error); 
     }
@@ -48,9 +48,18 @@ export class TokenController {
   @MessagePattern({ cmd: 'delete_token' })
   async deleteToken(tokenId: string) {
     try {
-      return await this.TokenUseCases.deleteToken(tokenId);      
+      return await this.tokenUseCases.deleteToken(tokenId);      
     } catch (error) {
       console.log(error); 
+    }
+  }
+
+  @MessagePattern({ cmd: 'delete_all_token' })
+  async deleteAllAlumni() {
+    try {
+      return await this.tokenUseCases.deleteAllToken();
+    } catch (error){
+      console.log(error);
     }
   }
 

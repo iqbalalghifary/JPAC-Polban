@@ -8,28 +8,28 @@ import { Roles } from 'src/app/guard/roles-decorator';
 @Controller('api/Token')
 export class TokenController {
   constructor(
-    private TokenUseCases: TokenUseCases,
+    private tokenUseCases: TokenUseCases,
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Get()
   getAll() {
-    return this.TokenUseCases.getAllTokens();
+    return this.tokenUseCases.getAllTokens();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Get(':id')
   getById(@Param('id') id: any) {
-    return this.TokenUseCases.getTokenById(id);
+    return this.tokenUseCases.getTokenById(id);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Post()
   createToken(@Body() datas: Token) {
-    return this.TokenUseCases.createToken(datas);
+    return this.tokenUseCases.createToken(datas);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
@@ -39,14 +39,21 @@ export class TokenController {
     @Param('id') tokenId: string,
     @Body() datas: Token,
   ) {
-    return this.TokenUseCases.updateToken({ id: tokenId, payload: datas });
+    return this.tokenUseCases.updateToken({ id: tokenId, payload: datas });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Delete(':id')
   deleteToken(@Param('id') tokenId: string) {
-    return this.TokenUseCases.deleteToken(tokenId);
+    return this.tokenUseCases.deleteToken(tokenId);
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllToken() {
+    return this.tokenUseCases.deleteAllToken();
   }
 
 }

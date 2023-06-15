@@ -1,6 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { AlumniFactoryService, AlumniUseCases } from '../use-cases/alumni';
 import { MessagePattern } from '@nestjs/microservices';
+import { Alumni } from 'src/core';
 
 @Controller('api/alumni')
 export class AlumniController {
@@ -12,7 +13,7 @@ export class AlumniController {
   @MessagePattern({ cmd: 'get_all_alumni' })
   async getAll() {
     try {
-      return await this.alumniUseCases.getAllAlumnis();
+      return await this.alumniUseCases.getAllAlumnis()
     } catch (error){
       console.log(error)
     }
@@ -28,10 +29,9 @@ export class AlumniController {
   }
 
   @MessagePattern({ cmd: 'register_alumni' })
-  async registerAlumni(data: any) {
+  async createAlumni(data: any) {
     try {
-      const alumni = this.alumniFactoryService.registerAlumni(data);
-      return await this.alumniUseCases.registerAlumni(alumni);
+      return await this.alumniUseCases.registerAlumni(data.alumni, data.buffer);
     } catch (error) {
       console.log(error);
     }
@@ -46,10 +46,10 @@ export class AlumniController {
     }
   }
 
-  @MessagePattern({ cmd: 'upload_receipt_alumni' })
+  @MessagePattern({ cmd: 'receipt_alumni' })
   async uploadReceipt(data: any)  {
     try {
-      return await this.alumniUseCases.updateAlumniOne(data);
+      return await this.alumniUseCases.uploadReceipt(data);
     } catch(error){
       console.log(error);
     }
@@ -68,6 +68,15 @@ export class AlumniController {
   async deleteAlumni(alumniId: string) {
     try {
       return await this.alumniUseCases.deleteAlumni(alumniId);      
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+  @MessagePattern({ cmd: 'delete_all_alumni' })
+  async deleteAllAlumni() {
+    try {
+      return await this.alumniUseCases.deleteAllAlumni();
     } catch (error){
       console.log(error);
     }

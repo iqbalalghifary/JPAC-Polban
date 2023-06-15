@@ -54,4 +54,13 @@ export class ExperienceController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_experience' })
+  async deleteAllAlumni() {
+    try {
+      return await this.experienceUseCases.deleteAllExperience();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

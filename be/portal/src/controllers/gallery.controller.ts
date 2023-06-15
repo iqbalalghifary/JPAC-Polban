@@ -54,4 +54,13 @@ export class GalleryController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_gallery' })
+  async deleteAllGallery() {
+    try {
+      return await this.galleryUseCases.deleteAllGallery();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

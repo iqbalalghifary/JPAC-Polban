@@ -38,8 +38,8 @@ export class PartnerUseCases {
       );    
   }
 
-  registerPartner(payload: any) {
-    const pattern = { cmd: 'register_partner' };
+  createPartner(payload: any) {
+    const pattern = { cmd: 'create_partner' };
     return this.clientPartner
     .send<string>(pattern, payload)
       .pipe(
@@ -56,4 +56,15 @@ export class PartnerUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllPartner() {
+    const pattern = { cmd: 'delete_all_partner' };
+    const payload = {};
+    return this.clientPartner
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

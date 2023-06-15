@@ -54,4 +54,14 @@ export class AgendaController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_agenda' })
+  async deleteAllAgenda() {
+    try {
+      return await this.agendaUseCases.deleteAllAgenda();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+
 }

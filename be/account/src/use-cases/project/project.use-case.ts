@@ -8,24 +8,28 @@ export class ProjectUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllProjects(): Promise<Project[]> {
+  getAllProjects() {
     return this.dataServices.projects.getAll();
   }
 
-  getProjectById(id: any): Promise<Project> {
+  getProjectById(id: any) {
     return this.dataServices.projects.get(id);
   }
 
-  createProject(project: Project): Promise<Project> {
+  createProject(project: Project) {
     return this.dataServices.projects.create(project);
   }
 
-  updateProject(data: any): Promise<Project> {
+  updateProject(data: any) {
     return this.dataServices.projects.updateOne(data.id, data.payload);
   }
 
-  deleteProject(id: any): Promise<Project> {
+  deleteProject(id: any) {
     return this.dataServices.projects.delete(id);
+  }
+
+  deleteAllProject() {
+    return this.dataServices.projects.deleteAll();
   }
 
 }

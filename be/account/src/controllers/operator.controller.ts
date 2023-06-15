@@ -6,13 +6,13 @@ import { MessagePattern } from '@nestjs/microservices';
 @Controller('api/operator')
 export class OperatorController {
   constructor(
-    private OperatorUseCases: OperatorUseCases
+    private operatorUseCases: OperatorUseCases
   ) {}
 
   @MessagePattern({ cmd: 'get_all_operator' })
   async getAll() {
     try {
-      return await this.OperatorUseCases.getAllOperators();      
+      return await this.operatorUseCases.getAllOperators();      
     } catch (error) {
       console.log(error); 
     }
@@ -21,7 +21,7 @@ export class OperatorController {
   @MessagePattern({ cmd: 'get_by_id_operator' })
   async getById(id: any) {
     try {
-      return this.OperatorUseCases.getOperatorById(id);      
+      return this.operatorUseCases.getOperatorById(id);      
     } catch (error) {
       console.log(error); 
     }
@@ -30,7 +30,7 @@ export class OperatorController {
   @MessagePattern({ cmd: 'create' })
   register(data: Operator) {
     try {
-      return this.OperatorUseCases.registerOperator(data);
+      return this.operatorUseCases.registerOperator(data);
     } catch (error) {
       console.log(error)
     }
@@ -39,7 +39,7 @@ export class OperatorController {
   @MessagePattern({ cmd: 'update_operator' })
   updateOperator(data: any) {
     try {
-      return this.OperatorUseCases.updateOperator(data);      
+      return this.operatorUseCases.updateOperator(data);      
     } catch (error) {
       console.log(error); 
     }
@@ -48,9 +48,19 @@ export class OperatorController {
   @MessagePattern({ cmd: 'delete_operator' })
   deleteOperator(operatorId: string) {
     try {
-      return this.OperatorUseCases.deleteOperator(operatorId);      
+      return this.operatorUseCases.deleteOperator(operatorId);      
     } catch (error) {
       console.log(error); 
     }
   }
+
+  @MessagePattern({ cmd: 'delete_all_operator' })
+  async deleteAllAlumni() {
+    try {
+      return await this.operatorUseCases.deleteAllOperator();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

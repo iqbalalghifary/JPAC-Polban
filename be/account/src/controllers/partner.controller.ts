@@ -1,14 +1,11 @@
 import { Controller } from '@nestjs/common';
-import { PartnerRegisterDto } from '../core/dtos';
-import { PartnerFactoryService, PartnerUseCases } from '../use-cases/partner';
+import { PartnerUseCases } from '../use-cases/partner';
 import { MessagePattern } from '@nestjs/microservices';
+import { Partner } from 'src/core';
 
 @Controller('api/Partner')
 export class PartnerController {
-  constructor(
-    private partnerUseCases: PartnerUseCases,
-    private partnerFactoryService: PartnerFactoryService
-  ) {}
+  constructor(private partnerUseCases: PartnerUseCases) {}
 
   @MessagePattern({ cmd: 'get_all_partner' })
   async getAll() {
@@ -28,11 +25,10 @@ export class PartnerController {
     }
   }
 
-  @MessagePattern({ cmd: 'register_partner' })
-  async registerPartner(partnerRegisterDto: PartnerRegisterDto) {
+  @MessagePattern({ cmd: 'create_partner' })
+  async createPartner(data: any) {
     try {
-      const partner = this.partnerFactoryService.registerPartner(partnerRegisterDto);
-      return await this.partnerUseCases.registerPartner(partner);
+      return await this.partnerUseCases.createPartner(data);
     } catch (error) {
       console.log(error);
     }
@@ -64,4 +60,23 @@ export class PartnerController {
       console.log(error);
     }
   }
+
+  @MessagePattern({ cmd: 'delete_partner' })
+  async deleteProject(partnerId: string) {
+    try {
+      return await this.partnerUseCases.deletePartner(partnerId);      
+    } catch (error) {
+      console.log(error); 
+    }
+  }
+
+  @MessagePattern({ cmd: 'delete_all_partner' })
+  async deleteAllAlumni() {
+    try {
+      return await this.partnerUseCases.deleteAllPartner();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

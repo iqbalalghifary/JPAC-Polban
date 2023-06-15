@@ -10,11 +10,11 @@ export class StudentUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllStudents(): Promise<Student[]> {
+  getAllStudents() {
     return this.dataServices.students.getAll();
   }
 
-  async importExcel(file: any): Promise<any> {
+  async importExcel(file: any) {
     const excelData = await excelToJson({
       sourceFile: file.path,
       header: {
@@ -36,24 +36,28 @@ export class StudentUseCases {
     return excelData;
   }
 
-  updateStudentOne(studentId: string, Student: Student): Promise<Student> {
-    return this.dataServices.students.updateOne(studentId, Student);
+  updateStudentOne(data: any) {
+    return this.dataServices.students.updateOne(data.id, data.payload);
   }
 
-  updateStudentMultiple(studentId: string, Student: Student): Promise<Student> {
-    return this.dataServices.students.updateMultiple(studentId, Student);
+  updateStudentMultiple(data: any) {
+    return this.dataServices.students.updateMultiple(data.id, data.payload);
   }
 
-  getStudentById(id: any): Promise<Student> {
+  getStudentById(id: any) {
     return this.dataServices.students.get(id);
   }
 
-  registerStudent(student: Student): Promise<Student> {
+  createStudent(student: Student) {
     return this.dataServices.students.create(student);
   }
 
-  deleteStudent(id: string): Promise<Student> {
+  deleteStudent(id: string) {
     return this.dataServices.students.delete(id);
+  }
+
+  deleteAllStudent() {
+    return this.dataServices.students.deleteAll();
   }
 
 }

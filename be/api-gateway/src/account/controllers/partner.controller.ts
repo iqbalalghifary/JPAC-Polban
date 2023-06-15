@@ -44,7 +44,7 @@ export class PartnerController {
   @Roles('Alumni')
   @Post('register')
   registerPartner(@Body() datas: PartnerRegisterDto) {
-    return this.partnerUseCases.registerPartner(datas);
+    return this.partnerUseCases.createPartner(datas);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
@@ -57,17 +57,7 @@ export class PartnerController {
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Put('upload-mou/:id')
-  @UseInterceptors(FileInterceptor('mou', {
-    storage: diskStorage({
-      destination: './uploads/mou',
-      filename: (_, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))
+  @UseInterceptors(FileInterceptor('mou'))
   updateMoU(
     @Param('id') userId: string,
     @UploadedFile() file: Express.Multer.File
@@ -89,6 +79,13 @@ export class PartnerController {
   @Delete(':id')
   deletePartner(@Param('id') partnerId: string) {
     return this.partnerUseCases.deletePartner(partnerId);
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllPartner() {
+    return this.partnerUseCases.deleteAllPartner();
   }
 
 }

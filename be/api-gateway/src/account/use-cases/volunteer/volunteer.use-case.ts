@@ -55,4 +55,15 @@ export class VolunteerUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllVolunteer() {
+    const pattern = { cmd: 'delete_all_volunteer' };
+    const payload = {};
+    return this.clientVolunteer
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

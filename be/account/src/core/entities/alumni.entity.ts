@@ -8,6 +8,7 @@ export class Alumni {
   phone: string;
   dateOfBirth: Date;
   gender: string;
+  graduationLetter: string;
   address: string;
   yearGraduated: Number;
   receipt: string;

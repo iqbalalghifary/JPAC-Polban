@@ -56,4 +56,13 @@ export class VacancyController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_vacancy' })
+  async deleteAllVacancy() {
+    try {
+      return await this.vacancyUseCases.deleteAllVacancy();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }

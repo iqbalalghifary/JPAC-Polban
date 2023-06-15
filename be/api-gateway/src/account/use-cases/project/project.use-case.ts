@@ -55,4 +55,15 @@ export class ProjectUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllProject() {
+    const pattern = { cmd: 'delete_all_project' };
+    const payload = {};
+    return this.clientProject
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

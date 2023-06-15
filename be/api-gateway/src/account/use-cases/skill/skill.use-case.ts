@@ -55,4 +55,15 @@ export class SkillUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllSkill() {
+    const pattern = { cmd: 'delete_all_skill' };
+    const payload = {};
+    return this.clientSkill
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

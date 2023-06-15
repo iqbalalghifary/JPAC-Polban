@@ -17,28 +17,28 @@ import { Roles } from 'src/app/guard/roles-decorator';
 @Controller('api/operator')
 export class OperatorController {
   constructor(
-    private OperatorUseCases: OperatorUseCases
+    private operatorUseCases: OperatorUseCases
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Post('register')
   register(@Body() datas: Operator) {
-    return this.OperatorUseCases.registerOperator(datas);
+    return this.operatorUseCases.registerOperator(datas);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Get()
   getAll() {
-    return this.OperatorUseCases.getAllOperators();
+    return this.operatorUseCases.getAllOperators();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Get(':id')
   getById(@Param('id') id: any) {
-    return this.OperatorUseCases.getOperatorById(id);
+    return this.operatorUseCases.getOperatorById(id);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
@@ -48,13 +48,21 @@ export class OperatorController {
     @Param('id') operatorId: string,
     @Body() datas: Operator,
   ) {
-    return this.OperatorUseCases.updateOperator({ id: operatorId, payload: datas });
+    return this.operatorUseCases.updateOperator({ id: operatorId, payload: datas });
   }
   
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Delete(':id')
   deleteOperator(@Param('id') operatorId: string) {
-    return this.OperatorUseCases.deleteOperator(operatorId);
+    return this.operatorUseCases.deleteOperator(operatorId);
   }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllOperator() {
+    return this.operatorUseCases.deleteAllOperator();
+  }
+
 }

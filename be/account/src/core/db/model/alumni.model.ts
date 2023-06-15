@@ -38,6 +38,9 @@ export class Alumni {
   address: string;
 
   @Prop()
+  graduationLetter: string;
+
+  @Prop()
   yearGraduated: Number;
 
   @Prop({ default: null })

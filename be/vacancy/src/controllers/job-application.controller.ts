@@ -54,4 +54,13 @@ export class JobApplicationController {
     }
   }
 
+  @MessagePattern({ cmd: 'delete_all_job_application' })
+  async deleteAllJobApplication() {
+    try {
+      return await this.jobApplicationUseCases.deleteAllJobApplication();
+    } catch (error){
+      console.log(error);
+    }
+  }
+
 }
