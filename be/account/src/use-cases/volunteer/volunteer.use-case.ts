@@ -8,12 +8,8 @@ export class VolunteerUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllVolunteers() {
-    return this.dataServices.volunteers.getAll();
-  }
-
-  getVolunteerById(id: any) {
-    return this.dataServices.volunteers.get(id);
+  getVolunteer(item?: any) {
+    return this.dataServices.volunteers.get(item);
   }
 
   createVolunteer(volunteer: Volunteer) {
@@ -21,7 +17,7 @@ export class VolunteerUseCases {
   }
 
   updateVolunteer(data: any) {
-    return this.dataServices.volunteers.updateOne(data.id, data.payload);
+    return this.dataServices.volunteers.updateOne(data.filters, data.payload);
   }
 
   deleteVolunteer(id: any) {

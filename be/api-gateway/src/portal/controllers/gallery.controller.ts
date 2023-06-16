@@ -69,7 +69,7 @@ export class GalleryController {
     @UploadedFile() file: Express.Multer.File
   ) {
     const gallery = this.galleryFactoryService.updateGallery(updateGalleryDto, file);
-    return this.galleryUseCases.updateGallery({ id: galleryId, payload: gallery });
+    return this.galleryUseCases.updateGallery({ filters: { _id: galleryId }, payload: gallery });
   }
 
   @Get(':id')

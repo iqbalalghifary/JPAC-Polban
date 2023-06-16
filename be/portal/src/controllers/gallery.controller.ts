@@ -12,7 +12,7 @@ export class GalleryController {
   @MessagePattern({ cmd: 'get_all_gallery' })
   async getAll() {
     try {
-      return await this.galleryUseCases.getAllGallerys();
+      return await this.galleryUseCases.getGallery();
     } catch (error) {
       console.log(error);
     }
@@ -21,7 +21,7 @@ export class GalleryController {
   @MessagePattern({ cmd: 'get_by_id_gallery' })
   async getById(id: any) {
     try {
-      return await this.galleryUseCases.getGalleryById(id);
+      return await this.galleryUseCases.getGallery({ _id: id });
     } catch (error) {
       console.log(error);
     }

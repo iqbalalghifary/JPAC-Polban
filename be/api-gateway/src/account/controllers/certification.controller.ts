@@ -39,7 +39,7 @@ export class CertificationController {
     @Param('id') CertificationId: string,
     @Body() datas: Certification,
   ) {
-    return this.certificationUseCases.updateCertification({ id: CertificationId, payload: datas });
+    return this.certificationUseCases.updateCertification({ filters: { _id: CertificationId }, payload: datas });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

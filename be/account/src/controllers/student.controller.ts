@@ -10,10 +10,10 @@ export class StudentController {
     private studentUseCases: StudentUseCases
   ) {}
 
-  @MessagePattern({ cmd: 'import_data' })  
+  @MessagePattern({ cmd: 'import_student' })  
   async readExcelFile(data: any) {
     try {
-      return await this.studentUseCases.importExcel(data);
+      return await this.studentUseCases.importData(data);
     } catch (error){
       console.log(error);
     }
@@ -22,7 +22,7 @@ export class StudentController {
   @MessagePattern({ cmd: 'get_all_student' })
   async getAll() {
     try {
-      return await this.studentUseCases.getAllStudents();
+      return await this.studentUseCases.getStudent();   
     } catch (error){
       console.log(error);
     }
@@ -31,16 +31,25 @@ export class StudentController {
   @MessagePattern({ cmd: 'get_by_id_student' })
   async getById(id: any) {
     try {
-      return await this.studentUseCases.getStudentById(id);
+      return await this.studentUseCases.getStudent({ _id: id });   
     } catch (error){
       console.log(error);
     }
   }
 
-  @MessagePattern({ cmd: 'register_student' })
-  async registerStudent(studentId: any){
+  @MessagePattern({ cmd: 'activate_student' })
+  async activateStudent(data: any) {
     try {
-      return await this.studentUseCases.updateStudentOne({ id: studentId, payload: { status: 'diusulkan' } });
+      return await this.studentUseCases.activateStudent(data);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  @MessagePattern({ cmd: 'register_student' })
+  async registerStudent(data: any){
+    try {
+      return await this.studentUseCases.updateStudentOne(data);
     } catch (error){
       console.log(error);
     }

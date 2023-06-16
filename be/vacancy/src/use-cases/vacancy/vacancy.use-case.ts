@@ -8,12 +8,8 @@ export class VacancyUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllVacancies() {
-    return this.dataServices.vacancies.getAll();
-  }
-
-  getVacancyById(id: any) {
-    return this.dataServices.vacancies.get(id);
+  getVacancy(item?: any) {
+    return this.dataServices.vacancies.get(item);
   }
 
   createVacancy(Vacancy: Vacancy) {
@@ -21,7 +17,7 @@ export class VacancyUseCases {
   }
 
   updateVacancy(data: any) {
-    return this.dataServices.vacancies.update(data.id, data.payload);
+    return this.dataServices.vacancies.updateOne(data.filters, data.payload);
   }
 
   deleteVacancy(id: any) {

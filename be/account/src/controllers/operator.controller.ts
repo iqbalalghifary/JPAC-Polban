@@ -12,7 +12,7 @@ export class OperatorController {
   @MessagePattern({ cmd: 'get_all_operator' })
   async getAll() {
     try {
-      return await this.operatorUseCases.getAllOperators();      
+      return await this.operatorUseCases.getOperator();
     } catch (error) {
       console.log(error); 
     }
@@ -21,7 +21,7 @@ export class OperatorController {
   @MessagePattern({ cmd: 'get_by_id_operator' })
   async getById(id: any) {
     try {
-      return this.operatorUseCases.getOperatorById(id);      
+      return this.operatorUseCases.getOperator({ _id: id });
     } catch (error) {
       console.log(error); 
     }

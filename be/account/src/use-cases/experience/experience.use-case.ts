@@ -8,8 +8,8 @@ export class ExperienceUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllExperiences() {
-    return this.dataServices.experiences.getAll();
+  getExperience(item?: any) {
+    return this.dataServices.experiences.get(item);
   }
 
   getExperienceById(id: any) {
@@ -21,7 +21,7 @@ export class ExperienceUseCases {
   }
 
   updateExperience(data: any) {
-    return this.dataServices.experiences.updateOne(data.id, data.payload);
+    return this.dataServices.experiences.updateOne(data.filters, data.payload);
   }
 
   deleteExperience(id: any) {

@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import * as mongoose from 'mongoose';
 
 export type TokenDocument = Token & Document;
 
@@ -9,6 +10,12 @@ export class Token {
 
   @Prop()
   expiredAt: number;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, refPath: 'userRole', required: true })
+  referenceAttributeId: any;
+
+  @Prop({ type: String, enum: ['Alumni','Partner'], required: true })
+  userRole: any;
 
   @Prop()
   isActive: boolean;

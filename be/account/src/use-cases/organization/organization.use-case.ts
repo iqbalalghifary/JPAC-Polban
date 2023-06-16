@@ -8,12 +8,8 @@ export class OrganizationUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllOrganizations() {
-    return this.dataServices.organizations.getAll();
-  }
-
-  getOrganizationById(id: any) {
-    return this.dataServices.organizations.get(id);
+  getOrganization(item?: any) {
+    return this.dataServices.organizations.get(item);
   }
 
   createOrganization(organiation: Organization) {
@@ -21,7 +17,7 @@ export class OrganizationUseCases {
   }
 
   updateOrganization(data: any) {
-    return this.dataServices.organizations.updateOne(data.id, data.payload);
+    return this.dataServices.organizations.updateOne(data.filters, data.payload);
   }
 
   deleteOrganization(id: any) {

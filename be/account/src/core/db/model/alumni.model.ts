@@ -49,7 +49,7 @@ export class Alumni {
   @Prop({ default: null })
   validityPeriod: Date;
 
-  @Prop({ enum: ['diusulkan', 'diverifikasi', 'aktif'] })
+  @Prop({ default: 'diusulkan', enum: ['diusulkan', 'diverifikasi', 'aktif'] })
   status: string;
 
   @Prop([{ default: null, type: mongoose.Schema.Types.ObjectId, ref: 'Award' }])

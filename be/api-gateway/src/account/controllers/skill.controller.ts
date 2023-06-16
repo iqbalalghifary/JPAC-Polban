@@ -39,7 +39,7 @@ export class SkillController {
     @Param('id') skillId: string,
     @Body() datas: Skill,
   ) {
-    return this.skillUseCases.updateSkill({ id: skillId, payload: datas });
+    return this.skillUseCases.updateSkill({ filters: { _id: skillId }, payload: datas });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

@@ -8,12 +8,8 @@ export class OperatorUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllOperators() {
-    return this.dataServices.operators.getAll();
-  }
-
-  getOperatorById(id: any) {
-    return this.dataServices.operators.get(id);
+  getOperator(item?: any) {
+    return this.dataServices.operators.get(item);
   }
 
   registerOperator(data: Operator) {
@@ -21,7 +17,7 @@ export class OperatorUseCases {
   }
 
   updateOperator(data: any) {
-    return this.dataServices.operators.updateOne(data.id, data.payload);
+    return this.dataServices.operators.updateOne(data.filters, data.payload);
   }
 
   deleteOperator(id: any) {

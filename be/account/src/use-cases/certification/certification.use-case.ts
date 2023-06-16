@@ -8,12 +8,8 @@ export class CertificationUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllCertifications() {
-    return this.dataServices.certifications.getAll();
-  }
-
-  getCertificationById(id: any) {
-    return this.dataServices.certifications.get(id);
+  getCertification(item?: any) {
+    return this.dataServices.certifications.get(item);
   }
 
   createCertification(certification: Certification) {
@@ -21,7 +17,7 @@ export class CertificationUseCases {
   }
 
   updateCertification(data: any) {
-    return this.dataServices.certifications.updateOne(data.id, data.payload);
+    return this.dataServices.certifications.updateOne(data.filters, data.payload);
   }
 
   deleteCertification(id: any) {

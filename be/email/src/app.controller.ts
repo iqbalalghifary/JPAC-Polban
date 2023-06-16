@@ -7,14 +7,60 @@ import { MessagePattern } from '@nestjs/microservices';
 export class AppController {
   constructor(private mailService: MailerService) {}
 
-  @MessagePattern({ cmd: 'email_request' })
-  async postHTMLEmail(datas: any) {
+  @MessagePattern({ cmd: 'email_verifikasi_pelamar' })
+  async emailApplicantVerification(datas: any) {
+    var response = await this.mailService.sendMail({
+      to: datas.to,
+      from: config.SENDER,
+      subject: datas.subject,
+      template: 'verifikasi-registrasi-pelamar',
+      context: {
+        params: datas.params
+      },
+    });
+    return response;
+  }
+
+  @MessagePattern({ cmd: 'email_verifikasi_mitra' })
+  async emailPartnerVerification(datas: any) {
+    var response = await this.mailService.sendMail({
+      to: datas.to,
+      from: config.SENDER,
+      subject: datas.subject,
+      template: 'verifikasi-registrasi-mitra',
+      context: {
+        params: datas.params
+      },
+    });
+    return response;
+  }
+
+  @MessagePattern({ cmd: 'email_aktivasi_pelamar' })
+  async emailApplicantActivation(datas: any) {
+    var response = await this.mailService.sendMail({
+      to: datas.to,
+      from: config.SENDER,
+      subject: datas.subject,
+      template: 'aktivasi-akun-pelamar',
+      context: {
+        params: datas.params
+      },
+    });
+    return response;
+  }
+
+  @MessagePattern({ cmd: 'email_aktivasi_mitra' })
+  async emailPartneActivation(datas: any) {
     var response = await this.mailService.sendMail({
       to: datas.to,
       from: config.SENDER,
       subject: datas.subject,
       template: 'aktivasi-akun-mitra',
+      context: {
+        params: datas.params
+      },
     });
     return response;
   }
+
 }

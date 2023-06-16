@@ -12,7 +12,16 @@ export class UserController {
   @MessagePattern({ cmd: 'get_all_user' })
   async getAll() {
     try {
-      return await this.userUseCases.getAllUsers();      
+      return await this.userUseCases.getUser();   
+    } catch (error) {
+      console.log(error); 
+    }
+  }
+
+  @MessagePattern({ cmd: 'get_by_id_user' })
+  async getById(id: any) {
+    try {
+      return await this.userUseCases.getUser({ _id: id });   
     } catch (error) {
       console.log(error); 
     }
@@ -29,15 +38,6 @@ export class UserController {
     })
 
     res.end(buffer);
-  }
-
-  @MessagePattern({ cmd: 'get_by_id_user' })
-  async getById(id: any) {
-    try {
-      return await this.userUseCases.getUserById(id);      
-    } catch (error) {
-      console.log(error); 
-    }
   }
 
   @MessagePattern({ cmd: 'create_user' })

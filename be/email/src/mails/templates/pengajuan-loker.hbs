@@ -322,12 +322,12 @@
                 <td class="wrapper">
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tr>
-                      <td><h3>Dadang</h3></td>
+                      <td><h3>{{ params.name }}</h3></td>
                     </tr>
                     <tr>
                       <td>
                         <p>Hi there,</p>
-                        <p>Sometimes you just want to send a simple HTML email with a simple design and clear call to action. This is it.</p>
+                        <p>Based on the validation results conducted by our team, your registration has been verified. Please proceed to the next step to upload the receipt by clicking the button below</p>
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                           <tbody>
                             <tr>
@@ -335,7 +335,7 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                   <tbody>
                                     <tr>
-                                      <td> <a href="http://htmlemail.io" target="_blank">Call To Action</a> </td>
+                                      <td> <a href="{{ params.link }}" target="_blank">Call To Action</a> </td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -343,36 +343,29 @@
                             </tr>
                           </tbody>
                         </table>
-                        <p>This is a really simple email template. Its sole purpose is to get the recipient to click the button with no distractions.</p>
-                        <p>Good luck! Hope it works.</p>
+                        <p>Thus concludes the information we can provide. We express our gratitude for your attention</p>
+                        <p>Our regards</p>
                       </td>
                     </tr>
                   </table>
                 </td>
               </tr>
-
-            <!-- END MAIN CONTENT AREA -->
             </table>
-            <!-- END CENTERED WHITE CONTAINER -->
-
-            <!-- START FOOTER -->
             <div class="footer">
               <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td class="content-block">
-                    <span class="apple-link">Company Inc, 3 Abbey Road, San Francisco CA 94102</span>
+                    <span class="apple-link">Jl. Gegerkalong Hilir, Ciwaruga, Bandung State Polytechnic</span>
                     <br> Don't like these emails? <a href="http://i.imgur.com/CScmqnj.gif">Unsubscribe</a>.
                   </td>
                 </tr>
                 <tr>
                   <td class="content-block powered-by">
-                    Powered by <a href="http://htmlemail.io">HTMLemail</a>.
+                    Powered by <a href="#">@JPAC Polban</a>.
                   </td>
                 </tr>
               </table>
             </div>
-            <!-- END FOOTER -->
-
           </div>
         </td>
         <td>&nbsp;</td>

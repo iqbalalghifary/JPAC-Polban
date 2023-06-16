@@ -8,12 +8,8 @@ export class JobApplicationUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllJobApplications() {
-    return this.dataServices.jobApplications.getAll();
-  }
-
-  getJobApplicationById(id: any) {
-    return this.dataServices.jobApplications.get(id);
+  getJobApplication(item?: any) {
+    return this.dataServices.jobApplications.get(item);
   }
 
   createJobApplication(JobApplication: JobApplication) {
@@ -21,7 +17,7 @@ export class JobApplicationUseCases {
   }
 
   updateJobApplication(data: any) {
-    return this.dataServices.jobApplications.update(data.id, data.payload);
+    return this.dataServices.jobApplications.updateOne(data.filters, data.payload);
   }
 
   deleteJobApplication(id: any) {

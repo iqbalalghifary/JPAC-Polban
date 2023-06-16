@@ -12,7 +12,7 @@ export class CertificationController {
   @MessagePattern({ cmd: 'get_all_certification' })
   async getAll() {
     try {
-      return await this.certificationUseCases.getAllCertifications();      
+      return await this.certificationUseCases.getCertification();    
     } catch (error) {
       console.log(error); 
     }
@@ -21,7 +21,7 @@ export class CertificationController {
   @MessagePattern({ cmd: 'get_by_id_certification' })
   async getById(id: any) {
     try {
-      return await this.certificationUseCases.getCertificationById(id);     
+      return await this.certificationUseCases.getCertification({ _id: id });   
     } catch (error) {
       console.log(error); 
     }

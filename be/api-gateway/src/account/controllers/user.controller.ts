@@ -44,7 +44,7 @@ export class UserController {
     @Param('id') userId: string,
     @Body() user: User,
   ) {
-    return this.userUseCases.updateUser({ id: userId, payload: user});
+    return this.userUseCases.updateUser({ filters: { _id: userId }, payload: user});
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

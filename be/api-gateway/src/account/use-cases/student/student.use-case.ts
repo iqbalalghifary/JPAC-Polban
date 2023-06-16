@@ -8,7 +8,7 @@ export class StudentUseCases {
     @Inject('SERVICE_ACCOUNT') private readonly clientStudent: ClientProxy,
   ) {}
 
-  async importExcel(payload: any): Promise<any> {
+  async importData(payload: any): Promise<any> {
     console.log(payload)
     const pattern = { cmd: 'import_student' };
     return this.clientStudent

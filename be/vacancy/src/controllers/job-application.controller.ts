@@ -12,7 +12,7 @@ export class JobApplicationController {
   @MessagePattern({ cmd: 'get_all_job_application' })
   async getAll() {
     try {
-      return await this.jobApplicationUseCases.getAllJobApplications();
+      return await this.jobApplicationUseCases.getJobApplication();
     } catch (error) {
       console.log(error);
     }
@@ -21,7 +21,7 @@ export class JobApplicationController {
   @MessagePattern({ cmd: 'get_by_id_job_application' })
   async getById(id: any) {
     try {
-      return await this.jobApplicationUseCases.getJobApplicationById(id);
+      return await this.jobApplicationUseCases.getJobApplication({ _id: id });
     } catch (error) {
       console.log(error);
     }

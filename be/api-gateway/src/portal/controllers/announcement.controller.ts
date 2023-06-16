@@ -70,7 +70,7 @@ export class AnnouncementController {
     @UploadedFile() file: Express.Multer.File
   ) {
     const announcement = this.announcementFactoryService.updateAnnouncement(updateAnnouncementDto, file);
-    return this.announcementUseCases.updateAnnouncement({ id: announcementId, payload: announcement});
+    return this.announcementUseCases.updateAnnouncement({ filters: { _id: announcementId }, payload: announcement});
   }
 
   @Delete(':id')

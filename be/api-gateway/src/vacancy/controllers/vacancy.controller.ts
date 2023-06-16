@@ -25,10 +25,10 @@ export class VacancyController {
 
   @Put(':id')
   updateVacancy(
-    @Param('id') VacancyId: string,
+    @Param('id') vacancyId: string,
     @Body() vacancy: Vacancy,
   ) {
-    return this.vacancyUseCases.updateVacancy({ id: VacancyId, payload: vacancy });
+    return this.vacancyUseCases.updateVacancy({ filters: { _id: vacancyId }, payload: vacancy });
   }
 
   @Delete(':id')

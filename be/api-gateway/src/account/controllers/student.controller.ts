@@ -28,7 +28,7 @@ export class StudentController {
   @Post('import-data')
   @UseInterceptors(FileInterceptor('excel'))  
   readExcelFile(@UploadedFile() file: Express.Multer.File): Promise<any>{
-    const result = this.studentUseCases.importExcel(file);
+    const result = this.studentUseCases.importData(file);
     return result;
   }
 
@@ -44,6 +44,13 @@ export class StudentController {
   @Get(':id')
   getById(@Param('id') id: any) {
     return this.studentUseCases.getStudentById(id);
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Put('activate/:id')
+  activateStudent(@Param('id') studentId: string) {
+    return this.studentUseCases.activateStudent({ filters: { _id: studentId }, payload: { status: 'aktif' } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
@@ -67,7 +74,7 @@ export class StudentController {
     @Param('id') studentId: string,
     @Body() datas: Student,
   ) {
-    return this.studentUseCases.updateStudentOne({ id: studentId, data: datas });
+    return this.studentUseCases.updateStudentOne({ filters: { _id: studentId }, data: datas });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

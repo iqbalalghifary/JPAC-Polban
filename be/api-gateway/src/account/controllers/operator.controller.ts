@@ -48,7 +48,7 @@ export class OperatorController {
     @Param('id') operatorId: string,
     @Body() datas: Operator,
   ) {
-    return this.operatorUseCases.updateOperator({ id: operatorId, payload: datas });
+    return this.operatorUseCases.updateOperator({ filters: { _id: operatorId }, payload: datas });
   }
   
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

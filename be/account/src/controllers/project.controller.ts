@@ -12,7 +12,7 @@ export class ProjectController {
   @MessagePattern({ cmd: 'get_all_project' })
   async getAll() {
     try {
-      return await this.projectUseCases.getAllProjects();      
+      return await this.projectUseCases.getProject();
     } catch (error) {
       console.log(error); 
     }
@@ -21,7 +21,7 @@ export class ProjectController {
   @MessagePattern({ cmd: 'get_by_id_project' })
   async getById(id: any) {
     try {
-      return await this.projectUseCases.getProjectById(id);      
+      return await this.projectUseCases.getProject({ _id: id });   
     } catch (error) {
       console.log(error); 
     }

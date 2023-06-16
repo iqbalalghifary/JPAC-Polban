@@ -39,7 +39,7 @@ export class ProjectController {
     @Param('id') projectId: string,
     @Body() datas: Project,
   ) {
-    return this.projectUseCases.updateProject({ id: projectId, payload: datas });
+    return this.projectUseCases.updateProject({ filters: { _id: projectId }, payload: datas });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

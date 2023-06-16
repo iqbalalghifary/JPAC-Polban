@@ -35,7 +35,7 @@ export class JobApplicationController {
     @Param('id') jobApplicationId: string,
     @Body() jobApplication: JobApplication
   ) {
-    return this.jobApplicationUseCases.updateJobApplication({ id: jobApplicationId, payload: jobApplication});
+    return this.jobApplicationUseCases.updateJobApplication({ filters: { _id: jobApplicationId }, payload: jobApplication});
   }
 
   @Get(':id')

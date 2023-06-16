@@ -8,12 +8,17 @@ export class TokenUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllTokens() {
-    return this.dataServices.tokens.getAll();
+  getToken(item?: any) {
+    return this.dataServices.tokens.get(item);
   }
 
-  getTokenById(id: any) {
-    return this.dataServices.tokens.get(id);
+  async compareToken(item?: any) {
+    const token = await this.dataServices.tokens.get(item);
+    if(token && token[0].expiredAt > Date.now() && token[0].isActive == true){
+      return token;
+    } else {
+      return "Token has expired"
+    }
   }
 
   createToken(Token: Token) {
@@ -21,7 +26,7 @@ export class TokenUseCases {
   }
 
   updateToken(data: any) {
-    return this.dataServices.tokens.updateOne(data.id, data.payload);
+    return this.dataServices.tokens.updateOne(data.filters, data.payload);
   }
 
   deleteToken(id: any) {

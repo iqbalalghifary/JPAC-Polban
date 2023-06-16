@@ -8,12 +8,8 @@ export class SkillUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllSkills() {
-    return this.dataServices.skills.getAll();
-  }
-
-  getSkillById(id: any) {
-    return this.dataServices.skills.get(id);
+  getSkill(item?: any) {
+    return this.dataServices.skills.get(item);
   }
 
   createSkill(skill: Skill) {
@@ -21,7 +17,7 @@ export class SkillUseCases {
   }
 
   updateSkill(data: any) {
-    return this.dataServices.skills.updateOne(data.id, data.payload);
+    return this.dataServices.skills.updateOne(data.filters, data.payload);
   }
 
   deleteSkill(id: any) {

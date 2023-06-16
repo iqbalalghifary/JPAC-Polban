@@ -12,7 +12,7 @@ export class InternshipScheduleController {
   @MessagePattern({ cmd: 'get_all_internship_schedule' })
   async getAll() {
     try {
-      return await this.internshipScheduleUseCases.getAllInternshipSchedules();
+      return await this.internshipScheduleUseCases.getInternshipSchedule();
     } catch (error) {
       console.log(error);
     }
@@ -21,7 +21,7 @@ export class InternshipScheduleController {
   @MessagePattern({ cmd: 'get_by_id_internship_schedule' })
   async getById(id: any) {
     try {
-      return await this.internshipScheduleUseCases.getInternshipScheduleById(id);
+      return await this.internshipScheduleUseCases.getInternshipSchedule({ _id: id });
     } catch (error) {
       console.log(error);
     }

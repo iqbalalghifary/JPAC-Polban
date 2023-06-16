@@ -36,10 +36,10 @@ export class EducationController {
   @Roles('Alumni')
   @Put(':id')
   updateEducation(
-    @Param('id') EducationId: string,
+    @Param('id') educationId: string,
     @Body() datas: Education,
   ) {
-    return this.educationUseCases.updateEducation({ id: EducationId, payload: datas });
+    return this.educationUseCases.updateEducation({ filters: { _id: educationId }, payload: datas });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

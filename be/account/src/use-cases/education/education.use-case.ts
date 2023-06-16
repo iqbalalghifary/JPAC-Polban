@@ -8,12 +8,8 @@ export class EducationUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllEducations() {
-    return this.dataServices.educations.getAll();
-  }
-
-  getEducationById(id: any) {
-    return this.dataServices.educations.get(id);
+  getEducation(item?: any) {
+    return this.dataServices.educations.get(item);
   }
 
   createEducation(education: Education) {
@@ -21,7 +17,7 @@ export class EducationUseCases {
   }
 
   updateEducation(data: any) {
-    return this.dataServices.educations.updateOne(data.id, data.payload);
+    return this.dataServices.educations.updateOne(data.filters, data.payload);
   }
 
   deleteEducation(id: any) {

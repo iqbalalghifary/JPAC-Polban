@@ -12,7 +12,7 @@ export class OrganizationController {
   @MessagePattern({ cmd: 'get_all_organization' })
   async getAll() {
     try {
-      return this.organizationUseCases.getAllOrganizations();      
+      return this.organizationUseCases.getOrganization();   
     } catch (error) {
       console.log(error); 
     }
@@ -21,7 +21,7 @@ export class OrganizationController {
   @MessagePattern({ cmd: 'get_by_id_organization' })
   async getById(id: any) {
     try {
-      return this.organizationUseCases.getOrganizationById(id);      
+      return this.organizationUseCases.getOrganization({ _id: id });     
     } catch (error) {
       console.log(error); 
     }

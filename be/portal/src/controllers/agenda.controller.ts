@@ -12,7 +12,7 @@ export class AgendaController {
   @MessagePattern({ cmd: 'get_all_agenda' })
   async getAll() {
     try {
-      return await this.agendaUseCases.getAllAgendas();
+      return await this.agendaUseCases.getAgenda();
     } catch (error) {
       console.log(error);
     }
@@ -21,7 +21,7 @@ export class AgendaController {
   @MessagePattern({ cmd: 'get_by_id_agenda' })
   async getById(id: any) {
     try {
-      return await this.agendaUseCases.getAgendaById(id);
+      return await this.agendaUseCases.getAgenda({ _id: id });
     } catch (error) {
       console.log(error);      
     }

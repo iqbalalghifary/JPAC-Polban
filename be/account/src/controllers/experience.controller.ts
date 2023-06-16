@@ -12,7 +12,7 @@ export class ExperienceController {
   @MessagePattern({ cmd: 'get_all_experience' })
   async getAll() {
     try {
-      return this.experienceUseCases.getAllExperiences();      
+      return this.experienceUseCases.getExperience();   
     } catch (error) {
       console.log(error); 
     }
@@ -21,7 +21,7 @@ export class ExperienceController {
   @MessagePattern({ cmd: 'get_by_id_experience' })
   async getById(id: any) {
     try {
-      return this.experienceUseCases.getExperienceById(id);      
+      return this.experienceUseCases.getExperience({ _id: id });   
     } catch (error) {
       console.log(error); 
     }

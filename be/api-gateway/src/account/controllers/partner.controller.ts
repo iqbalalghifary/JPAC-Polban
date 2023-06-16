@@ -49,29 +49,27 @@ export class PartnerController {
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
-  @Put('verify/:id')
-  verifyPartner(@Param('id') userId: string) {
-    return this.partnerUseCases.updatePartner({ id: userId, status: 'diverifikasi' });
-  }
-
-  @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
   @Put('upload-mou/:id')
   @UseInterceptors(FileInterceptor('mou'))
   updateMoU(
     @Param('id') userId: string,
     @UploadedFile() file: Express.Multer.File
   ) {
-    const datas = new Partner();
-    datas.mou = file.path;
-    return this.partnerUseCases.updatePartner({ id: userId, payload: datas });
+    return this.partnerUseCases.uploadMoU({ filter_token: { referenceAttributeId: userId }, filter_partner: { _id: userId }, payload: file });
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Put('verify/:id')
+  verifyPartner(@Param('id') userId: string) {
+    return this.partnerUseCases.verifyPartner({ filters: { _id: userId }, payload: { status: 'diverifikasi' } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Put('activate/:id')
-  activatePartnerAccount(@Param('id') userId: string) {
-    return this.partnerUseCases.updatePartner({ id: userId, status: 'aktif' });
+  activatePartner(@Param('id') userId: string) {
+    return this.partnerUseCases.activatePartner({ filters: { _id: userId }, payload: { status: 'aktif' } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
@@ -86,6 +84,16 @@ export class PartnerController {
   @Delete()
   deleteAllPartner() {
     return this.partnerUseCases.deleteAllPartner();
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Put(':id')
+  updateAlumni(
+    @Param('id') partnerId: string,
+    @Body() datas: Partner,
+  ) {
+    return this.partnerUseCases.updatePartner({ filters: { _id: partnerId }, payload: datas });
   }
 
 }

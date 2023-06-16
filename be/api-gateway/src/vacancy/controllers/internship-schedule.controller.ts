@@ -35,7 +35,7 @@ export class InternshipScheduleController {
     @Param('id') internshipScheduleId: string,
     @Body() internshipSchedule: InternshipSchedule,
   ) {
-    return this.internshipScheduleUseCases.updateInternshipSchedule({ id: internshipScheduleId, payload: internshipSchedule});
+    return this.internshipScheduleUseCases.updateInternshipSchedule({ filters: { _id: internshipScheduleId }, payload: internshipSchedule});
   }
 
   @Get(':id')

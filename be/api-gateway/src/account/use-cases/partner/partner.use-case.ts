@@ -19,8 +19,36 @@ export class PartnerUseCases {
       );
   }
 
+  uploadMoU(payload: any) {
+    console.log(payload)
+    const pattern = { cmd: 'mou_partner' };
+    return this.clientPartner
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );
+  }
+
   updatePartner(payload: any) {
     const pattern = { cmd: 'update_one_partner' };
+    return this.clientPartner
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );
+  }
+
+  activatePartner(payload: any) {
+    const pattern = { cmd: 'activate_partner' };
+    return this.clientPartner
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );
+  }
+
+  verifyPartner(payload: any) {
+    const pattern = { cmd: 'verify_partner' };
     return this.clientPartner
     .send<string>(pattern, payload)
       .pipe(

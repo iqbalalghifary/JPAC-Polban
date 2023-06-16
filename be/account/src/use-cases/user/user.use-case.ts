@@ -3,6 +3,7 @@ import { User } from '../../core/entities';
 import { IDataServices } from '../../core/abstracts';
 import { JwtService } from '@nestjs/jwt';
 const PDFDocument = require('pdfkit');
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserUseCases {
@@ -42,9 +43,13 @@ export class UserUseCases {
   }
 
   async login(data: any) {
-    const user = await this.dataServices.users.findOne({ username: data.username })
-    if(user && user.password == data.password){
-      const payload = { role: user.userRole };
+
+    const user = await this.dataServices.users.get({ username: data.username, userRole: data.userRole })
+
+    const comparedResult = await bcrypt.compare(data.password, user[0].password);
+
+    if(user && comparedResult ){
+      const payload = { role: user[0].userRole };
       return {
         access_token: this.jwtService.sign(payload)
       }
@@ -52,12 +57,8 @@ export class UserUseCases {
     return 'data tidak valid'
   }
 
-  getAllUsers() {
-    return this.dataServices.users.getAll();
-  }
-
-  getUserById(id: any) {
-    return this.dataServices.users.get(id);
+  getUser(item?: any) {
+    return this.dataServices.users.get(item);
   }
 
   createUser(User: User) {
@@ -65,7 +66,7 @@ export class UserUseCases {
   }
 
   updateUser(data: any) {
-    return this.dataServices.users.updateOne(data.id, data.payload);
+    return this.dataServices.users.updateOne(data.filters, data.payload);
   }
 
   deleteUser(id: any) {

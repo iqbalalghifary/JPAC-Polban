@@ -8,12 +8,8 @@ export class AnnouncementUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllAnnouncements() {
-    return this.dataServices.announcements.getAll();
-  }
-
-  getAnnouncementById(id: any) {
-    return this.dataServices.announcements.get(id);
+  getAnnouncement(item?: any) {
+    return this.dataServices.announcements.get(item);
   }
 
   createAnnouncement(announcement: Announcement) {
@@ -21,7 +17,7 @@ export class AnnouncementUseCases {
   }
 
   updateAnnouncement(data: any) {
-    return this.dataServices.announcements.update(data.id, data.payload);
+    return this.dataServices.announcements.updateOne(data.filters, data.payload);
   }
 
   deleteAnnouncement(id: any) {

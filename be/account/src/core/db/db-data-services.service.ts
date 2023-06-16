@@ -97,7 +97,9 @@ export class MongoDataServices
       "referenceAttributeId"
     ]);
     this.awards = new MongoGenericRepository<Award>(this.AwardRepository);
-    this.tokens = new MongoGenericRepository<Token>(this.TokenRepository);
+    this.tokens = new MongoGenericRepository<Token>(this.TokenRepository, [
+      "referenceAttributeId"
+    ]);
     this.certifications = new MongoGenericRepository<Certification>(this.CertificationRepository);
     this.educations = new MongoGenericRepository<Education>(this.EducationRepository);
     this.experiences = new MongoGenericRepository<Experience>(this.ExperienceRepository);

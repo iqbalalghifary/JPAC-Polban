@@ -8,12 +8,8 @@ export class AgendaUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllAgendas() {
-    return this.dataServices.agendas.getAll();
-  }
-
-  getAgendaById(id: any) {
-    return this.dataServices.agendas.get(id);
+  getAgenda(item?: any) {
+    return this.dataServices.agendas.get(item);
   }
 
   createAgenda(agenda: Agenda) {
@@ -21,7 +17,7 @@ export class AgendaUseCases {
   }
 
   updateAgenda(data: any) {
-    return this.dataServices.agendas.update(data.id, data.payload);
+    return this.dataServices.agendas.updateOne(data.filters, data.payload);
   }
 
   deleteAgenda(id: any) {

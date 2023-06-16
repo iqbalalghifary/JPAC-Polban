@@ -10,11 +10,8 @@ import {
   Delete,
   UseGuards
 } from '@nestjs/common';
-import { AlumniRegisterDto } from '../core/dtos';
 import { AlumniUseCases } from '../use-cases/alumni';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
 import { Alumni } from '../core';
 import { JwtAuthGuard } from 'src/app/guard/jwt.auth.guard';
 import { RoleAuthGuard } from 'src/app/guard/roles-auth.guard';
@@ -50,14 +47,14 @@ export class AlumniController {
   @Roles('Alumni')
   @Put('verify/:id')
   verifyAlumni(@Param('id') alumniId: string) {
-    return this.alumniUseCases.verifyAlumni({ id: alumniId, payload: { status: 'diverifikasi' } });
+    return this.alumniUseCases.verifyAlumni({ filters: { _id: alumniId }, payload: { status: 'diverifikasi' } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Put('activate/:id')
-  activateAlumniAccount(@Param('id') alumniId: string) {
-    return this.alumniUseCases.activateAlumni({ id: alumniId, payload: { status: 'aktif' } });
+  activateAlumni(@Param('id') alumniId: string) {
+    return this.alumniUseCases.activateAlumni({ filters: { _id: alumniId }, payload: { status: 'aktif' } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
@@ -82,7 +79,7 @@ export class AlumniController {
     @Param('id') alumniId: string,
     @UploadedFile() file: Express.Multer.File
   ) {
-    return this.alumniUseCases.uploadReceipt({ id: alumniId, payload: file });
+    return this.alumniUseCases.uploadReceipt({ filter_token: { referenceAttributeId: alumniId }, filter_alumni: { _id: alumniId }, payload: file });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
@@ -92,6 +89,6 @@ export class AlumniController {
     @Param('id') alumniId: string,
     @Body() datas: Alumni,
   ) {
-    return this.alumniUseCases.updateAlumni({ id: alumniId, payload: datas });
+    return this.alumniUseCases.updateAlumni({ filters: { _id: alumniId }, payload: datas });
   }
 }

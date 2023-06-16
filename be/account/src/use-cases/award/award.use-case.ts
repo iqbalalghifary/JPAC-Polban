@@ -8,12 +8,8 @@ export class AwardUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllAwards() {
-    return this.dataServices.awards.getAll();
-  }
-
-  getAwardById(id: any) {
-    return this.dataServices.awards.get(id);
+  getAward(item?: any) {
+    return this.dataServices.awards.get(item);
   }
 
   createAward(award: Award) {
@@ -21,7 +17,7 @@ export class AwardUseCases {
   }
 
   updateAward(data: any) {
-    return this.dataServices.awards.updateOne(data.id, data.payload);
+    return this.dataServices.awards.updateOne(data.filters, data.payload);
   }
 
   deleteAward(id: any) {

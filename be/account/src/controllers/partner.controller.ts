@@ -10,7 +10,7 @@ export class PartnerController {
   @MessagePattern({ cmd: 'get_all_partner' })
   async getAll() {
     try {
-      return this.partnerUseCases.getAllPartners();      
+      return await this.partnerUseCases.getPartner();   
     } catch (error) {
       console.log(error); 
     }
@@ -19,7 +19,7 @@ export class PartnerController {
   @MessagePattern({ cmd: 'get_by_id_partner' })
   async getById(id: any) {
     try {
-      return this.partnerUseCases.getPartnerById(id);      
+      return await this.partnerUseCases.getPartner({ _id: id });   
     } catch (error) {
       console.log(error); 
     }
@@ -37,16 +37,16 @@ export class PartnerController {
   @MessagePattern({ cmd: 'verify_partner' })
   async verifyPartner(data: any) {
     try {
-      return this.partnerUseCases.updatePartner(data);
+      return await this.partnerUseCases.verifyPartner(data);
     } catch(error) {
       console.log(error);
     }
   }
 
-  @MessagePattern({ cmd: 'update_partner_mou' })
+  @MessagePattern({ cmd: 'mou_partner' })
   async updateMoU(data: any) {
     try {
-      this.partnerUseCases.updatePartner(data);
+      return await this.partnerUseCases.uploadMoU(data);
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +55,7 @@ export class PartnerController {
   @MessagePattern({ cmd: 'activate_partner' })
   async activatePartnerAccount(data: any) {
     try {
-      return await this.partnerUseCases.updatePartner(data);
+      return await this.partnerUseCases.activatePartner(data);
     } catch(error) {
       console.log(error);
     }

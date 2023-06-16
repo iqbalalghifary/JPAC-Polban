@@ -5,7 +5,7 @@ import { JwtAuthGuard } from 'src/app/guard/jwt.auth.guard';
 import { RoleAuthGuard } from 'src/app/guard/roles-auth.guard';
 import { Roles } from 'src/app/guard/roles-decorator';
 
-@Controller('api/Token')
+@Controller('api/token')
 export class TokenController {
   constructor(
     private tokenUseCases: TokenUseCases,
@@ -14,8 +14,15 @@ export class TokenController {
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Get()
-  getAll() {
-    return this.tokenUseCases.getAllTokens();
+  getAll(@Body() item?: any) {
+    return this.tokenUseCases.getAllTokens(item);
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Get('filters')
+  compareToken(@Body() item?: any) {
+    return this.tokenUseCases.compareToken(item)
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
@@ -39,7 +46,7 @@ export class TokenController {
     @Param('id') tokenId: string,
     @Body() datas: Token,
   ) {
-    return this.tokenUseCases.updateToken({ id: tokenId, payload: datas });
+    return this.tokenUseCases.updateToken({ filters: { _id: tokenId }, payload: datas });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

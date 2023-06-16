@@ -8,12 +8,8 @@ export class InternshipScheduleUseCases {
     private dataServices: IDataServices
   ) {}
 
-  getAllInternshipSchedules() {
-    return this.dataServices.internshipSchedules.getAll();
-  }
-
-  getInternshipScheduleById(id: any) {
-    return this.dataServices.internshipSchedules.get(id);
+  getInternshipSchedule(item?: any) {
+    return this.dataServices.internshipSchedules.get(item);
   }
 
   createInternshipSchedule(InternshipSchedule: InternshipSchedule) {
@@ -21,7 +17,7 @@ export class InternshipScheduleUseCases {
   }
 
   updateInternshipSchedule(data: any) {
-    return this.dataServices.internshipSchedules.update(data.id, data.payload);
+    return this.dataServices.internshipSchedules.updateOne(data.filters, data.payload);
   }
 
   deleteInternshipSchedule(id: any) {

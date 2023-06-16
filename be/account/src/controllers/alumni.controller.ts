@@ -1,19 +1,15 @@
 import { Controller } from '@nestjs/common';
-import { AlumniFactoryService, AlumniUseCases } from '../use-cases/alumni';
+import { AlumniUseCases } from '../use-cases/alumni';
 import { MessagePattern } from '@nestjs/microservices';
-import { Alumni } from 'src/core';
 
 @Controller('api/alumni')
 export class AlumniController {
-  constructor(
-    private alumniUseCases: AlumniUseCases,
-    private alumniFactoryService: AlumniFactoryService
-  ) {}
+  constructor(private alumniUseCases: AlumniUseCases) {}
 
   @MessagePattern({ cmd: 'get_all_alumni' })
   async getAll() {
     try {
-      return await this.alumniUseCases.getAllAlumnis()
+      return await this.alumniUseCases.getAlumni()
     } catch (error){
       console.log(error)
     }
@@ -22,7 +18,7 @@ export class AlumniController {
   @MessagePattern({ cmd: 'get_by_id_alumni' })
   async getById(id: string) {
     try {
-      return await this.alumniUseCases.getAlumniById(id);
+      return await this.alumniUseCases.getAlumni({ _id: id });
     } catch (error){
       console.log(error)
     }
@@ -56,9 +52,9 @@ export class AlumniController {
   }
 
   @MessagePattern({ cmd: 'activate_alumni' })
-  async activateAlumniAccount(data: any) {
+  async activateAlumni(data: any) {
     try {
-      return await this.alumniUseCases.updateAlumniOne(data);
+      return await this.alumniUseCases.activateAlumni(data);
     } catch(error) {
       console.log(error);
     }

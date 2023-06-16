@@ -10,27 +10,31 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
     this._populateOnFind = populateOnFind;
   }
 
-  getAll(): Promise<T[]> {
-    return this._repository.find().populate(this._populateOnFind).exec();
-  }
-
-  delete(id: any): Promise<T> {
-    return this._repository.findByIdAndDelete(id).exec();
+  get(item: any): Promise<T[]> {
+    return this._repository.find(item).populate(this._populateOnFind).exec();
   }
 
   deleteAll(): Promise<T> {
     return this._repository.remove().exec();
   }  
 
-  get(id: any): Promise<T> {
-    return this._repository.findById(id).exec();
+  delete(id: any): Promise<T> {
+    return this._repository.findByIdAndDelete(id).exec();
   }
 
   create(item: T): Promise<T> {
     return this._repository.create(item);
   }
 
-  update(id: string, item: T) {
-    return this._repository.findByIdAndUpdate(id, item);
+  updateOne(filters: T, item: T) {
+    return this._repository.findOneAndUpdate(filters, item);
+  }
+
+  updateMultiple(id: string, item: T) {
+    return this._repository.findByIdAndUpdate(
+      id, 
+      { $push: item },
+      { new: true, useFindAndModify: false },
+    );
   }
 }

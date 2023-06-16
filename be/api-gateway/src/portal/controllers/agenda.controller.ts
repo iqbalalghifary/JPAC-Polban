@@ -29,7 +29,7 @@ export class AgendaController {
     @Param('id') agendaId: string,
     @Body() agenda: Agenda,
   ) {
-    return this.agendaUseCases.updateAgenda({ id: agendaId, paylod: agenda });
+    return this.agendaUseCases.updateAgenda({ filters: { _id: agendaId }, paylod: agenda });
   }
 
   @Delete(':id')

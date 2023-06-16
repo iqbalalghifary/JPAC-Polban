@@ -8,12 +8,8 @@ export class ProjectUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllProjects() {
-    return this.dataServices.projects.getAll();
-  }
-
-  getProjectById(id: any) {
-    return this.dataServices.projects.get(id);
+  getProject(item?: any) {
+    return this.dataServices.projects.get(item);
   }
 
   createProject(project: Project) {
@@ -21,7 +17,7 @@ export class ProjectUseCases {
   }
 
   updateProject(data: any) {
-    return this.dataServices.projects.updateOne(data.id, data.payload);
+    return this.dataServices.projects.updateOne(data.filters, data.payload);
   }
 
   deleteProject(id: any) {

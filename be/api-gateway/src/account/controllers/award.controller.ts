@@ -39,7 +39,7 @@ export class AwardController {
     @Param('id') awardId: string,
     @Body() datas: Award,
   ) {
-    return this.awardUseCases.updateAward({ id: awardId, payload: datas });
+    return this.awardUseCases.updateAward({ filters: { _id: awardId }, payload: datas });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

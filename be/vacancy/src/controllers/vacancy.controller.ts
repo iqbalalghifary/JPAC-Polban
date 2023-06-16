@@ -13,7 +13,7 @@ export class VacancyController {
   @MessagePattern({ cmd: 'get_all_vacancy' })
   async getAll() {
     try {
-      return this.vacancyUseCases.getAllVacancies();
+      return this.vacancyUseCases.getVacancy();
     } catch (error) {
       console.log(error);
     }
@@ -22,7 +22,7 @@ export class VacancyController {
   @MessagePattern({ cmd: 'get_by_id_vacancy' })
   async getById(id: any) {
     try {
-      return this.vacancyUseCases.getVacancyById(id);
+      return this.vacancyUseCases.getVacancy({ _id: id });
     } catch (error) {
       console.log(error);
     }

@@ -8,12 +8,8 @@ export class GalleryUseCases {
     private dataServices: IDataServices,
   ) {}
 
-  getAllGallerys() {
-    return this.dataServices.galleries.getAll();
-  }
-
-  getGalleryById(id: any) {
-    return this.dataServices.galleries.get(id);
+  getGallery(item?: any) {
+    return this.dataServices.galleries.get(item);
   }
 
   createGallery(gallery: Gallery) {
@@ -21,7 +17,7 @@ export class GalleryUseCases {
   }
 
   updateGallery(data: any) {
-    return this.dataServices.galleries.update(data.id, data.payload);
+    return this.dataServices.galleries.updateOne(data.filters, data.payload);
   }
 
   deleteGallery(id: any) {

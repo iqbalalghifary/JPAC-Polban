@@ -39,7 +39,7 @@ export class OrganizationController {
     @Param('id') organizationId: string,
     @Body() datas: Organization,
   ) {
-    return this.organizationUseCases.updateOrganization({ id: organizationId, payload: datas });
+    return this.organizationUseCases.updateOrganization({ filters: { _id: organizationId }, payload: datas });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

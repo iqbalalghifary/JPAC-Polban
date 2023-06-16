@@ -39,7 +39,7 @@ export class ExperienceController {
     @Param('id') experienceId: string,
     @Body() datas: Experience,
   ) {
-    return this.experienceUseCases.updateExperience({ id: experienceId, payload: datas });
+    return this.experienceUseCases.updateExperience({ filters: { _id: experienceId }, payload: datas });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

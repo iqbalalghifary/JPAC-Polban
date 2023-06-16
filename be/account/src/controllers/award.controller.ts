@@ -11,7 +11,7 @@ export class AwardController {
   @MessagePattern({ cmd: 'get_all_award' })
   async getAll() {
     try {
-      return await this.awardUseCases.getAllAwards();      
+      return await this.awardUseCases.getAward();      
     } catch (error) {
       console.log(error); 
     }
@@ -20,7 +20,7 @@ export class AwardController {
   @MessagePattern({ cmd: 'get_by_id_award' })
   async getById(id: any) {
     try {
-      return this.awardUseCases.getAwardById(id);     
+      return await this.awardUseCases.getAward({ _id: id });
     } catch (error) {
       console.log(error); 
     }    

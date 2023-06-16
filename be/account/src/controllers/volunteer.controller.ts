@@ -12,7 +12,7 @@ export class VolunteerController {
   @MessagePattern({ cmd: 'get_all_volunteer' })
   async getAll() {
     try {
-      return await this.volunteerUseCases.getAllVolunteers();      
+      return await this.volunteerUseCases.getVolunteer();   
     } catch (error) {
       console.log(error); 
     }
@@ -21,7 +21,7 @@ export class VolunteerController {
   @MessagePattern({ cmd: 'get_by_id_volunteer' })
   async getById(id: any) {
     try {
-      return await this.volunteerUseCases.getVolunteerById(id);      
+      return await this.volunteerUseCases.getVolunteer({ _id: id });   
     } catch (error) {
       console.log(error); 
     }

@@ -1,8 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { map } from 'rxjs';
-import { AlumniRegisterDto } from '../../core/dtos';
-import { Alumni } from 'src/account/core';
 
 @Injectable()
 export class AlumniUseCases {

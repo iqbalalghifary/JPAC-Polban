@@ -12,7 +12,7 @@ export class EducationController {
   @MessagePattern({ cmd: 'get_all_education' })
   async getAll() {
     try {
-      return await this.educationUseCases.getAllEducations();      
+      return await this.educationUseCases.getEducation();   
     } catch (error) {
       console.log(error); 
     }
@@ -21,7 +21,7 @@ export class EducationController {
   @MessagePattern({ cmd: 'get_by_id_education' })
   async getById(id: any) {
     try {
-      return await this.educationUseCases.getEducationById(id);      
+      return await this.educationUseCases.getEducation({ _id: id });   
     } catch (error) {
       console.log(error); 
     }

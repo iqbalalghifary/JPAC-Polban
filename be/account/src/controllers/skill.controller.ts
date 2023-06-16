@@ -12,7 +12,7 @@ export class SkillController {
   @MessagePattern({ cmd: 'get_all_skill' })
   async getAll() {
     try {
-      return await this.skillUseCases.getAllSkills();      
+      return await this.skillUseCases.getSkill();   
     } catch (error) {
       console.log(error); 
     }
@@ -21,7 +21,7 @@ export class SkillController {
   @MessagePattern({ cmd: 'get_by_id_skill' })
   async getById(id: any) {
     try {
-      return await this.skillUseCases.getSkillById(id);      
+      return await this.skillUseCases.getSkill({ _id: id });   
     } catch (error) {
       console.log(error); 
     }

@@ -12,7 +12,7 @@ export class AnnouncementController {
   @MessagePattern({ cmd: 'get_all_announcement' })
   async getAll() {
     try {
-      return await this.announcementUseCases.getAllAnnouncements();
+      return await this.announcementUseCases.getAnnouncement();
     } catch (error) {
       console.log(error);
     }
@@ -21,7 +21,7 @@ export class AnnouncementController {
   @MessagePattern({ cmd: 'get_by_id_announcement' })
   async getById(id: any) {
     try {
-      return await this.announcementUseCases.getAnnouncementById(id);
+      return await this.announcementUseCases.getAnnouncement({ _id: id });
     } catch (error) {
       console.log(error);
     }

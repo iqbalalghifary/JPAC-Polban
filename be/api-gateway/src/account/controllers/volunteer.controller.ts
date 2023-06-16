@@ -39,7 +39,7 @@ export class VolunteerController {
     @Param('id') volunteerId: string,
     @Body() datas: Volunteer,
   ) {
-    return this.volunteerUseCases.updateVolunteer({ id: volunteerId, payload: datas });
+    return this.volunteerUseCases.updateVolunteer({ filters: { _id: volunteerId }, payload: datas });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
