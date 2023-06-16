@@ -8,20 +8,21 @@ export class PartnerController {
   constructor(private partnerUseCases: PartnerUseCases) {}
 
   @MessagePattern({ cmd: 'get_all_partner' })
-  async getAll() {
+  async getAll(item?: any) {
     try {
-      return await this.partnerUseCases.getPartner();   
+      console.log(item)
+      return this.partnerUseCases.getPartner(item.filters);
     } catch (error) {
-      console.log(error); 
+      console.log(error);
     }
   }
 
-  @MessagePattern({ cmd: 'get_by_id_partner' })
-  async getById(id: any) {
+  @MessagePattern({ cmd: 'get_partner_with_vacancies' })
+  async getPartnerWithVacancies(item: any) {
     try {
-      return await this.partnerUseCases.getPartner({ _id: id });   
+      return this.partnerUseCases.getPartnerWithVacancies(item.filters);
     } catch (error) {
-      console.log(error); 
+      console.log(error);
     }
   }
 

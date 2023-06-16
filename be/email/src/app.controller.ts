@@ -50,12 +50,26 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'email_aktivasi_mitra' })
-  async emailPartneActivation(datas: any) {
+  async emailPartnerActivation(datas: any) {
     var response = await this.mailService.sendMail({
       to: datas.to,
       from: config.SENDER,
       subject: datas.subject,
       template: 'aktivasi-akun-mitra',
+      context: {
+        params: datas.params
+      },
+    });
+    return response;
+  }
+
+  @MessagePattern({ cmd: 'email_aktivasi_loker' })
+  async emailPartnerVacancyActivation(datas: any) {
+    var response = await this.mailService.sendMail({
+      to: datas.to,
+      from: config.SENDER,
+      subject: datas.subject,
+      template: 'aktivasi-pengajuan-loker',
       context: {
         params: datas.params
       },

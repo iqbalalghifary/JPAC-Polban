@@ -29,15 +29,15 @@ export class PartnerController {
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
   @Get()
-  getAll() {
-    return this.partnerUseCases.getAllPartners();
+  getAll(@Body() item?: any) {
+    return this.partnerUseCases.getAllPartners(item);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni')
-  @Get(':id')
-  getById(@Param('id') id: any) {
-    return this.partnerUseCases.getPartnerById(id);
+  @Get('vacancy')
+  getPartnerWithVacancies(@Body() item: any) {
+    return this.partnerUseCases.getPartnerWithVacancies(item);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)

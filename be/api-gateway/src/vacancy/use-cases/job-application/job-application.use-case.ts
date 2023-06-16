@@ -56,4 +56,14 @@ export class JobApplicationUseCases {
       );    
   }
 
+  deleteAllJobApplication() {
+    const pattern = { cmd: 'delete_all_job_application' };
+    const payload = {};
+    return this.clientJobApplication
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

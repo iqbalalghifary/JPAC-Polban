@@ -13,10 +13,29 @@ export class PartnerUseCases {
   constructor(
     private dataServices: IDataServices,
     @Inject('SERVICE_EMAIL') private readonly clientEmail: ClientProxy,    
+    @Inject('SERVICE_VACANCY') private readonly clientVacancy: ClientProxy,        
   ) {}
 
   getPartner(item?: any) {
     return this.dataServices.partners.get(item);
+  }
+
+  async getPartnerWithVacancies(item?: any) {
+    const partnerData = await this.dataServices.partners.get(item);
+
+    const pattern = { cmd: 'get_all_vacancy' };
+    const payload = { referencePartner: item._id }
+    const vacanciesData = await this.clientVacancy
+      .send<Object>(pattern, payload)
+        .pipe(
+          map((message: Object) => ({ message })),
+        ).toPromise();
+
+    const mergedData = Object.assign({ partner: partnerData }, { vacancies: vacanciesData.message })
+
+    console.log(mergedData)
+
+    return mergedData;
   }
 
   async uploadMoU(data: any){

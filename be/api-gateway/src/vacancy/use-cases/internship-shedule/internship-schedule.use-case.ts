@@ -56,4 +56,14 @@ export class InternshipScheduleUseCases {
       );    
   }
 
+  deleteAllInternshipSchedule() {
+    const pattern = { cmd: 'delete_all_internship_schedule' };
+    const payload = {};
+    return this.clientInternshipSchedule
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

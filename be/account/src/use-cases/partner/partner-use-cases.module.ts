@@ -15,7 +15,17 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
           port: 3002,
         },
       },
-    ]),    
+    ]), 
+    ClientsModule.register([
+      {
+        name: 'SERVICE_VACANCY',
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 3004,
+        },
+      },
+    ]),        
   ],
   providers: [PartnerUseCases],
   exports: [PartnerUseCases],

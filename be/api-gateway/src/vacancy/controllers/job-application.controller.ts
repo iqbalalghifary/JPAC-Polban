@@ -4,10 +4,15 @@ import {
   Param, 
   Post, 
   Body, 
-  Put
+  Put,
+  UseGuards,
+  Delete
 } from '@nestjs/common';
 import { JobApplicationUseCases } from '../use-cases/job-application';
 import { JobApplication } from '../core';
+import { JwtAuthGuard } from 'src/app/guard/jwt.auth.guard';
+import { RoleAuthGuard } from 'src/app/guard/roles-auth.guard';
+import { Roles } from 'src/app/guard/roles-decorator';
 
 @Controller('api/JobApplication')
 export class JobApplicationController {
@@ -15,21 +20,29 @@ export class JobApplicationController {
     private jobApplicationUseCases: JobApplicationUseCases
   ) {}
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Get()
   getAll() {
     return this.jobApplicationUseCases.getAllJobApplications();
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Get(':id')
   getById(@Param('id') id: any) {
     return this.jobApplicationUseCases.getJobApplicationById(id);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Post()
   createJobApplication(@Body() JobApplication: JobApplication) {
     return this.jobApplicationUseCases.createJobApplication(JobApplication);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Put(':id')
   updateJobApplication(
     @Param('id') jobApplicationId: string,
@@ -38,9 +51,18 @@ export class JobApplicationController {
     return this.jobApplicationUseCases.updateJobApplication({ filters: { _id: jobApplicationId }, payload: jobApplication});
   }
 
-  @Get(':id')
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete(':id')
   deleteJobApplication(@Param('id') id: any) {
     return this.jobApplicationUseCases.deleteJobApplication(id);
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllVacancy() {
+    return this.jobApplicationUseCases.deleteAllJobApplication();
   }
 
 }

@@ -11,6 +11,9 @@ export class Vacancy {
   field: string;
 
   @Prop({ required: true })
+  referencePartner: string;
+
+  @Prop({ required: true })
   target: string[];
 
   @Prop({ required: true })
@@ -19,8 +22,11 @@ export class Vacancy {
   @Prop({ required: true })
   deadline: Date;
 
-  @Prop({ required: true })
-  status: boolean;
+  @Prop({ default: true })
+  isAppear: boolean
+
+  @Prop({ default: 'diusulkan', enum: ['diusulkan', 'aktif'] })
+  status: string;
 }
 
 export const VacancySchema = SchemaFactory.createForClass(Vacancy);

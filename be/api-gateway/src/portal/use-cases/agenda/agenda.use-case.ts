@@ -56,4 +56,14 @@ export class AgendaUseCases {
       );    
   }
 
+  deleteAllAgenda() {
+    const pattern = { cmd: 'delete_all_agenda' };
+    const payload = {};
+    return this.clientAgenda
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

@@ -6,13 +6,16 @@ import {
   Body, 
   Put, 
   UseInterceptors, 
-  UploadedFile
+  UploadedFile,
+  UseGuards,
+  Delete
 } from '@nestjs/common';
 import { CreateGalleryDto, UpdateGalleryDto } from '../core/dtos';
 import { GalleryUseCases, GalleryFactoryService } from '../use-cases/gallery';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { JwtAuthGuard } from 'src/app/guard/jwt.auth.guard';
+import { RoleAuthGuard } from 'src/app/guard/roles-auth.guard';
+import { Roles } from 'src/app/guard/roles-decorator';
 
 @Controller('api/gallery')
 export class GalleryController {
@@ -21,28 +24,24 @@ export class GalleryController {
     private galleryFactoryService: GalleryFactoryService,
   ) {}
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Get()
   getAll() {
     return this.galleryUseCases.getAllGalleries();
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Get(':id')
   getById(@Param('id') id: any) {
     return this.galleryUseCases.getGalleryById(id);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Post()
-  @UseInterceptors(FileInterceptor('image', {
-    storage: diskStorage({
-      destination: './uploads/gallery',
-      filename: (req, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))
+  @UseInterceptors(FileInterceptor('image'))
   createGallery(
     @Body() galleryDto: CreateGalleryDto,
     @UploadedFile() file: Express.Multer.File
@@ -51,18 +50,10 @@ export class GalleryController {
     return this.galleryUseCases.createGallery(gallery);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Put(':id')
-  @UseInterceptors(FileInterceptor('image', {
-    storage: diskStorage({
-      destination: './uploads/gallery',
-      filename: (req, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))
+  @UseInterceptors(FileInterceptor('image'))
   updateGallery(
     @Param('id') galleryId: string,
     @Body() updateGalleryDto: UpdateGalleryDto,
@@ -72,9 +63,18 @@ export class GalleryController {
     return this.galleryUseCases.updateGallery({ filters: { _id: galleryId }, payload: gallery });
   }
 
-  @Get(':id')
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete(':id')
   deleteGallery(@Param('id') id: any) {
     return this.galleryUseCases.deleteGallery(id);
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllGallery() {
+    return this.galleryUseCases.deleteAllGallery();
   }
 
 }

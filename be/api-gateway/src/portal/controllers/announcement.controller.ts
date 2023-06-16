@@ -7,13 +7,15 @@ import {
   Put, 
   Delete,
   UseInterceptors, 
-  UploadedFile
+  UploadedFile,
+  UseGuards
 } from '@nestjs/common';
 import { CreateAnnouncementDto, UpdateAnnouncementDto } from '../core/dtos';
 import { AnnouncementUseCases, AnnouncementFactoryService } from '../use-cases/announcement';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { JwtAuthGuard } from 'src/app/guard/jwt.auth.guard';
+import { RoleAuthGuard } from 'src/app/guard/roles-auth.guard';
+import { Roles } from 'src/app/guard/roles-decorator';
 
 @Controller('api/announcement')
 export class AnnouncementController {
@@ -22,28 +24,24 @@ export class AnnouncementController {
     private announcementFactoryService: AnnouncementFactoryService,
   ) {}
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Get()
   getAll() {
     return this.announcementUseCases.getAllAnnouncements();
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Get(':id')
   getById(@Param('id') id: any) {
     return this.announcementUseCases.getAnnouncementById(id);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Post()
-  @UseInterceptors(FileInterceptor('image', {
-    storage: diskStorage({
-      destination: './uploads/announcement',
-      filename: (req, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))
+  @UseInterceptors(FileInterceptor('image'))
   createAnnouncement(
     @Body() announcementDto: CreateAnnouncementDto,
     @UploadedFile() file: Express.Multer.File
@@ -52,18 +50,10 @@ export class AnnouncementController {
     return this.announcementUseCases.createAnnouncement(announcement);
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Put(':id')
-  @UseInterceptors(FileInterceptor('image', {
-    storage: diskStorage({
-      destination: './uploads/announcement',
-      filename: (req, file, callback) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const ext = extname(file.originalname);
-        const filename = `${uniqueSuffix}${ext}`;
-        callback(null, filename)
-      }
-    }),
-  }))
+  @UseInterceptors(FileInterceptor('image'))
   updateAnnouncement(
     @Param('id') announcementId: string,
     @Body() updateAnnouncementDto: UpdateAnnouncementDto,
@@ -73,9 +63,18 @@ export class AnnouncementController {
     return this.announcementUseCases.updateAnnouncement({ filters: { _id: announcementId }, payload: announcement});
   }
 
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
   @Delete(':id')
   deleteAnnouncement(@Param('id') announcementId: string) {
     return this.announcementUseCases.deleteAnnouncement(announcementId);
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni')
+  @Delete()
+  deleteAllAnnouncement() {
+    return this.announcementUseCases.deleteAllAnnouncement();
   }
 
 }

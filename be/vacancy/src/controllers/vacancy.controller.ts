@@ -11,18 +11,18 @@ export class VacancyController {
   ) {}
 
   @MessagePattern({ cmd: 'get_all_vacancy' })
-  async getAll() {
+  async getAll(item?: any) {
     try {
-      return this.vacancyUseCases.getVacancy();
+      return this.vacancyUseCases.getVacancy(item);
     } catch (error) {
       console.log(error);
     }
   }
 
-  @MessagePattern({ cmd: 'get_by_id_vacancy' })
-  async getById(id: any) {
+  @MessagePattern({ cmd: 'get_vacancy_with_partner' })
+  async getVacancyByPartner(item: any) {
     try {
-      return this.vacancyUseCases.getVacancy({ _id: id });
+      return this.vacancyUseCases.getVacancyWithPartner(item.filters);
     } catch (error) {
       console.log(error);
     }
@@ -30,10 +30,18 @@ export class VacancyController {
 
   @MessagePattern({ cmd: 'create_vacancy' })
   async createVacancy(vacancy: Vacancy) {
-    const vacancyResponseDto = new VacancyResponseDto();
     try {
       return await this.vacancyUseCases.createVacancy(vacancy);
     } catch (error) {
+      console.log(error);
+    }
+  }
+
+  @MessagePattern({ cmd: 'activate_vacancy' })
+  async activateVacancy(data: any) {
+    try {
+      return await this.vacancyUseCases.activateVacancy(data);
+    } catch(error) {
       console.log(error);
     }
   }

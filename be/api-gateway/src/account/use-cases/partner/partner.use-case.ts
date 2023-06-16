@@ -9,9 +9,17 @@ export class PartnerUseCases {
     @Inject('SERVICE_ACCOUNT') private readonly clientPartner: ClientProxy,
   ) {}
 
-  getAllPartners() {
+  getAllPartners(payload?: any) {
     const pattern = { cmd: 'get_all_partner' };
-    const payload = {};
+    return this.clientPartner
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );
+  }
+
+  getPartnerWithVacancies(payload?: any) {
+    const pattern = { cmd: 'get_partner_with_vacancies' };
     return this.clientPartner
     .send<string>(pattern, payload)
       .pipe(
@@ -20,7 +28,6 @@ export class PartnerUseCases {
   }
 
   uploadMoU(payload: any) {
-    console.log(payload)
     const pattern = { cmd: 'mou_partner' };
     return this.clientPartner
     .send<string>(pattern, payload)

@@ -1,8 +1,10 @@
 export class Vacancy {
   title: string;
   field: string;
+  referencePartner: string;
   target: string[];
   description: string;
   deadline: Date;
-  status: boolean;
+  isAppear: boolean;
+  status: string;
 }

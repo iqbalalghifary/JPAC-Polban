@@ -55,4 +55,15 @@ export class AnnouncementUseCases {
         map((message: string) => ({ message})),
       );    
   }
+
+  deleteAllAnnouncement() {
+    const pattern = { cmd: 'delete_all_announcement' };
+    const payload = {};
+    return this.clientAnnouncement
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }

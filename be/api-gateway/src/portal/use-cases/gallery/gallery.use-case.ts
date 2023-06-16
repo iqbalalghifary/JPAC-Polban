@@ -56,4 +56,14 @@ export class GalleryUseCases {
       );    
   }
 
+  deleteAllGallery() {
+    const pattern = { cmd: 'delete_all_gallery' };
+    const payload = {};
+    return this.clientGallery
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );    
+  }
+
 }
