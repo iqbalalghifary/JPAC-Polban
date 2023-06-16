@@ -1,8 +1,6 @@
-FROM node:alpine
+FROM node:16-alpine
 
-RUN mkdir -p /usr/jpac/email
-
-WORKDIR /usr/jpac/email
+WORKDIR /app/jpac/email
 
 COPY package*.json ./
 
@@ -10,4 +8,4 @@ RUN yarn install
 
 COPY . .
 
-CMD yarn start:dev
+CMD [ "yarn", "start" ]

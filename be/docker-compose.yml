@@ -1,1 +1,72 @@
-version: '2.2'
+version: '3'
+
+services:
+
+  api-gateway:
+    restart: unless-stopped
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    env_file: ./api-gateway/.env
+    ports:
+      - 3000:3000
+    depends_on:
+      - account
+      - email
+      - portal
+      - vacancy
+
+  account:
+    build:
+      context: ./account
+      dockerfile: Dockerfile
+    environment:
+      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://root:password123@mongodb-primary:27017/db_account
+      - JWT_SECRET="eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY4NjE0NjU0NywiaWF0IjoxNjg2MTQ2NTQ3fQ.lERf9qhXEOBoyZO0_TlhmovhE-1y2LO3tziZZzs4pQU"
+      - JWT_EXPIRED='3d'
+    restart: unless-stopped
+    depends_on:
+
+    networks:
+      - node-webapp-network      
+
+  email:
+    build:
+      context: ./email
+      dockerfile: Dockerfile
+    env_file: ./email/.env
+    restart: unless-stopped
+    networks:
+      - node-webapp-network      
+
+  portal:
+    build:
+      context: ./portal
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://root:password123@mongodb-primary:27017/db_portal
+    depends_on:
+
+    networks:
+      - node-webapp-network      
+
+  vacancy:
+    build:
+      context: ./vacancy
+      dockerfile: Dockerfile
+    restart: unless-stopped      
+    environment:
+      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://root:password123@mongodb-primary:27017/db_vacancy
+    depends_on:
+
+    networks:
+      - node-webapp-network      
+
+volumes:
+  mongodb_master_data:
+    driver: local
+
+networks:
+  node-webapp-network:
+    driver: bridge

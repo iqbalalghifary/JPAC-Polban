@@ -1,8 +1,6 @@
-FROM node:alpine
+FROM node:16-alpine
 
-RUN mkdir -p /usr/jpac/portal
-
-WORKDIR /usr/jpac/portal
+WORKDIR /app/jpac/portal
 
 COPY package*.json ./
 
@@ -10,4 +8,4 @@ RUN yarn install
 
 COPY . .
 
-CMD yarn start:dev
+CMD [ "yarn", "start" ]

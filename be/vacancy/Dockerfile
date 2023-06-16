@@ -1,10 +1,6 @@
-FROM node:alpine
+FROM node:16-alpine
 
-RUN npm install -g yarn
-
-RUN mkdir -p /usr/jpac/vacancy
-
-WORKDIR /usr/jpac/vacancy
+WORKDIR /app/jpac/vacancy
 
 COPY package*.json ./
 
@@ -12,4 +8,4 @@ RUN yarn install
 
 COPY . .
 
-CMD yarn start:dev
+CMD [ "yarn", "start" ]

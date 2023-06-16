@@ -1,8 +1,6 @@
-FROM node:alpine
+FROM node:16-alpine
 
-RUN mkdir -p /usr/jpac/api-gateway
-
-WORKDIR /usr/jpac/api-gateway
+WORKDIR /app/jpac/api-gateway
 
 COPY package*.json ./
 
@@ -10,4 +8,6 @@ RUN yarn install
 
 COPY . .
 
-CMD yarn start:dev
+EXPOSE 3000
+
+CMD [ "yarn", "start" ]
