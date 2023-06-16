@@ -10,25 +10,36 @@ services:
     env_file: ./api-gateway/.env
     ports:
       - 3000:3000
+    networks:
+      - nesjs-network
     depends_on:
       - account
       - email
       - portal
       - vacancy
 
+  mongo:
+    image: mongo
+    ports:
+      - 27012:27017
+    volumes:
+      - ./data:/data/db
+    networks:
+      - nesjs-network
+
   account:
     build:
       context: ./account
       dockerfile: Dockerfile
-    environment:
-      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://root:password123@mongodb-primary:27017/db_account
-      - JWT_SECRET="eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY4NjE0NjU0NywiaWF0IjoxNjg2MTQ2NTQ3fQ.lERf9qhXEOBoyZO0_TlhmovhE-1y2LO3tziZZzs4pQU"
-      - JWT_EXPIRED='3d'
     restart: unless-stopped
+    environment:
+      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://mongo:27017/db_account
+      - JWT_SECRET=eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY4NjE0NjU0NywiaWF0IjoxNjg2MTQ2NTQ3fQ.lERf9qhXEOBoyZO0_TlhmovhE-1y2LO3tziZZzs4pQU
+      - JWT_EXPIRED=3d
     depends_on:
-
+      - mongo
     networks:
-      - node-webapp-network      
+      - nesjs-network
 
   email:
     build:
@@ -37,7 +48,7 @@ services:
     env_file: ./email/.env
     restart: unless-stopped
     networks:
-      - node-webapp-network      
+      - nesjs-network
 
   portal:
     build:
@@ -45,28 +56,23 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     environment:
-      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://root:password123@mongodb-primary:27017/db_portal
+      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://mongo:27017/db_portal
     depends_on:
-
+      - mongo
     networks:
-      - node-webapp-network      
+      - nesjs-network
 
   vacancy:
     build:
       context: ./vacancy
       dockerfile: Dockerfile
-    restart: unless-stopped      
-    environment:
-      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://root:password123@mongodb-primary:27017/db_vacancy
+    restart: unless-stopped  
+    environment:    
+      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://mongo:27017/db_vacancy
     depends_on:
-
+      - mongo
     networks:
-      - node-webapp-network      
-
-volumes:
-  mongodb_master_data:
-    driver: local
+      - nesjs-network
 
 networks:
-  node-webapp-network:
-    driver: bridge
+  nesjs-network:
