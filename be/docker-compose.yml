@@ -10,13 +10,6 @@ services:
     env_file: ./api-gateway/.env
     ports:
       - 3000:3000
-    networks:
-      - nesjs-network
-    depends_on:
-      - account
-      - email
-      - portal
-      - vacancy
 
   mongo:
     image: mongo
@@ -24,8 +17,6 @@ services:
       - 27012:27017
     volumes:
       - ./data:/data/db
-    networks:
-      - nesjs-network
 
   account:
     build:
@@ -36,43 +27,10 @@ services:
       - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://mongo:27017/db_account
       - JWT_SECRET=eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY4NjE0NjU0NywiaWF0IjoxNjg2MTQ2NTQ3fQ.lERf9qhXEOBoyZO0_TlhmovhE-1y2LO3tziZZzs4pQU
       - JWT_EXPIRED=3d
+    ports:
+      - 3001:3001
+    links:
+      - api-gateway
     depends_on:
       - mongo
-    networks:
-      - nesjs-network
-
-  email:
-    build:
-      context: ./email
-      dockerfile: Dockerfile
-    env_file: ./email/.env
-    restart: unless-stopped
-    networks:
-      - nesjs-network
-
-  portal:
-    build:
-      context: ./portal
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    environment:
-      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://mongo:27017/db_portal
-    depends_on:
-      - mongo
-    networks:
-      - nesjs-network
-
-  vacancy:
-    build:
-      context: ./vacancy
-      dockerfile: Dockerfile
-    restart: unless-stopped  
-    environment:    
-      - CLEAN_NEST_MONGO_CONNECTION_STRING=mongodb://mongo:27017/db_vacancy
-    depends_on:
-      - mongo
-    networks:
-      - nesjs-network
-
-networks:
-  nesjs-network:
+      - api-gateway
