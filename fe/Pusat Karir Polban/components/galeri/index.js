@@ -22,7 +22,7 @@ const index = () => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Breadcrumb title="Galeri" meta="Galeri" />
+      <Breadcrumb title="Gallery" meta="Gallery" />
       {/* <!--End Page Title--> */}
 
       <section className="about-section-three">
@@ -42,12 +42,9 @@ const index = () => {
             <Partner />
           </ul>
         </div>
-        <Footer />
       </section>
+      <Footer />
       {/* <!-- End Clients Section--> */}
-
-      
-      {/* <!-- End Main Footer --> */}
     </>
   );
 };

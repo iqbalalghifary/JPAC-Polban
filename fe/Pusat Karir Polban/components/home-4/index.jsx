@@ -28,9 +28,9 @@ const index = () => {
             <section className="job-section alternate">
                 <div className="auto-container">
                     <div className="sec-title text-center">
-                        <h2>Ayo Bangun Karier mu!</h2>
+                        <h2>Let's Build Your Career!</h2>
                         <div className="text">
-                            Ketahui kesempatan yang akan menentukan masa depanmu
+                        Recognize the opportunities that will determine your future
                         </div>
                     </div>
                     {/* End sec-title */}
@@ -46,9 +46,9 @@ const index = () => {
             <section className="process-section pt-0">
                 <div className="auto-container">
                     <div className="sec-title text-center">
-                        <h2>Bagaimana caranya memulai?</h2>
+                        <h2>How It Works?</h2>
                         <div className="text">
-                            Ayo mulai dengan mudah bersama Pusat Karir 
+                            Let's get started easily with the Career Center
                             Polban
                         </div>
                     </div>
@@ -63,10 +63,10 @@ const index = () => {
             <section className="top-companies style-two">
                 <div className="auto-container">
                     <div className="sec-title">
-                        <h2>Perusahaan Mitra Populer</h2>
+                        <h2>Top Company Registered</h2>
                         <div className="text">
-                            Banyak sekali perusahaan telah bekerja sama dengan 
-                            Politeknik Negeri Bandung
+                            more than thousands of companies have cooperated with
+                            Bandung State Polytechnic
                         </div>
                     </div>
 
@@ -82,9 +82,9 @@ const index = () => {
             <section className="job-categories">
                 <div className="auto-container">
                     <div className="sec-title text-center">
-                        <h2>Bidang Pekerjaan Populer</h2>
+                        <h2>Popular Job Categories</h2>
                         <div className="text">
-                            Temukan jenis pekerjaan yang cocok denganmu
+                            Find the type of job that suits you
                         </div>
                     </div>
 
@@ -105,7 +105,7 @@ const index = () => {
                     <div className="sec-title text-center">
                         <h2>Agenda</h2>
                         <div className="text">
-                            Ikuti kegiatan kami dan nantikan agenda-agenda menarik selanjutnya!
+                        Follow our activities and look forward to the next interesting agendas!
                         </div>
                     </div>
                     {/* End ."sec-title */}

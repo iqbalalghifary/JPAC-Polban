@@ -19,7 +19,7 @@ const CallToAction2 = () => {
             Cari Pekerjaan
           </Link>
           <Link href="/register" className="theme-btn btn-style-two">
-            Daftar Akun Sekarang
+            Register Now
           </Link>
         </div>
       </div>

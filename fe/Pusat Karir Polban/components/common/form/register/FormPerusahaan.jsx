@@ -1,4 +1,5 @@
 import { useState } from "react";
+import sectors from "../../../../components/Sector"; // Ubah jalur file ini sesuai dengan kebutuhan Anda
 
 const FormContent = () => {
   const [formData, setFormData] = useState({
@@ -7,7 +8,6 @@ const FormContent = () => {
     address: "",
     phone: "",
     email: "",
-    logo: null,
     website: "",
   });
 
@@ -28,11 +28,11 @@ const FormContent = () => {
   return (
     <form method="post" action="add-parcel.html" onSubmit={handleSubmit}>
       <div className="form-group">
-        <label>Nama</label>
+        <label>Company Name</label>
         <input
           type="text"
-          name="nama"
-          placeholder="Nama Perusahaan"
+          name="company name"
+          placeholder="company name"
           value={formData.nama}
           onChange={handleChange}
         />
@@ -40,13 +40,18 @@ const FormContent = () => {
 
       <div className="form-group">
         <label>Sector</label>
-        <input
-          type="text"
+        <select
           name="sector"
-          placeholder="Jenis Perusahaan"
           value={formData.sector}
           onChange={handleChange}
-        />
+        >
+          <option value="">select sectors</option>
+          {sectors.map((sector, index) => (
+            <option key={index} value={sector}>
+              {sector}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="form-group">
@@ -54,7 +59,7 @@ const FormContent = () => {
         <input
           type="text"
           name="address"
-          placeholder="Alamat Perusahaan"
+          placeholder="company address"
           value={formData.address}
           onChange={handleChange}
         />
@@ -65,7 +70,10 @@ const FormContent = () => {
         <input
           type="text"
           name="phone"
-          placeholder="No. Telpon Perusahaan"
+          placeholder="phone number"
+          pattern="[0-9]+"
+          title="Please enter numbers only"
+          required
           value={formData.phone}
           onChange={handleChange}
         />
@@ -76,32 +84,26 @@ const FormContent = () => {
         <input
           type="email"
           name="email"
-          placeholder="Email Perusahaan"
+          placeholder="company email"
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          title="Please enter a valid email address"
+          required
           value={formData.email}
           onChange={handleChange}
         />
       </div>
 
       <div className="form-group">
-        <label>Logo</label>
-        <div>
-            <input
-            type="file"
-            accept="image/*"
-            name="logo"
-            onChange={handleChange}
-            />
-        </div>
-      </div>
-
-      <div className="form-group">
         <label>Website</label>
         <input
-          type="text"
+          type="url"
           name="website"
-          placeholder="Link Website Perusahaan"
+          placeholder="company website link"
+          pattern="https?://.+"
+          title="Please enter a valid website URL"
           value={formData.website}
           onChange={handleChange}
+          required
         />
       </div>
 

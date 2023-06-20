@@ -13,12 +13,12 @@ const PostBoxForm = () => {
 
         {/* About Company */}
         <div className="form-group col-lg-12 col-md-12">
-          <label>Deskripsi Pekerjaan</label>
-          <textarea placeholder="Masukkan deskripsi lowongan pekerjaan anda"></textarea>
+          <label>Description Jobs</label>
+          <textarea placeholder="Enter your job description"></textarea>
         </div>
 
         <div className="form-group col-lg-6 col-md-12">
-          <label>Tipe Pekerjaan</label>
+          <label>Job Type</label>
           <select className="chosen-single form-select">
             <option>Full Time</option>
             <option>Part Time</option>

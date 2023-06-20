@@ -122,12 +122,12 @@ const JobListingsTable = () => {
           <table className="default-table manage-job-table">
             <thead>
               <tr>
-                <th>Nama Mahasiswa</th>
+                <th>Name</th>
                 <th>NIM</th>
-                <th>Jurusan</th>
-                <th>Prodi</th>
-                <th>Tahun Masuk</th>
-                <th>Tahun Lulus</th>
+                <th>Major</th>
+                <th>Department</th>
+                <th>Year of admission</th>
+                <th>Year of graduation</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>

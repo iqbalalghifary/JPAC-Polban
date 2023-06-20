@@ -90,9 +90,9 @@ const JobListingsTable = () => {
           <table className="default-table manage-job-table">
             <thead>
               <tr>
-                <th>No Registrasi</th>
-                <th>Nama </th>
-                <th>Bukti Pembayaran</th>
+                <th>Registration Number</th>
+                <th>Name </th>
+                <th>proof of payment</th>
                 <th>Created</th>
                 <th>Status</th>
                 <th>Action</th>

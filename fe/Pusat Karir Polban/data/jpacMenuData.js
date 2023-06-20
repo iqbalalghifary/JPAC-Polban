@@ -8,14 +8,14 @@ module.exports = [
     },
     {
       id: 2,
-      name: "Validasi Perusahaan",
+      name: "Verifikasi Perusahaan",
       icon: "la-industry",
       routePath: "/jpac-dashboard/manage-perusahaan",
       active: "",
     },
     {
       id: 3,
-      name: "Validasi MoU",
+      name: "Verifikasi MoU",
       icon: "la-file-invoice",
       routePath: "/jpac-dashboard/manage-mou",
       active: "",

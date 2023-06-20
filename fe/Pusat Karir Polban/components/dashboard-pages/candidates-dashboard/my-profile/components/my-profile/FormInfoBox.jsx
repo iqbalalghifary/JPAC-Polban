@@ -67,19 +67,6 @@ const FormInfoBox = () => {
 
         {/* Input */}
         <div className="form-group col-lg-6 col-md-12">
-          <label>Job Title</label>
-          <input
-            type="text"
-            name="jobTitle"
-            placeholder={profileData.jobTitle || "UI Designer"}
-            value={profileData.jobTitle || ""}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-        {/* Input */}
-        <div className="form-group col-lg-6 col-md-12">
           <label>Phone</label>
           <input
             type="text"
@@ -99,19 +86,6 @@ const FormInfoBox = () => {
             name="email"
             placeholder={profileData.email || "creativelayers"}
             value={profileData.email || ""}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-
-        {/* Input */}
-        <div className="form-group col-lg-6 col-md-12">
-          <label>Website</label>
-          <input
-            type="text"
-            name="website"
-            placeholder={profileData.website || "www.jerome.com"}
-            value={profileData.website || ""}
             onChange={handleInputChange}
             required
           />

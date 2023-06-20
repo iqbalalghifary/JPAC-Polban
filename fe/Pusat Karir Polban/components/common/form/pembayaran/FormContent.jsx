@@ -19,7 +19,7 @@ const FormContent = () => {
         </div>
 
         <div className="form-group">
-          <label>Nama Lengkap</label>
+          <label>Full Name</label>
           <input
             type="text"
             name="fullName"

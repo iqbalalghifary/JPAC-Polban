@@ -26,21 +26,21 @@ const HeaderNavContent = () => {
 
           <li>
             <Link href="/lowongan-kerja">
-              <span>Lowongan Pekerjaan</span>
+              <span>Job Vacancy</span>
             </Link>
           </li>
           {/* End lowongan kerja pages */}
 
           <li>
             <Link href="/pengumuman">
-              <span>Pengumuman</span>
+              <span>Announcement</span>
             </Link>
           </li>
           {/* End Agenda page */}
 
           <li>
             <Link href="/perusahaan-mitra">
-               <span>Perusahaan Mitra</span>
+               <span>Partner Company</span>
             </Link>
           </li>
           {/* End perusahaan mitra page */}
@@ -54,7 +54,7 @@ const HeaderNavContent = () => {
 
           <li>
             <Link href="/galeri">
-              <span>Galeri</span>
+              <span>Gallery</span>
             </Link>
           </li>
           {/* End galeri page */}
@@ -67,7 +67,7 @@ const HeaderNavContent = () => {
                 : ""
             } dropdown`}
           >
-            <span>Tentang Kami</span>
+            <span>About Us</span>
             <ul>
               {pageItems.map((item, i) => (
                 <li

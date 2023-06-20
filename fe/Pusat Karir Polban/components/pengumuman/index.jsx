@@ -21,7 +21,7 @@ const index = () => {
       <MobileMenu />
       {/* End MobileMenu */}
 
-      <Breadcrumb title="Pengumuman" meta="Pengumuman" />
+      <Breadcrumb title="Announcement" meta="Announcement" />
       {/* <!--End Breadcrumb Start--> */}
 
       <section className="ls-section">

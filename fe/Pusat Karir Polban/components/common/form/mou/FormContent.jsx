@@ -8,22 +8,22 @@ const FormContent = () => {
       {/* Login Form */}
       <form method="post">
         <div className="form-group">
-          <label>No Registrasi</label>
+          <label>Registration Number</label>
           <input
             type="text"
             name="registrationNo"
             pattern="[0-9]*"
-            placeholder="No Registrasi"
+            placeholder="no registration"
             required
           />
         </div>
 
         <div className="form-group">
-          <label>Nama Perusahaan</label>
+          <label>Company Name</label>
           <input
             type="text"
             name="fullName"
-            placeholder="Nama Perusahaan"
+            placeholder="company name"
             required
           />
         </div>

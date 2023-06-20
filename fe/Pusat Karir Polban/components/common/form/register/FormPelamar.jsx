@@ -11,40 +11,41 @@ const FormContent = () => {
     email: "",
     yearGraduated: "",
     dateOfBirth: "",
+    file: null,
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.name === "file") {
+      setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Lakukan sesuatu dengan data formulir yang di-submit
     console.log(formData);
+    // Lakukan pengiriman file ke server jika diperlukan
+    if (formData.file) {
+      const fileData = new FormData();
+      fileData.append("file", formData.file);
+      // Kirim fileData ke endpoint atau lakukan sesuatu yang diinginkan
+    }
   };
 
   return (
     <form method="post" action="add-parcel.html" onSubmit={handleSubmit}>
       <div className="form-group">
-        <label>Email Address</label>
+        <label>Email</label>
         <input
           type="email"
-          name="username"
-          placeholder="Username"
+          name="email"
+          placeholder="email"
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          title="Please enter a valid email address"
           required
-          value={formData.username}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div className="form-group">
-        <label>Password</label>
-        <input
-          id="password-field"
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
+          value={formData.email}
           onChange={handleChange}
         />
       </div>
@@ -54,20 +55,28 @@ const FormContent = () => {
         <input
           type="text"
           name="name"
-          placeholder="Name"
+          placeholder="name"
           value={formData.name}
           onChange={handleChange}
         />
       </div>
 
       <div className="form-group">
+        <label>Date of Birth</label>
+        <div>
+          <input
+            type="date"
+            name="dateOfBirth"
+            value={formData.dateOfBirth}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      <div className="form-group">
         <label>Gender</label>
-        <select
-          name="gender"
-          value={formData.gender}
-          onChange={handleChange}
-        >
-          <option value="">Select gender</option>
+        <select name="gender" value={formData.gender} onChange={handleChange}>
+          <option value="">select gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
@@ -78,7 +87,7 @@ const FormContent = () => {
         <input
           type="text"
           name="address"
-          placeholder="Address"
+          placeholder="address"
           value={formData.address}
           onChange={handleChange}
         />
@@ -89,7 +98,10 @@ const FormContent = () => {
         <input
           type="text"
           name="phone"
-          placeholder="Phone"
+          placeholder="phone"
+          pattern="[0-9]+"
+          title="Please enter numbers only"
+          required
           value={formData.phone}
           onChange={handleChange}
         />
@@ -100,21 +112,19 @@ const FormContent = () => {
         <input
           type="text"
           name="yearGraduated"
-          placeholder="Year Graduated"
+          placeholder="year graduated"
+          pattern="[0-9]+"
+          title="Please enter numbers only"
+          required
           value={formData.yearGraduated}
           onChange={handleChange}
         />
       </div>
 
       <div className="form-group">
-        <label>Date of Birth </label>
+        <label>Upload graduation certificate</label>
         <div>
-        <input
-          type="date"
-          name="dateOfBirth"
-          value={formData.dateOfBirth}
-          onChange={handleChange}
-        />
+          <input type="file" name="file" onChange={handleChange} />
         </div>
       </div>
 

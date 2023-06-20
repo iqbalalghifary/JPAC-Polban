@@ -1,18 +1,18 @@
 module.exports = [
   {
     id: 1,
-    title: "Navigasi",
+    title: "Navigation",
     menuList: [
       { name: "Home", route: "/" },
-      { name: "Lowongan Pekerjaan", route: "/lowongan-kerja" },
-      { name: "Perusahaan Mitra", route: "/perusahaan-mitra" },
+      { name: "Job Vacancy", route: "/lowongan-kerja" },
+      { name: "Partner Company", route: "/perusahaan-mitra" },
       { name: "Agenda", route: "/agenda " },
-      { name: "Galeri", route: "/galeri " },
+      { name: "Gallery", route: "/galeri " },
     ],
   },
   {
     id: 2,
-    title: "Tentang Kami",
+    title: "About us",
     menuList: [
       { name: "About Us", route: "/about" },
       { name: "Faq", route: "/faq" },
@@ -22,7 +22,7 @@ module.exports = [
   {
     
     id: 3,
-    title: "Temukan Kami",
+    title: "Find us",
     menuList: [
       { name: "Facebook", route: "https://www.facebook.com/jpac.polban" },
       { name: "Twitter", route: "https://twitter.com/jpacpolban" },

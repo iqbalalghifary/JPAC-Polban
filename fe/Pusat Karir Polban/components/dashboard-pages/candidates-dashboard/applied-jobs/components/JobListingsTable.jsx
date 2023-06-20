@@ -118,10 +118,10 @@ const JobListingsTable = () => {
           <table className="default-table manage-job-table">
             <thead>
               <tr>
-                <th>Nama Pekerjaan</th>
-                <th>Tanggal Melamar</th>
+                <th>Job Name</th>
+                <th>Apply Date</th>
                 <th>Status</th>
-                <th>Batalkan Lamaran</th>
+                <th>Cancle the Job</th>
               </tr>
             </thead>
             <tbody>

@@ -4,7 +4,7 @@ const Form = () => {
       <div className="row">
         {/* <!-- Input --> */}
         <div className="form-group col-lg-7 col-md-12">
-          <label>Nama Perusahaan </label>
+          <label>Company Name </label>
           <input type="password" name="name" required />
         </div>
 

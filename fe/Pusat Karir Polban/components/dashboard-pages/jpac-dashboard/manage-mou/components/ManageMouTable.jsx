@@ -126,7 +126,7 @@ const JobListingsTable = () => {
           <table className="default-table manage-job-table">
             <thead>
               <tr>
-                <th>Nama Perusahaan</th>
+                <th>Company Name</th>
                 <th>MoU</th>
                 <th>Created</th>
                 <th>Status</th>

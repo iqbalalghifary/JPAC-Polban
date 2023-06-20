@@ -40,7 +40,7 @@ const Footer = () => {
 
                 <div className="footer-column col-lg-3 col-md-6 col-sm-12">
                   <div className="footer-widget">
-                    <h4 className="widget-title">Website Resmi Lainnya</h4>
+                    <h4 className="widget-title">Other Official Websites</h4>
                     <FooterApps />
                   </div>
                 </div>

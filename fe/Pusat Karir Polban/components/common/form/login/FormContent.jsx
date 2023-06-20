@@ -5,13 +5,16 @@ import axios from 'axios';
 const FormContent = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Kirim permintaan GET ke API
     try {
-      const response = await axios.get(`https://6482fef0f2e76ae1b95bcbd3.mockapi.io/pusatkarirpolban/login?username=${username}&password=${password}`);
+      const response = await axios.get(
+        `https://6482fef0f2e76ae1b95bcbd3.mockapi.io/pusatkarirpolban/login?username=${username}&password=${password}`
+      );
 
       if (response.status === 200) {
         const data = response.data;
@@ -23,6 +26,10 @@ const FormContent = () => {
     } catch (error) {
       console.error('Terjadi kesalahan:', error);
     }
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -45,14 +52,21 @@ const FormContent = () => {
 
         <div className="form-group">
           <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
-          />
+          <div className="password-input">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+            />
+            <i
+              className={`la ${showPassword ? 'la-eye-slash' : 'la-eye'}`}
+              onClick={toggleShowPassword}
+              style={{ position: 'absolute', right: '20px', top: '68%', transform: 'translateY(-50%)' }}
+            />
+          </div>
         </div>
 
         <div className="form-group">

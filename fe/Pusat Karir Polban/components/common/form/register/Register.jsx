@@ -7,25 +7,25 @@ import Link from "next/link";
 const Register = () => {
   return (
     <div className="form-inner">
-      <h3>Daftar Akun</h3>
+      <h3>Register</h3>
       <Tabs>
         <div className="form-group register-dual">
           <TabList className="btn-box row">
             <Tab className="col-lg-4 col-md-12">
               <button className="theme-btn btn-style-four">
-                <i className="la la-graduation-cap"></i> Alumni
+                <i className="la la-graduation-cap"></i> Job Seeker
               </button>
             </Tab>
 
             <Tab className="col-lg-4 col-md-12">
               <button className="theme-btn btn-style-four">
-                <i className="la la-briefcase"></i> Perusahaan
+                <i className="la la-briefcase"></i> Company
               </button>
             </Tab>
 
             <Tab className="col-lg-4 col-md-12">
               <button className="theme-btn btn-style-four">
-                <i className="la la-user"></i> Mahasiswa
+                <i className="la la-user"></i> Student
               </button>
             </Tab>
             
