@@ -24,7 +24,6 @@ const JobListingsTable = () => {
       .then((response) => {
         const updatedJobs = response.data.message.map((job) => ({
           ...job,
-            status: "not verified" // Set status awal menjadi "not verified"
         }));
         console.log("dadang", response)
         setJobs(updatedJobs);
