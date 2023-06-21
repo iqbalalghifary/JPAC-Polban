@@ -1,8 +1,37 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import candidatesData from "../../../../../data/candidates";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Link from "next/link";
 
 const WidgetContentBox = () => {
+  const [vacancyData, setVacancyData] = useState([]);
+
+  let config = {
+    headers: {
+      "Content-Type": "application/json",
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQWx1bW5pIiwiaWF0IjoxNjg3Mjc3ODk5LCJleHAiOjE2ODc1MzcwOTl9.bCNbl8YVht4RTGn10oqanil0DjF2PxtlRg7ZGMZ2uZI`
+      }
+    }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    axios
+      .get('http://localhost:3010/api/vacancy', config)
+      .then((response) => {
+        // Handle response data
+        setVacancyData(response.data.message);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error(error);
+      });
+  };
+
   return (
     <div className="widget-content">
       <div className="tabs-box">
@@ -20,19 +49,19 @@ const WidgetContentBox = () => {
           <div className="tabs-content">
             <TabPanel>
               <div className="row">
-                {candidatesData.slice(17, 23).map((candidate) => (
+                {vacancyData.map((candidate) => (
                   <div
                     className="candidate-block-three col-lg-6 col-md-12 col-sm-12"
-                    key={candidate.id}
+                    key={candidate._id}
                   >
                     <div className="inner-box">
                       <div className="content">
-                        <figure className="image">
+                        {/* <figure className="image">
                           <img src={candidate.avatar} alt="candidates" />
-                        </figure>
+                        </figure> */}
                         <h4 className="name">
-                          <Link href={`/candidates-single-v1/${candidate.id}`}>
-                            {candidate.name}
+                          <Link href={`/candidates-single-v1/${candidate._id}`}>
+                            {candidate.title}
                           </Link>
                         </h4>
 
@@ -52,7 +81,7 @@ const WidgetContentBox = () => {
                         {/* End candidate-info */}
 
                         <ul className="post-tags">
-                          {candidate.tags.map((val, i) => (
+                          {candidate.target.map((val, i) => (
                             <li key={i}>
                               <a href="#">{val}</a>
                             </li>
@@ -95,153 +124,15 @@ const WidgetContentBox = () => {
 
             <TabPanel>
               <div className="row">
-                {candidatesData.slice(17, 19).map((candidate) => (
-                  <div
-                    className="candidate-block-three col-lg-6 col-md-12 col-sm-12"
-                    key={candidate.id}
-                  >
-                    <div className="inner-box">
-                      <div className="content">
-                        <figure className="image">
-                          <img src={candidate.avatar} alt="candidates" />
-                        </figure>
-                        <h4 className="name">
-                          <Link href={`/candidates-single-v1/${candidate.id}`}>
-                            {candidate.name}
-                          </Link>
-                        </h4>
-
-                        <ul className="candidate-info">
-                          <li className="designation">
-                            {candidate.designation}
-                          </li>
-                          <li>
-                            <span className="icon flaticon-map-locator"></span>{" "}
-                            {candidate.location}
-                          </li>
-                          <li>
-                            <span className="icon flaticon-money"></span> $
-                            {candidate.hourlyRate} / hour
-                          </li>
-                        </ul>
-                        {/* End candidate-info */}
-
-                        <ul className="post-tags">
-                          {candidate.tags.map((val, i) => (
-                            <li key={i}>
-                              <a href="#">{val}</a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      {/* End content */}
-
-                      <div className="option-box">
-                        <ul className="option-list">
-                          <li>
-                            <button data-text="View Aplication">
-                              <span className="la la-eye"></span>
-                            </button>
-                          </li>
-                          <li>
-                            <button data-text="Approve Aplication">
-                              <span className="la la-check"></span>
-                            </button>
-                          </li>
-                          <li>
-                            <button data-text="Reject Aplication">
-                              <span className="la la-times-circle"></span>
-                            </button>
-                          </li>
-                          <li>
-                            <button data-text="Delete Aplication">
-                              <span className="la la-trash"></span>
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                      {/* End admin options box */}
-                    </div>
-                  </div>
-                ))}
+                {/* Render approved applicants */}
               </div>
             </TabPanel>
-            {/* End approved applicants */}
 
             <TabPanel>
               <div className="row">
-                {candidatesData.slice(17, 21).map((candidate) => (
-                  <div
-                    className="candidate-block-three col-lg-6 col-md-12 col-sm-12"
-                    key={candidate.id}
-                  >
-                    <div className="inner-box">
-                      <div className="content">
-                        <figure className="image">
-                          <img src={candidate.avatar} alt="candidates" />
-                        </figure>
-                        <h4 className="name">
-                          <Link href={`/candidates-single-v1/${candidate.id}`}>
-                            {candidate.name}
-                          </Link>
-                        </h4>
-
-                        <ul className="candidate-info">
-                          <li className="designation">
-                            {candidate.designation}
-                          </li>
-                          <li>
-                            <span className="icon flaticon-map-locator"></span>{" "}
-                            {candidate.location}
-                          </li>
-                          <li>
-                            <span className="icon flaticon-money"></span> $
-                            {candidate.hourlyRate} / hour
-                          </li>
-                        </ul>
-                        {/* End candidate-info */}
-
-                        <ul className="post-tags">
-                          {candidate.tags.map((val, i) => (
-                            <li key={i}>
-                              <a href="#">{val}</a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      {/* End content */}
-
-                      <div className="option-box">
-                        <ul className="option-list">
-                          <li>
-                            <button data-text="View Aplication">
-                              <span className="la la-eye"></span>
-                            </button>
-                          </li>
-                          <li>
-                            <button data-text="Approve Aplication">
-                              <span className="la la-check"></span>
-                            </button>
-                          </li>
-                          <li>
-                            <button data-text="Reject Aplication">
-                              <span className="la la-times-circle"></span>
-                            </button>
-                          </li>
-                          <li>
-                            <button data-text="Delete Aplication">
-                              <span className="la la-trash"></span>
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                      {/* End admin options box */}
-                    </div>
-                  </div>
-                ))}
+                {/* Render rejected applicants */}
               </div>
             </TabPanel>
-            {/* End rejected applicants */}
           </div>
         </Tabs>
       </div>

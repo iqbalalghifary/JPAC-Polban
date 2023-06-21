@@ -6,6 +6,14 @@ const JobListingsTable = () => {
   const [jobs, setJobs] = useState([]);
   const [statusChanges, setStatusChanges] = useState([]);
 
+  let config = {
+    headers: {
+      "Content-Type": "application/json",
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQWx1bW5pIiwiaWF0IjoxNjg3Mjc3ODk5LCJleHAiOjE2ODc1MzcwOTl9.bCNbl8YVht4RTGn10oqanil0DjF2PxtlRg7ZGMZ2uZI`
+      }
+    }
+
   const postStatus = (id, status) => {
     axios
       .put(`https://6482fef0f2e76ae1b95bcbd3.mockapi.io/pusatkarirpolban/applied/${id}`, { status })
@@ -34,9 +42,14 @@ const JobListingsTable = () => {
 
   useEffect(() => {
     axios
-      .get("https://6482fef0f2e76ae1b95bcbd3.mockapi.io/pusatkarirpolban/applied")
+      .get("http://localhost:3010/api/partner", config)
       .then((response) => {
-        setJobs(response.data);
+        const updatedJobs = response.data.message.map((job) => ({
+          ...job,
+            status: "not verified" // Set status awal menjadi "not verified"
+        }));
+        console.log("dadang", response)
+        setJobs(updatedJobs);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -135,23 +148,18 @@ const JobListingsTable = () => {
             </thead>
             <tbody>
               {jobs.map((item) => (
-                <tr key={item.id}>
+                <tr key={item._id}>
                   <td>
                     {/* <!-- Job Block --> */}
                     <div className="job-block">
                       <div className="inner-box">
-                        <div className="content">
-                          <span className="company-logo">
-                            <img src={item.logo} alt="logo" />
-                          </span>
-                          <h4>{item.namaperusahaan}</h4>
+                      <h4>{item.name}</h4>
                           <ul className="job-info">
                             <li>
                               <span className="icon flaticon-map-locator"></span>
-                              {item.alamat}
+                              {item.address}
                             </li>
                           </ul>
-                        </div>
                       </div>
                     </div>
                   </td>
@@ -161,7 +169,7 @@ const JobListingsTable = () => {
                     </a>
                   </td>
                   <td>
-                    <a>{item.created}</a>
+                    <a>{item.createdAt}</a>
                   </td>
                   <td
                     className="status"
