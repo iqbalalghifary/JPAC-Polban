@@ -4,14 +4,29 @@ import axios from "axios";
 const JobListingsTable = () => {
   const [jobs, setJobs] = useState([]);
 
+  let config = {
+    headers: {
+      "Content-Type": "application/json",
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQWx1bW5pIiwiaWF0IjoxNjg3Mjc3ODk5LCJleHAiOjE2ODc1MzcwOTl9.bCNbl8YVht4RTGn10oqanil0DjF2PxtlRg7ZGMZ2uZI`
+      }
+    }
+
+  let data = {
+    "filters" : {
+      "status": "diusulkan"
+    }
+  }
+
   useEffect(() => {
     axios
-      .get("https://6485a137a795d24810b72358.mockapi.io/pusatkarirpolban/manageperusahaan")
+      .get("http://localhost:3010/api/partner", config)
       .then((response) => {
-        const updatedJobs = response.data.map((job) => ({
+        const updatedJobs = response.data.message.map((job) => ({
           ...job,
-          status: "not verified" // Set status awal menjadi "not verified"
+            status: "not verified" // Set status awal menjadi "not verified"
         }));
+        console.log("dadang", response)
         setJobs(updatedJobs);
       })
       .catch((error) => console.log(error));
@@ -79,23 +94,18 @@ const JobListingsTable = () => {
             </thead>
             <tbody>
               {jobs.map((item) => (
-                <tr key={item.id}>
+                <tr key={item._id}>
                   <td>
                     {/* <!-- Job Block --> */}
                     <div className="job-block">
                       <div className="inner-box">
-                        <div className="content">
-                          <span className="company-logo">
-                            <img src={item.logo} alt="logo" />
-                          </span>
-                          <h4>{item.nama}</h4>
+                        <h4>{item.name}</h4>
                           <ul className="job-info">
                             <li>
                               <span className="icon flaticon-map-locator"></span>
-                              {item.alamat}
+                              {item.address}
                             </li>
                           </ul>
-                        </div>
                       </div>
                     </div>
                   </td>
@@ -104,7 +114,7 @@ const JobListingsTable = () => {
                     <br />
                     <a>{item.phone}</a>
                   </td>
-                  <td>{item.tanggalpengajuan}</td>
+                  <td>{item.createdAt}</td>
                   <td
                     className="status"
                     style={{
