@@ -56,9 +56,9 @@ const WidgetContentBox = () => {
                   >
                     <div className="inner-box">
                       <div className="content">
-                        {/* <figure className="image">
+                        <figure className="image">
                           <img src={candidate.avatar} alt="candidates" />
-                        </figure> */}
+                        </figure>
                         <h4 className="name">
                           <Link href={`/candidates-single-v1/${candidate._id}`}>
                             {candidate.title}

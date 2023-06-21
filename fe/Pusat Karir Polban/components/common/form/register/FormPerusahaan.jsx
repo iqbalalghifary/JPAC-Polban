@@ -1,6 +1,8 @@
 import { useState } from "react";
 import sectors from "../../../../components/Sector"; // Ubah jalur file ini sesuai dengan kebutuhan Anda
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FormContent = () => {
   const [formData, setFormData] = useState({
@@ -34,10 +36,12 @@ const FormContent = () => {
 
     await axios.post('http://127.0.0.1:3010/api/partner/register', data)
       .then((res) => {
-        console.log(res)
+        toast.success('Registration success'); // Tampilkan toaster sukses
+        console.log(res);
       })
       .catch((err) => {
-          console.log(err)
+        toast.error('Registration failed'); // Tampilkan toaster gagal
+        console.log(err);
       });
   };
 

@@ -14,9 +14,15 @@ const JobListingsTable = () => {
       }
     }
 
+  let data = {
+    "filters" : {
+      "status": "diverifikasi"
+    }
+  }
+
   const postStatus = (id, status) => {
     axios
-      .put(`https://6482fef0f2e76ae1b95bcbd3.mockapi.io/pusatkarirpolban/applied/${id}`, { status })
+      .put(`http://localhost:3010/api/partner/activate/${id}`, { status })
       .then((response) => {
         const updatedJobs = jobs.map((job) =>
           job.id === id ? { ...job, status: response.data.status } : job
@@ -30,7 +36,7 @@ const JobListingsTable = () => {
 
   const deleteJob = (id) => {
     axios
-      .delete(`https://6482fef0f2e76ae1b95bcbd3.mockapi.io/pusatkarirpolban/applied/${id}`)
+      .put(`http://localhost:3010/api/partner/activate/${id}`, { status })
       .then(() => {
         const updatedJobs = jobs.filter((job) => job.id !== id);
         setJobs(updatedJobs);

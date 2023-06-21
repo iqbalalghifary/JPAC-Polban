@@ -41,11 +41,10 @@ const index = () => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>Post Job</h4>
                   </div>
 
                   <div className="widget-content">
-                    <PostJobSteps />
+                    {/* <PostJobSteps /> */}
                     {/* End job steps form */}
                     <PostBoxForm />
                     {/* End post box form */}
