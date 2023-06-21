@@ -11,6 +11,7 @@ const LoginPopup = () => {
               type="button"
               className="closed-modal"
               data-bs-dismiss="modal"
+              style={{ marginRight: 20, marginTop: 15, padding: 10, boxShadow: "0 0px 100px #0000;"}}
             ></button>
             {/* End close modal btn */}
 
@@ -39,6 +40,7 @@ const LoginPopup = () => {
               type="button"
               className="closed-modal"
               data-bs-dismiss="modal"
+              style={{ marginRight: 20, marginTop: 15, padding: 10, boxShadow: "0 0px 100px #0000;"}}
             ></button>
             {/* End close modal btn */}
 
