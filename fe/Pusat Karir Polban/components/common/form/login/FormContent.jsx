@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FormContent = () => {
   const [username, setUsername] = useState('');
@@ -29,9 +31,11 @@ const FormContent = () => {
         Cookies.set('token', res.data.message.access_token);
         Cookies.set('username', res.data.message.user.username);
         Cookies.set('role', res.data.message.user.role);
+        console.log('Login success'); // Log success
       })
       .catch((err) => {
-          console.log(err)
+        console.log(err);
+        toast.error('Login failed'); // Toast login failure
       });
   };
 
@@ -46,11 +50,11 @@ const FormContent = () => {
       {/* Login Form */}
       <form method="get" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Username</label>
+          <label>Username / Email</label>
           <input
             type="text"
             name="username"
-            placeholder="Username"
+            placeholder="Username or email address"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
             required

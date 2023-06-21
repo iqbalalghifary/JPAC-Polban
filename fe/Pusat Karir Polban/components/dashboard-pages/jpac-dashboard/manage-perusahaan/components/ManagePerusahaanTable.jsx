@@ -20,12 +20,11 @@ const JobListingsTable = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3010/api/partner", config)
+      .post("http://localhost:3010/api/partner/get", data, config)
       .then((response) => {
         const updatedJobs = response.data.message.map((job) => ({
-          ...job,
+          ...job
         }));
-        console.log("dadang", response)
         setJobs(updatedJobs);
       })
       .catch((error) => console.log(error));
@@ -34,16 +33,20 @@ const JobListingsTable = () => {
   const handleEdit = (item) => {
     const confirmed = window.confirm("Apakah Anda yakin untuk memverifikasi?");
     if (confirmed) {
-      const updatedStatus = item.status === "verified" ? "not verified" : "verified";
       axios
-        .put(`https://6485a137a795d24810b72358.mockapi.io/pusatkarirpolban/manageperusahaan/${item.id}`, {
-          status: updatedStatus
-        })
-        .then(() => {
-          const updatedJobs = jobs.map((job) =>
-            job.id === item.id ? { ...job, status: updatedStatus } : job
-          );
-          setJobs(updatedJobs);
+        .put(`http://localhost:3010/api/partner/verify/${item._id}`, {
+          status: 'diverifikasi'
+        }, config)
+        .then((res) => {
+          axios
+          .get("http://localhost:3010/api/partner", config)
+          .then((response) => {
+            const updatedJobs = response.data.message.map((job) => ({
+              ...job
+            }));
+            setJobs(updatedJobs);
+          })
+          .catch((error) => console.log(error));
         })
         .catch((error) => console.log(error));
     }
@@ -87,7 +90,6 @@ const JobListingsTable = () => {
                 <th>Nama Perusahaan</th>
                 <th>Contact Person</th>
                 <th>Tanggal Pengajuan</th>
-                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -114,14 +116,6 @@ const JobListingsTable = () => {
                     <a>{item.phone}</a>
                   </td>
                   <td>{item.createdAt}</td>
-                  <td
-                    className="status"
-                    style={{
-                      color: item.status === "verified" ? "green" : "red"
-                    }}
-                  >
-                    {item.status}
-                  </td>
                   <td>
                     <div className="option-box">
                       <ul className="option-list">
