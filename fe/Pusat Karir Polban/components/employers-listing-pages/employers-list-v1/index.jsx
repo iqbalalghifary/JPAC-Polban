@@ -1,4 +1,4 @@
-import FooterDefault from "../../../components/footer/common-footer";
+import FooterDefault from "../../footer/common-footer";
 import Breadcrumb from "../../common/Breadcrumb";
 import LoginPopup from "../../common/form/login/LoginPopup";
 import DefaulHeader2 from "../../header/DefaulHeader2";

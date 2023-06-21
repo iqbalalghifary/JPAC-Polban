@@ -8,15 +8,15 @@ const CallToAction2 = () => {
     >
       <div className="auto-container" data-aos="fade-up">
         <div className="sec-title light text-center">
-          <h2>Pekerjaan menunggu kamu!</h2>
+          <h2>Jobs are waiting for you!</h2>
           <div className="text">
-            Ayo segera lamar di website kami Pusat Karir Polban
+            Come and apply now on our website, Polban Career Center!
           </div>
         </div>
 
         <div className="btn-box">
-          <Link href="/job-list-v3" className="theme-btn btn-style-three">
-            Cari Pekerjaan
+          <Link href="/lowongan-kerja" className="theme-btn btn-style-three">
+            Find Jobs
           </Link>
           <Link href="/register" className="theme-btn btn-style-two">
             Register Now

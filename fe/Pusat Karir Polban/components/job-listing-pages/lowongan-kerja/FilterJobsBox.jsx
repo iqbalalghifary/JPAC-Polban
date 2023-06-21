@@ -130,7 +130,7 @@ const FilterJobsBox = () => {
                             <img src={item.logo} alt="item brand" />
                         </span>
                         <h4>
-                            <Link href={`/job-single-v5/${item.id}`}>
+                            <Link href={`/detail-job/${item.id}`}>
                                 {item.jobTitle}
                             </Link>
                         </h4>
