@@ -23,8 +23,6 @@ export class AlumniController {
     private alumniUseCases: AlumniUseCases
   ) {}
 
-  @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get()
   getAll() {
     return this.alumniUseCases.getAllAlumnis();

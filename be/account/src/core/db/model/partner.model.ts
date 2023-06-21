@@ -13,7 +13,7 @@ export class Partner {
   @Prop({ required: true })
   phone: string;
 
-  @Prop({ required: true })
+  @Prop()
   description: string;
 
   @Prop({ required: true })

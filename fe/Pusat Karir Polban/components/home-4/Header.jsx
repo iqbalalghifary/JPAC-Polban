@@ -47,9 +47,9 @@ const Header = () => {
             <div className="d-flex align-items-center btn-box2">
               <a
                 href="#"
+                data-bs-target="#loginPopupModal"
                 className="theme-btn btn-style-six call-modal"
                 data-bs-toggle="modal"
-                data-bs-target="#loginPopupModal"
               >
                 Login / Register
               </a>

@@ -43,17 +43,18 @@ export class UserUseCases {
   }
 
   async login(data: any) {
-
-
-    
-    const user = await this.dataServices.users.get({ username: data.username, userRole: data.userRole })
+    const user = await this.dataServices.users.get({ username: data.username })
 
     const comparedResult = await bcrypt.compare(data.password, user[0].password);
 
     if(user && comparedResult ){
       const payload = { role: user[0].userRole };
       return {
-        access_token: this.jwtService.sign(payload)
+        access_token: this.jwtService.sign(payload),
+        user: {
+          username: data.username, 
+          role: user[0].userRole    
+        }
       }
     }
     return 'data tidak valid'

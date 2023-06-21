@@ -1,14 +1,15 @@
 import { useState } from "react";
 import sectors from "../../../../components/Sector"; // Ubah jalur file ini sesuai dengan kebutuhan Anda
+import axios from 'axios';
 
 const FormContent = () => {
   const [formData, setFormData] = useState({
-    nama: "",
-    sector: "",
-    address: "",
-    phone: "",
-    email: "",
-    website: "",
+    namaVal: "",
+    sectorVal: "",
+    addressVal: "",
+    phoneVal: "",
+    emailVal: "",
+    websiteVal: "",
   });
 
   const handleChange = (e) => {
@@ -19,21 +20,36 @@ const FormContent = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Lakukan sesuatu dengan data formulir yang di-submit
-    console.log(formData);
+
+    let data = {
+      name: formData.namaVal,
+      email: formData.emailVal,
+      phone: formData.phoneVal,
+      address: formData.addressVal,
+      sector: formData.sectorVal,
+      website: formData.websiteVal,
+    }
+
+    await axios.post('http://127.0.0.1:3010/api/partner/register', data)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+          console.log(err)
+      });
   };
 
   return (
-    <form method="post" action="add-parcel.html" onSubmit={handleSubmit}>
+    <form method="post" onSubmit={handleSubmit}>
       <div className="form-group">
         <label>Company Name</label>
         <input
           type="text"
-          name="company name"
+          name="namaVal"
           placeholder="company name"
-          value={formData.nama}
+          value={formData.namaVal}
           onChange={handleChange}
         />
       </div>
@@ -41,8 +57,8 @@ const FormContent = () => {
       <div className="form-group">
         <label>Sector</label>
         <select
-          name="sector"
-          value={formData.sector}
+          name="sectorVal"
+          value={formData.sectorVal}
           onChange={handleChange}
         >
           <option value="">select sectors</option>
@@ -58,9 +74,9 @@ const FormContent = () => {
         <label>Address</label>
         <input
           type="text"
-          name="address"
+          name="addressVal"
           placeholder="company address"
-          value={formData.address}
+          value={formData.addressVal}
           onChange={handleChange}
         />
       </div>
@@ -69,12 +85,12 @@ const FormContent = () => {
         <label>Phone</label>
         <input
           type="text"
-          name="phone"
+          name="phoneVal"
           placeholder="phone number"
           pattern="[0-9]+"
           title="Please enter numbers only"
           required
-          value={formData.phone}
+          value={formData.phoneVal}
           onChange={handleChange}
         />
       </div>
@@ -83,12 +99,12 @@ const FormContent = () => {
         <label>Email Address</label>
         <input
           type="email"
-          name="email"
+          name="emailVal"
           placeholder="company email"
           pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
           title="Please enter a valid email address"
           required
-          value={formData.email}
+          value={formData.emailVal}
           onChange={handleChange}
         />
       </div>
@@ -96,12 +112,11 @@ const FormContent = () => {
       <div className="form-group">
         <label>Website</label>
         <input
-          type="url"
-          name="website"
+          type="text"
+          name="websiteVal"
           placeholder="company website link"
-          pattern="https?://.+"
           title="Please enter a valid website URL"
-          value={formData.website}
+          value={formData.websiteVal}
           onChange={handleChange}
           required
         />
