@@ -12,28 +12,28 @@ export class AwardController {
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get()
   getAll() {
     return this.awardUseCases.getAllAwards();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get(':id')
   getById(@Param('id') awardId: any) {
     return this.awardUseCases.getAwardById(awardId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Post()
   createAward(@Body() datas: Award) {
     return this.awardUseCases.createAward(datas);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put(':id')
   updateAward(
     @Param('id') awardId: string,
@@ -43,14 +43,14 @@ export class AwardController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete(':id')
   deleteAward(@Param('id') awardId: string) {
     return this.awardUseCases.deleteAward(awardId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete()
   deleteAllAward() {
     return this.awardUseCases.deleteAllAward();

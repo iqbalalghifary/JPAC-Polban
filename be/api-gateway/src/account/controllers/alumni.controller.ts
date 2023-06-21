@@ -24,14 +24,14 @@ export class AlumniController {
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get()
   getAll() {
     return this.alumniUseCases.getAllAlumnis();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get(':id')
   getById(@Param('id') alumniId: string) {
     return this.alumniUseCases.getAlumniById(alumniId);
@@ -44,35 +44,35 @@ export class AlumniController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put('verify/:id')
   verifyAlumni(@Param('id') alumniId: string) {
     return this.alumniUseCases.verifyAlumni({ filters: { _id: alumniId }, payload: { status: 'diverifikasi' } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put('activate/:id')
   activateAlumni(@Param('id') alumniId: string) {
     return this.alumniUseCases.activateAlumni({ filters: { _id: alumniId }, payload: { status: 'aktif' } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete(':id')
   deleteAlumni(@Param('id') alumniId: string) {
     return this.alumniUseCases.deleteAlumni(alumniId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete()
   deleteAllAlumni() {
     return this.alumniUseCases.deleteAllAlumni();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put('upload-receipt/:id')
   @UseInterceptors(FileInterceptor('receipt'))
   uploadReceipt(
@@ -83,7 +83,7 @@ export class AlumniController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put(':id')
   updateAlumni(
     @Param('id') alumniId: string,

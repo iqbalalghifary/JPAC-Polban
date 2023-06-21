@@ -12,28 +12,28 @@ export class CertificationController {
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get()
   getAll() {
     return this.certificationUseCases.getAllCertifications();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get(':id')
   getById(@Param('id') id: any) {
     return this.certificationUseCases.getCertificationById(id);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Post()
   createCertification(@Body() datas: Certification) {
     return this.certificationUseCases.createCertification(datas);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put(':id')
   updateCertification(
     @Param('id') CertificationId: string,
@@ -43,14 +43,14 @@ export class CertificationController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete(':id')
   deleteCertification(@Param('id') CertificationId: string) {
     return this.certificationUseCases.deleteCertification(CertificationId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete()
   deleteAllCertification() {
     return this.certificationUseCases.deleteAllCertification();

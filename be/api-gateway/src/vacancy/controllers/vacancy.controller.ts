@@ -12,35 +12,35 @@ export class VacancyController {
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get()
   getAll(@Body() item?: any) {
     return this.vacancyUseCases.getAllVacancies(item);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get('partner')
   getVacanciesByPartner(@Body() item: any) {
     return this.vacancyUseCases.getVacanciesWithPartner(item);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Post()
   createVacancy(@Body() vacancy: Vacancy) {
     return this.vacancyUseCases.createVacancy(vacancy);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put('activate/:id')
   activateAlumni(@Param('id') vacancyId: string) {
     return this.vacancyUseCases.activateVacancy({ filters: { _id: vacancyId }, payload: { status: 'aktif' } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put(':id')
   updateVacancy(
     @Param('id') vacancyId: string,
@@ -50,14 +50,14 @@ export class VacancyController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete(':id')
   deleteVacancy(@Param('id') VacancyId: string) {
     return this.vacancyUseCases.deleteVacancy(VacancyId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete()
   deleteAllVacancy() {
     return this.vacancyUseCases.deleteAllVacancy();

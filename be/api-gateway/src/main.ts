@@ -6,9 +6,9 @@ import { config } from './app/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.listen(config.PORT);
+  app.listen(config.PORT); // 3000
   Logger.log(
-    `🚀 Application is running on: http://localhost:3005`
+    `🚀 Application is running on: http://localhost:3000`
   );
 }
 

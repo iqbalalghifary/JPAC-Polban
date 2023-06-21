@@ -22,7 +22,7 @@ export class MongoGenericRepository<T> implements IGenericRepository<T> {
     return this._repository.findByIdAndDelete(id).exec();
   }
 
-  create(item: T): Promise<T> {
+  create(item: T) {
     return this._repository.create(item);
   }
 

@@ -12,28 +12,28 @@ export class ProjectController {
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get()
   getAll() {
     return this.projectUseCases.getAllProjects();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get(':id')
   getById(@Param('id') id: any) {
     return this.projectUseCases.getProjectById(id);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Post()
   createProject(@Body() datas: Project) {
     return this.projectUseCases.createProject(datas);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put(':id')
   updateProject(
     @Param('id') projectId: string,
@@ -43,14 +43,14 @@ export class ProjectController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete(':id')
   deleteProject(@Param('id') projectId: string) {
     return this.projectUseCases.deleteProject(projectId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete()
   deleteAllProject() {
     return this.projectUseCases.deleteAllProject();

@@ -12,28 +12,28 @@ export class OrganizationController {
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get()
   getAll() {
     return this.organizationUseCases.getAllOrganizations();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get(':id')
   getById(@Param('id') id: any) {
     return this.organizationUseCases.getOrganizationById(id);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Post()
   createOrganization(@Body() datas: Organization) {
     return this.organizationUseCases.createOrganization(datas);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put(':id')
   updateOrganization(
     @Param('id') organizationId: string,
@@ -43,14 +43,14 @@ export class OrganizationController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete(':id')
   deleteOrganization(@Param('id') organizationId: string) {
     return this.organizationUseCases.deleteOrganization(organizationId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete()
   deleteAllOrganization() {
     return this.organizationUseCases.deleteAllOrganization();

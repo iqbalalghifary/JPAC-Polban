@@ -25,21 +25,21 @@ export class AnnouncementController {
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get()
   getAll() {
     return this.announcementUseCases.getAllAnnouncements();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get(':id')
   getById(@Param('id') id: any) {
     return this.announcementUseCases.getAnnouncementById(id);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Post()
   @UseInterceptors(FileInterceptor('image'))
   createAnnouncement(
@@ -51,7 +51,7 @@ export class AnnouncementController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put(':id')
   @UseInterceptors(FileInterceptor('image'))
   updateAnnouncement(
@@ -64,14 +64,14 @@ export class AnnouncementController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete(':id')
   deleteAnnouncement(@Param('id') announcementId: string) {
     return this.announcementUseCases.deleteAnnouncement(announcementId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete()
   deleteAllAnnouncement() {
     return this.announcementUseCases.deleteAllAnnouncement();

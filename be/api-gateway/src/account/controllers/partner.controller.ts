@@ -14,41 +14,37 @@ import { PartnerRegisterDto } from '../core/dtos';
 import { PartnerUseCases } from '../use-cases/partner';
 import { Partner } from '../core';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
 import { JwtAuthGuard } from 'src/app/guard/jwt.auth.guard';
 import { RoleAuthGuard } from 'src/app/guard/roles-auth.guard';
 import { Roles } from 'src/app/guard/roles-decorator';
 
-@Controller('api/Partner')
+@Controller('api/partner')
 export class PartnerController {
   constructor(
     private partnerUseCases: PartnerUseCases
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get()
   getAll(@Body() item?: any) {
     return this.partnerUseCases.getAllPartners(item);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get('vacancy')
   getPartnerWithVacancies(@Body() item: any) {
     return this.partnerUseCases.getPartnerWithVacancies(item);
   }
 
-  @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
   @Post('register')
   registerPartner(@Body() datas: PartnerRegisterDto) {
     return this.partnerUseCases.createPartner(datas);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put('upload-mou/:id')
   @UseInterceptors(FileInterceptor('mou'))
   updateMoU(
@@ -59,35 +55,35 @@ export class PartnerController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put('verify/:id')
   verifyPartner(@Param('id') userId: string) {
     return this.partnerUseCases.verifyPartner({ filters: { _id: userId }, payload: { status: 'diverifikasi' } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put('activate/:id')
   activatePartner(@Param('id') userId: string) {
     return this.partnerUseCases.activatePartner({ filters: { _id: userId }, payload: { status: 'aktif' } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete(':id')
   deletePartner(@Param('id') partnerId: string) {
     return this.partnerUseCases.deletePartner(partnerId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete()
   deleteAllPartner() {
     return this.partnerUseCases.deleteAllPartner();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put(':id')
   updateAlumni(
     @Param('id') partnerId: string,

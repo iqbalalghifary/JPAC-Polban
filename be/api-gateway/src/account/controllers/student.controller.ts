@@ -24,7 +24,7 @@ export class StudentController {
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Post('import-data')
   @UseInterceptors(FileInterceptor('excel'))  
   readExcelFile(@UploadedFile() file: Express.Multer.File): Promise<any>{
@@ -33,42 +33,42 @@ export class StudentController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get()
   getAll() {
     return this.studentUseCases.getAllStudents();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get(':id')
   getById(@Param('id') id: any) {
     return this.studentUseCases.getStudentById(id);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put('activate/:id')
   activateStudent(@Param('id') studentId: string) {
     return this.studentUseCases.activateStudent({ filters: { _id: studentId }, payload: { status: 'aktif' } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Post('create')
   createStudent(@Body() student: Student) {
     return this.studentUseCases.createStudent(student);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put('register/:id')
   registerStudent(@Param('id') studentId: string,) {
     return this.studentUseCases.registerStudent(studentId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put(':id')
   updateStudent(
     @Param('id') studentId: string,
@@ -78,14 +78,14 @@ export class StudentController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete(':id')
   deleteStudent(@Param('id') StudentId: string) {
     return this.studentUseCases.deleteStudent(StudentId);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete()
   deleteAllStudent() {
     return this.studentUseCases.deleteAllStudent();

@@ -21,28 +21,28 @@ export class InternshipScheduleController {
   ) {}
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get()
   async getAll() {
     return this.internshipScheduleUseCases.getAllInternshipSchedules();
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get(':id')
   async getById(@Param('id') id: any) {
     return this.internshipScheduleUseCases.getInternshipScheduleById(id);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Post()
   async createInternshipSchedule(@Body() internshipSchedule: InternshipSchedule) {
     return this.internshipScheduleUseCases.createInternshipSchedule(internshipSchedule);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put(':id')
   async updateInternshipSchedule(
     @Param('id') internshipScheduleId: string,
@@ -52,14 +52,14 @@ export class InternshipScheduleController {
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Get(':id')
   async deleteInternshipSchedule(@Param('id') id: any) {
     return this.internshipScheduleUseCases.deleteInternshipSchedule(id);
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni')
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Delete()
   deleteAllVacancy() {
     return this.internshipScheduleUseCases.deleteAllInternshipSchedule();
