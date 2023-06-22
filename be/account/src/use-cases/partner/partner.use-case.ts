@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Partner, Token, User } from '../../core/entities';
 import { IDataServices } from '../../core/abstracts';
-import { extname } from 'path';
 import { nanoid } from 'nanoid'
 import { ClientProxy } from '@nestjs/microservices';
 import { map } from 'rxjs';
 import * as bcrypt from 'bcrypt';
+import { error } from 'console';
 const fs = require('fs')
 
 @Injectable()
@@ -39,16 +39,11 @@ export class PartnerUseCases {
   }
 
   async uploadMoU(data: any){
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    const ext = extname(data.payload.originalname);
-    const filename = `uploads/mou/${uniqueSuffix}${ext}`;
+    console.log(data)
 
     const partner = new Partner();
-    partner.mou = filename;
+    partner.mou = data.payload;
     const updatePartner = await this.dataServices.partners.updateOne(data.filter_partner, partner);
-
-    const arrBuffer = data.payload.buffer.data
-    await fs.appendFileSync(filename, Buffer.from(arrBuffer));
 
     const token = new Token();
     token.isActive = false;
@@ -92,6 +87,25 @@ export class PartnerUseCases {
       );
   }
 
+  async denyPartner(data: any) {
+
+    // const partner = new Partner();
+    // partner.mou = "";
+    // console.log(data.filters)
+    // console.log(data.payload)
+
+    try {
+      const partner = new Partner();
+      partner.mou = null;
+      const update = await this.dataServices.partners.updateOne(data.filters, partner);
+      return update
+    } catch (err){
+      console.log(error)
+      return err
+    }
+
+  }
+
   async verifyPartner(data: any) {
 
     await this.dataServices.partners.updateOne(data.filters, data.payload);
@@ -113,7 +127,7 @@ export class PartnerUseCases {
       subject: `${partnerProfile[0].name}, your partnership submission has been verified`,
       params: {
         "name": partnerProfile[0].name,
-        "link": `http://pusat-karir.polban.ac.id/${newToken.token}`
+        "link": `http://localhost:3000/mou?t=${newToken.token}`
       }
     };
     return this.clientEmail

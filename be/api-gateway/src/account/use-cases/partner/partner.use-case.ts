@@ -63,6 +63,15 @@ export class PartnerUseCases {
       );
   }
 
+  denyPartner(payload: any) {
+    const pattern = { cmd: 'deny_partner' };
+    return this.clientPartner
+    .send<string>(pattern, payload)
+      .pipe(
+        map((message: string) => ({ message})),
+      );
+  }
+
   getPartnerById(id: any) {
     const pattern = { cmd: 'get_by_id_partner' };
     const payload = id;

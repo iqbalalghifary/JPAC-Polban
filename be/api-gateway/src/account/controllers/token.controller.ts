@@ -20,7 +20,7 @@ export class TokenController {
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni', 'Student', 'Operator', 'Partner')
-  @Get('filters')
+  @Post('filters')
   compareToken(@Body() item?: any) {
     return this.tokenUseCases.compareToken(item)
   }

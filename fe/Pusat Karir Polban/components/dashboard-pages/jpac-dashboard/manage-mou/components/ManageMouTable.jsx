@@ -20,50 +20,56 @@ const JobListingsTable = () => {
     }
   }
 
-  const postStatus = (id, status) => {
+  useEffect(() => {
     axios
-      .put(`http://localhost:3010/api/partner/activate/${id}`, { status })
+      .post("http://localhost:3010/api/partner/get", data, config)
       .then((response) => {
-        const updatedJobs = jobs.map((job) =>
-          job.id === id ? { ...job, status: response.data.status } : job
-        );
+        const updatedJobs = response.data.message.map((job) => ({
+          ...job,
+        }));
         setJobs(updatedJobs);
-        setStatusChanges([...statusChanges, id]);
-        console.log(`Status berhasil diubah menjadi ${status}`);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  const postStatus = (id) => {
+    axios
+      .put(`http://localhost:3010/api/partner/activate/${id}`)
+      .then(() => {
+        axios
+        .post("http://localhost:3010/api/partner/get", data, config)
+        .then((response) => {
+          const updatedJobs = response.data.message.map((job) => ({
+            ...job,
+          }));
+          setJobs(updatedJobs);
+        })
+        .catch((error) => console.log(error));
       })
       .catch((error) => console.log(error));
   };
 
   const deleteJob = (id) => {
     axios
-      .put(`http://localhost:3010/api/partner/activate/${id}`, { status })
+      .put(`http://localhost:3010/api/partner/reject/${id}`)
       .then(() => {
-        const updatedJobs = jobs.filter((job) => job.id !== id);
-        setJobs(updatedJobs);
-        setStatusChanges([...statusChanges, id]);
-        console.log("MoU berhasil ditolak");
+        axios
+        .post("http://localhost:3010/api/partner/get", data, config)
+        .then((response) => {
+          const updatedJobs = response.data.message.map((job) => ({
+            ...job,
+          }));
+          setJobs(updatedJobs);
+        })
+        .catch((error) => console.log(error));
       })
       .catch((error) => console.log(error));
   };
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3010/api/partner", config)
-      .then((response) => {
-        const updatedJobs = response.data.message.map((job) => ({
-          ...job,
-            status: "not verified" // Set status awal menjadi "not verified"
-        }));
-        console.log("dadang", response)
-        setJobs(updatedJobs);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
   const handleEdit = (item) => {
     const confirmed = window.confirm("Apakah Anda yakin untuk mengaktivasi akun perusahaan?");
     if (confirmed) {
-      postStatus(item.id, "verified");
+      postStatus(item._id);
       const updatedJobs = jobs.filter((job) => job.id !== item.id);
       setJobs(updatedJobs);
     }
@@ -72,7 +78,7 @@ const JobListingsTable = () => {
   const handleReject = (item) => {
     const confirmed = window.confirm("Apakah Anda yakin untuk menolak aktivasi akun perusahaan?");
     if (confirmed) {
-      deleteJob(item.id);
+      deleteJob(item._id);
     }
   };
 
@@ -85,7 +91,6 @@ const JobListingsTable = () => {
   }
 
   const renderActionButton = (item) => {
-  if (item.status !== "not verified" || statusChanges.includes(item.id)) {
     return (
       <div className="option-box">
         <ul className="option-list">
@@ -102,24 +107,6 @@ const JobListingsTable = () => {
         </ul>
       </div>
     );
-  } else {
-    return (
-      <div className="option-box">
-        <ul className="option-list">
-          <li>
-            <button data-text="Terima" onClick={() => handleEdit(item)}>
-              <span className="la la-check"></span>
-            </button>
-          </li>
-          <li>
-            <button data-text="Tolak" onClick={() => handleReject(item)}>
-              <span className="la la-remove"></span>
-            </button>
-          </li>
-        </ul>
-      </div>
-    );
-  }
 };
 
 
@@ -148,7 +135,6 @@ const JobListingsTable = () => {
                 <th>Company Name</th>
                 <th>MoU</th>
                 <th>Created</th>
-                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -170,20 +156,12 @@ const JobListingsTable = () => {
                     </div>
                   </td>
                   <td className="document">
-                    <a href={item.mou} download={getFileNameFromURL(item.mou)}>
-                      {getFileNameFromURL(item.mou)}
+                    <a href={'http://localhost:3010/mou/' + getFileNameFromURL(item.mou)} target="_blank">
+                      { (getFileNameFromURL(item.mou) == null ) ? "Belum mengunggah dokumen" : getFileNameFromURL(item.mou)}
                     </a>
                   </td>
                   <td>
                     <a>{item.createdAt}</a>
-                  </td>
-                  <td
-                    className="status"
-                    style={{
-                      color: item.status === "verified" ? "green" : "red",
-                    }}
-                  >
-                    {item.status || "Belum di verifikasi"}
                   </td>
                   <td>{renderActionButton(item)}</td>
                 </tr>

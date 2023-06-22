@@ -44,9 +44,19 @@ export class PartnerController {
     }
   }
 
+  @MessagePattern({ cmd: 'deny_partner' })
+  async denyPartner(data: any) {
+    try {
+      return await this.partnerUseCases.denyPartner(data);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   @MessagePattern({ cmd: 'mou_partner' })
   async updateMoU(data: any) {
     try {
+      console.log("dadang")
       return await this.partnerUseCases.uploadMoU(data);
     } catch (error) {
       console.log(error);

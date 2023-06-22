@@ -1,9 +1,30 @@
-import Map from "../../../Map";
+import { useState } from "react";
 import Select from "react-select";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const PostBoxForm = () => {
+
+  const [selectedValue, setSelectedValue] = useState([]);
+  const [formData, setFormData] = useState({
+    jobTitleVal: "",
+    jobTypeVal: "",
+    descriptionVal: "",
+    deadlineVal: "",
+  });
+
+  const handleChangeArray = (e) => {
+    setSelectedValue(Array.isArray(e) ? e.map(x => x.value) : []);
+  }
+
+  const handleChange = (e) => {
+    if (e.target.name === "logo") {
+      setFormData({ ...formData, logo: e.target.files[0] });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+  };
+
   const options = [
     { value: "D3 Teknik Konstruksi Gedung", label: "D3 Teknik Konstruksi Gedung" },
     { value: "D3 Teknik Konstruksi Sipil", label: "D3 Teknik Konstruksi Sipil" },
@@ -46,6 +67,8 @@ const PostBoxForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    console.log(formData)
+
     // Contoh penanganan berhasil
     toast.success('Job vacancies have been posted');
 
@@ -59,38 +82,41 @@ const PostBoxForm = () => {
         {/* Input */}
         <div className="form-group col-lg-12 col-md-12">
           <label>Job Title</label>
-          <input type="text" name="name" placeholder="Title" />
+          <input type="text" name="jobTitleVal" placeholder="Title" onChange={handleChange} />
         </div>
 
         <div className="form-group col-lg-6 col-md-12">
           <label>Job Type</label>
-          <select className="chosen-single form-select">
-            <option>Full Time</option>
-            <option>Part Time</option>
+          <select className="chosen-single form-select" name="jobTypeVal" onChange={handleChange}>
+            <option>Choose Job Type</option>
+            <option value={"Full-time"}>Full Time</option>
+            <option value={"Internship"}>Internship</option>
           </select>
         </div>
 
         {/* Select */}
         <div className="form-group col-lg-12 col-md-12">
-          <label>Target</label>
+          <label>Provision</label>
           <Select
+            name="provisionVal"
             options={options}
             isMulti
-            placeholder="Select program studi"
+            placeholder="Select study program"
+            onChange={handleChangeArray}
           />
         </div>
         
         {/* About Company */}
         <div className="form-group col-lg-12 col-md-12">
           <label>Description Jobs</label>
-          <textarea placeholder="Enter your job description"></textarea>
+          <textarea placeholder="Enter your job description" name="descriptionVal" onChange={handleChange}></textarea>
         </div>
 
         {/* Input */}
         <div className="form-group col-lg-12 col-md-12">
           <label>Deadline Date</label>
           <div>
-            <input type="date" name="deadline" placeholder="15.06.2023" />
+            <input type="date" name="deadlineVal" placeholder="15.06.2023" onChange={handleChange} />
           </div>
         </div>
 

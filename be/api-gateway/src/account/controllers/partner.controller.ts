@@ -17,6 +17,8 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/app/guard/jwt.auth.guard';
 import { RoleAuthGuard } from 'src/app/guard/roles-auth.guard';
 import { Roles } from 'src/app/guard/roles-decorator';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
 
 @Controller('api/partner')
 export class PartnerController {
@@ -46,12 +48,22 @@ export class PartnerController {
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put('upload-mou/:id')
-  @UseInterceptors(FileInterceptor('mou'))
+  @UseInterceptors(FileInterceptor('file', {
+    storage: diskStorage({
+      destination: './public/mou'
+      , filename: (req, file, cb) => {
+        const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
+        cb(null, `${randomName}${extname(file.originalname)}`)
+      }
+    })
+  }))
   updateMoU(
     @Param('id') userId: string,
     @UploadedFile() file: Express.Multer.File
   ) {
-    return this.partnerUseCases.uploadMoU({ filter_token: { referenceAttributeId: userId }, filter_partner: { _id: userId }, payload: file });
+    console.log(file);
+
+    return this.partnerUseCases.uploadMoU({ filter_token: { referenceAttributeId: userId }, filter_partner: { _id: userId }, payload: file.path });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
@@ -59,6 +71,13 @@ export class PartnerController {
   @Put('verify/:id')
   verifyPartner(@Param('id') userId: string) {
     return this.partnerUseCases.verifyPartner({ filters: { _id: userId }, payload: { status: 'diverifikasi' } });
+  }
+
+  @UseGuards(JwtAuthGuard, RoleAuthGuard)
+  @Roles('Alumni', 'Student', 'Operator', 'Partner')
+  @Put('reject/:id')
+  denyPartner(@Param('id') userId: string) {
+    return this.partnerUseCases.denyPartner({ filters: { _id: userId }, payload: { mou: null } });
   }
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
