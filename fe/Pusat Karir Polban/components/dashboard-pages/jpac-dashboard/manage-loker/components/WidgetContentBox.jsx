@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import candidatesData from "../../../../../data/candidates";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Link from "next/link";
 
@@ -15,22 +14,75 @@ const WidgetContentBox = () => {
       }
     }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+    const data = {
+      status: "diusulkan"
+    }
 
-  const fetchData = () => {
+    const data2 = {
+      status: "diverifikasi"
+    }
+
+    const postStatus = (id) => {
+      axios
+        .put(`http://localhost:3010/api/vacancy/activate/${id}`)
+        .then(() => {
+          axios
+          .post("http://localhost:3010/api/vancancy/get", data, config)
+          .then((response) => {
+            const updatedJobs = response.data.message.map((job) => ({
+              ...job,
+            }));
+            setJobs(updatedJobs);
+          })
+          .catch((error) => console.log(error));
+        })
+        .catch((error) => console.log(error));
+    };
+  
+    const deleteJob = (id) => {
+      axios
+        .put(`http://localhost:3010/api/partner/reject/${id}`)
+        .then(() => {
+          axios
+          .post("http://localhost:3010/api/partner/get", data, config)
+          .then((response) => {
+            const updatedJobs = response.data.message.map((job) => ({
+              ...job,
+            }));
+            setJobs(updatedJobs);
+          })
+          .catch((error) => console.log(error));
+        })
+        .catch((error) => console.log(error));
+    };
+
+    const handleEdit = (item) => {
+      const confirmed = window.confirm("Apakah Anda yakin untuk mengaktivasi akun perusahaan?");
+      if (confirmed) {
+        postStatus(item._id);
+        const updatedJobs = vacancyData.filter((job) => job.id !== item.id);
+        setVacancyData(updatedJobs);
+      }
+    };  
+  
+    const handleReject = (item) => {
+      const confirmed = window.confirm("Apakah Anda yakin untuk menolak aktivasi akun perusahaan?");
+      if (confirmed) {
+        setVacancyData(item._id);
+      }
+    };
+
+  useEffect(() => {
     axios
       .get('http://localhost:3010/api/vacancy', config)
       .then((response) => {
-        // Handle response data
+        console.log(response)
         setVacancyData(response.data.message);
       })
       .catch((error) => {
-        // Handle error
         console.error(error);
       });
-  };
+  }, []);
 
   return (
     <div className="widget-content">
@@ -40,9 +92,7 @@ const WidgetContentBox = () => {
             <h6>Pusat Karir Polban</h6>
 
             <TabList className="aplicantion-status tab-buttons clearfix">
-              <Tab className="tab-btn totals"> Total(s): 6</Tab>
-              <Tab className="tab-btn approved"> Approved: 2</Tab>
-              <Tab className="tab-btn rejected"> Rejected(s): 4</Tab>
+              <Tab className="tab-btn totals"> Total(s): { vacancyData.length }</Tab>
             </TabList>
           </div>
 
@@ -57,7 +107,7 @@ const WidgetContentBox = () => {
                     <div className="inner-box">
                       <div className="content">
                         <figure className="image">
-                          <img src={candidate.avatar} alt="candidates" />
+                          <img src={"/images/resource/company-logo/3-41.png"} alt="candidates" />
                         </figure>
                         <h4 className="name">
                           <Link href={`/candidates-single-v1/${candidate._id}`}>
@@ -74,15 +124,15 @@ const WidgetContentBox = () => {
                             {candidate.location}
                           </li>
                           <li>
-                            <span className="icon flaticon-money"></span> $
-                            {candidate.hourlyRate} / hour
+                            <span className="icon flaticon-money"></span> Rp.
+                            {candidate.pay}
                           </li>
                         </ul>
                         {/* End candidate-info */}
 
                         <ul className="post-tags">
                           {candidate.target.map((val, i) => (
-                            <li key={i}>
+                            <li style={{ marginBottom: "10px" }} key={i}>
                               <a href="#">{val}</a>
                             </li>
                           ))}
@@ -98,12 +148,12 @@ const WidgetContentBox = () => {
                             </button>
                           </li>
                           <li>
-                            <button data-text="Approve Aplication">
+                            <button data-text="Approve Aplication" onClick={() => handleEdit(candidate)}>
                               <span className="la la-check"></span>
                             </button>
                           </li>
                           <li>
-                            <button data-text="Reject Aplication">
+                            <button data-text="Reject Aplication" onClick={() => handleReject(candidate)}>
                               <span className="la la-times-circle"></span>
                             </button>
                           </li>

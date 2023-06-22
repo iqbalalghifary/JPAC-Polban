@@ -12,8 +12,8 @@ export class VacancyUseCases {
     @Inject('SERVICE_EMAIL') private readonly clientEmail: ClientProxy,
   ) {}
 
-  getVacancy(item?: any) {
-    return this.dataServices.vacancies.get(item);
+  async getVacancy(item?: any) {
+    return await this.dataServices.vacancies.get(item);
   }
 
   async getVacancyWithPartner(item?: any) {

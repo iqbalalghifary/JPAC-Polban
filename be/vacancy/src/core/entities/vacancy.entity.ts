@@ -4,6 +4,8 @@ export class Vacancy {
   referencePartner: string;
   target: string[];
   description: string;
+  pay: number;
+  location: string;
   deadline: Date;
   isAppear: boolean;
   status: string;

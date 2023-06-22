@@ -14,6 +14,12 @@ export class Vacancy {
   referencePartner: string;
 
   @Prop({ required: true })
+  pay: number;
+
+  @Prop({ required: true })
+  location: string;
+
+  @Prop({ required: true })
   target: string[];
 
   @Prop({ required: true })

@@ -2,7 +2,6 @@ import MobileMenu from "../../../header/MobileMenu";
 import DashboardHeader from "../../../header/DashboardHeader";
 import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardJpacSidebar from "../../../header/DashboardJpacSidebar";
-import BreadCrumb from "../../BreadCrumb";
 import CopyrightFooter from "../../CopyrightFooter";
 import WidgetContentBox from "./components/WidgetContentBox";
 import WidgetTopFilterBox from "./components/WidgetTopFilterBox";
@@ -41,7 +40,7 @@ const index = () => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>Applicant</h4>
+                    <h4>Vacancy Submission</h4>
                     <WidgetTopFilterBox />
                   </div>
                   {/* End top widget filter bar */}

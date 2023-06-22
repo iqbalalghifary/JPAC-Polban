@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Select from "react-select";
 import { toast } from 'react-toastify';
+import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 
 const PostBoxForm = () => {
@@ -11,6 +12,8 @@ const PostBoxForm = () => {
     jobTypeVal: "",
     descriptionVal: "",
     deadlineVal: "",
+    locationVal: "",
+    payVal: ""    
   });
 
   const handleChangeArray = (e) => {
@@ -64,16 +67,37 @@ const PostBoxForm = () => {
     { value: "D3 Bahasa Inggris", label: "D3 Bahasa Inggris" },
   ];
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(formData)
+    const data = {
+      title: formData.jobTitleVal,
+      field: formData.jobTypeVal,
+      referencePartner: "6493956b63d80b2762deff1c",
+      target: selectedValue,
+      description: formData.descriptionVal,
+      deadline: formData.deadlineVal,
+      location: formData.locationVal,
+      pay: formData.payVal
+    }
 
-    // Contoh penanganan berhasil
-    toast.success('Job vacancies have been posted');
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQWx1bW5pIiwiaWF0IjoxNjg3Mjc3ODk5LCJleHAiOjE2ODc1MzcwOTl9.bCNbl8YVht4RTGn10oqanil0DjF2PxtlRg7ZGMZ2uZI`
+        }
+      }
 
-    // Contoh penanganan gagal
-    // toast.error('Job vacancies failed to post');
+    await axios.post('http://127.0.0.1:3010/api/vacancy', data, config)
+      .then((res) => {
+        toast.success('Registration success'); // Tampilkan toaster sukses
+        console.log(res);
+      })
+      .catch((err) => {
+        toast.error('Registration failed'); // Tampilkan toaster gagal
+        console.log(err);
+      });
   };
 
   return (
@@ -85,13 +109,18 @@ const PostBoxForm = () => {
           <input type="text" name="jobTitleVal" placeholder="Title" onChange={handleChange} />
         </div>
 
-        <div className="form-group col-lg-6 col-md-12">
+        <div className="form-group col-lg-6 col-md-12 w-100">
           <label>Job Type</label>
           <select className="chosen-single form-select" name="jobTypeVal" onChange={handleChange}>
             <option>Choose Job Type</option>
             <option value={"Full-time"}>Full Time</option>
             <option value={"Internship"}>Internship</option>
           </select>
+        </div>
+
+        <div className="form-group col-lg-12 col-md-12">
+          <label>Location</label>
+          <input type="text" name="locationVal" placeholder="Location" onChange={handleChange} />
         </div>
 
         {/* Select */}
@@ -106,6 +135,11 @@ const PostBoxForm = () => {
           />
         </div>
         
+        <div className="form-group col-lg-12 col-md-12">
+          <label>Pay / Month</label>
+          <input type="text" name="payVal" placeholder="Pay" onChange={handleChange} />
+        </div>
+
         {/* About Company */}
         <div className="form-group col-lg-12 col-md-12">
           <label>Description Jobs</label>
