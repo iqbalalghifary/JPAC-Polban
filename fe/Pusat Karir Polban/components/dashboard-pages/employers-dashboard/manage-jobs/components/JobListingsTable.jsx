@@ -1,7 +1,38 @@
 import Link from "next/link";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import jobs from "../../../../../data/job-featured.js";
+import Cookies from 'js-cookie';
 
 const JobListingsTable = () => {
+
+  const [vacancyData, setVacancyData] = useState([]);
+
+  let config = {
+    headers: {
+      "Content-Type": "application/json",
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': `Bearer ${Cookies.get('token')}`
+      }
+    }
+
+    const data = {
+      status: "diusulkan"
+    }
+
+    useEffect(() => {
+      axios
+        .post("http://localhost:3010/api/vacancy/get", {}, config)
+        .then((response) => {
+          console.log(response)
+          setVacancyData(response.data.message);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }, []);
+  
+
   return (
     <div className="tabs-box">
       <div className="widget-title">
@@ -27,7 +58,6 @@ const JobListingsTable = () => {
             <thead>
               <tr>
                 <th>Title</th>
-                <th>Applications</th>
                 <th>Created & Expired</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -35,7 +65,7 @@ const JobListingsTable = () => {
             </thead>
 
             <tbody>
-              {jobs.slice(0, 4).map((item) => (
+              {vacancyData.map((item) => (
                 <tr key={item.id}>
                   <td>
                     {/* <!-- Job Block --> */}
@@ -43,11 +73,11 @@ const JobListingsTable = () => {
                       <div className="inner-box">
                         <div className="content">
                           <span className="company-logo">
-                            <img src={item.logo} alt="logo" />
+                            <img src={'/images/resource/company-logo/3-41.png'} alt="logo" />
                           </span>
                           <h4>
                             <Link href={`/job-single-v3/${item.id}`}>
-                              {item.jobTitle}
+                              {item.title}
                             </Link>
                           </h4>
                           <ul className="job-info">
@@ -64,14 +94,11 @@ const JobListingsTable = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="applied">
-                    <a href="#">3+ Applied</a>
-                  </td>
                   <td>
-                    October 27, 2017 <br />
-                    April 25, 2011
+                    { new Date(item._createdAt).toDateString() } <br />
+                    { new Date(item.deadline).toDateString() }
                   </td>
-                  <td className="status">Active</td>
+                  <td>{ item.status.toUpperCase() }</td>
                   <td>
                     <div className="option-box">
                       <ul className="option-list">

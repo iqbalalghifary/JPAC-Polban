@@ -3,6 +3,7 @@ import Select from "react-select";
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
 
 const PostBoxForm = () => {
 
@@ -73,7 +74,7 @@ const PostBoxForm = () => {
     const data = {
       title: formData.jobTitleVal,
       field: formData.jobTypeVal,
-      referencePartner: "6493956b63d80b2762deff1c",
+      referencePartner: Cookies.get('username'),
       target: selectedValue,
       description: formData.descriptionVal,
       deadline: formData.deadlineVal,
@@ -85,12 +86,20 @@ const PostBoxForm = () => {
       headers: {
         "Content-Type": "application/json",
         'Access-Control-Allow-Origin': '*',
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQWx1bW5pIiwiaWF0IjoxNjg3Mjc3ODk5LCJleHAiOjE2ODc1MzcwOTl9.bCNbl8YVht4RTGn10oqanil0DjF2PxtlRg7ZGMZ2uZI`
+        'Authorization': `Bearer ${Cookies.get('token')}`
         }
       }
 
     await axios.post('http://127.0.0.1:3010/api/vacancy', data, config)
       .then((res) => {
+        setFormData({
+          jobTitleVal: "",
+          jobTypeVal: "",
+          descriptionVal: "",
+          deadlineVal: "",
+          locationVal: "",
+          payVal: ""
+        })
         toast.success('Registration success'); // Tampilkan toaster sukses
         console.log(res);
       })

@@ -19,7 +19,7 @@ export class VacancyUseCases {
   async getVacancyWithPartner(item?: any) {
     const vacancy = await this.dataServices.vacancies.get(item);
 
-    const pattern = { cmd: 'get_by_id_partner' };
+    const pattern = { cmd: 'get_all_partner' };
     const payload = vacancy[0].referencePartner
     const partnerData = await this.clientAccount
       .send<Object>(pattern, payload)
@@ -51,6 +51,10 @@ export class VacancyUseCases {
           map((message: Object) => ({ message })),
         ).toPromise();
           
+    console.log(vacancyData);
+
+    console.log(partnerData);
+
     const pattern2 = { cmd: 'email_aktivasi_loker' };
     const payload2 = { 
       to : partnerData.message[0].email,

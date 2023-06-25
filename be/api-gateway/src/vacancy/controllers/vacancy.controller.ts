@@ -13,7 +13,7 @@ export class VacancyController {
 
   @UseGuards(JwtAuthGuard, RoleAuthGuard)
   @Roles('Alumni', 'Student', 'Operator', 'Partner')
-  @Get()
+  @Post('get')
   getAll(@Body() item?: any) {
     return this.vacancyUseCases.getAllVacancies(item);
   }

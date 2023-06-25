@@ -44,18 +44,19 @@ export class UserUseCases {
 
   async login(data: any) {
 
-    console.log(data)
-
     const user = await this.dataServices.users.get({ username: data.username })
 
     const comparedResult = await bcrypt.compare(data.password, user[0].password);
+
+    console.log(user)
+    console.log(comparedResult)
 
     if(user && comparedResult ){
       const payload = { role: user[0].userRole };
       return {
         access_token: this.jwtService.sign(payload),
         user: {
-          username: data.username, 
+          username: user[0].referenceAttributeId._id, 
           role: user[0].userRole    
         }
       }

@@ -17,6 +17,15 @@ export class PartnerController {
     }
   }
 
+  @MessagePattern({ cmd: 'get_by_id_partner' })
+  async getById(id: any) {
+    try {
+      return await this.partnerUseCases.getPartner({ _id: id });   
+    } catch (error) {
+      console.log(error); 
+    }
+  }
+
   @MessagePattern({ cmd: 'get_partner_with_vacancies' })
   async getPartnerWithVacancies(item: any) {
     try {

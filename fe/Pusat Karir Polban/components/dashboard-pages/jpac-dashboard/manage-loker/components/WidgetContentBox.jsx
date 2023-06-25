@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Link from "next/link";
+import Cookies from 'js-cookie';
 
 const WidgetContentBox = () => {
   const [vacancyData, setVacancyData] = useState([]);
@@ -10,7 +11,7 @@ const WidgetContentBox = () => {
     headers: {
       "Content-Type": "application/json",
       'Access-Control-Allow-Origin': '*',
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQWx1bW5pIiwiaWF0IjoxNjg3Mjc3ODk5LCJleHAiOjE2ODc1MzcwOTl9.bCNbl8YVht4RTGn10oqanil0DjF2PxtlRg7ZGMZ2uZI`
+      'Authorization': `Bearer ${Cookies.get('token')}`
       }
     }
 
@@ -18,17 +19,14 @@ const WidgetContentBox = () => {
       status: "diusulkan"
     }
 
-    const data2 = {
-      status: "diverifikasi"
-    }
-
     const postStatus = (id) => {
       axios
-        .put(`http://localhost:3010/api/vacancy/activate/${id}`)
+        .put(`http://localhost:3010/api/vacancy/activate/${id}`, {}, config)
         .then(() => {
           axios
-          .post("http://localhost:3010/api/vancancy/get", data, config)
+          .post("http://localhost:3010/api/vacancy/get", data, config)
           .then((response) => {
+            setJobs([]);
             const updatedJobs = response.data.message.map((job) => ({
               ...job,
             }));
@@ -74,7 +72,7 @@ const WidgetContentBox = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3010/api/vacancy', config)
+      .post("http://localhost:3010/api/vacancy/get", data, config)
       .then((response) => {
         console.log(response)
         setVacancyData(response.data.message);

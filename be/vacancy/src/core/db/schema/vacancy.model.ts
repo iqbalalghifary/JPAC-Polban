@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export type VacancyDocument = Vacancy & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Vacancy {
   @Prop({ required: true })
   title: string;
