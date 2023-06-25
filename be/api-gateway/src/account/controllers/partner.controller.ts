@@ -45,8 +45,6 @@ export class PartnerController {
     return this.partnerUseCases.createPartner(datas);
   }
 
-  @UseGuards(JwtAuthGuard, RoleAuthGuard)
-  @Roles('Alumni', 'Student', 'Operator', 'Partner')
   @Put('upload-mou/:id')
   @UseInterceptors(FileInterceptor('file', {
     storage: diskStorage({

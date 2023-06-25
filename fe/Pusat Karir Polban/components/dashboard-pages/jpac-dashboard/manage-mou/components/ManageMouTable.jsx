@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const JobListingsTable = () => {
   const [jobs, setJobs] = useState([]);
@@ -8,7 +11,7 @@ const JobListingsTable = () => {
     headers: {
       "Content-Type": "application/json",
       'Access-Control-Allow-Origin': '*',
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQWx1bW5pIiwiaWF0IjoxNjg3Mjc3ODk5LCJleHAiOjE2ODc1MzcwOTl9.bCNbl8YVht4RTGn10oqanil0DjF2PxtlRg7ZGMZ2uZI`
+      'Authorization': `Bearer ${Cookies.get("token")}`
       }
     }
 
@@ -32,11 +35,12 @@ const JobListingsTable = () => {
 
   const postStatus = (id) => {
     axios
-      .put(`http://localhost:3010/api/partner/activate/${id}`)
+      .put(`http://localhost:3010/api/partner/activate/${id}`, {}, config)
       .then(() => {
         axios
         .post("http://localhost:3010/api/partner/get", data, config)
         .then((response) => {
+          setJobs([]);
           const updatedJobs = response.data.message.map((job) => ({
             ...job,
           }));
@@ -49,11 +53,12 @@ const JobListingsTable = () => {
 
   const deleteJob = (id) => {
     axios
-      .put(`http://localhost:3010/api/partner/reject/${id}`)
+      .put(`http://localhost:3010/api/partner/reject/${id}`, {}, config)
       .then(() => {
         axios
         .post("http://localhost:3010/api/partner/get", data, config)
         .then((response) => {
+          setJobs([]);
           const updatedJobs = response.data.message.map((job) => ({
             ...job,
           }));
@@ -159,7 +164,7 @@ const JobListingsTable = () => {
                     </a>
                   </td>
                   <td>
-                    <a>{item.createdAt}</a>
+                    <a>{new Date(item.createdAt).toDateString()}</a>
                   </td>
                   <td>{renderActionButton(item)}</td>
                 </tr>

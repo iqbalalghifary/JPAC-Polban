@@ -43,6 +43,9 @@ export class UserUseCases {
   }
 
   async login(data: any) {
+
+    console.log(data)
+
     const user = await this.dataServices.users.get({ username: data.username })
 
     const comparedResult = await bcrypt.compare(data.password, user[0].password);

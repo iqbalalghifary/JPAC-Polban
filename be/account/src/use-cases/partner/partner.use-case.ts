@@ -45,10 +45,14 @@ export class PartnerUseCases {
     partner.mou = data.payload;
     const updatePartner = await this.dataServices.partners.updateOne(data.filter_partner, partner);
 
+    console.log(updatePartner);
+
     const token = new Token();
     token.isActive = false;
 
-    await this.dataServices.tokens.updateOne(data.filter_token, token);
+    const hasil = await this.dataServices.tokens.updateOne(data.filter_token, token);
+
+    console.log(hasil);
 
     return updatePartner;
   }

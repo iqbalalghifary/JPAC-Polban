@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FormContent = () => {
 
@@ -16,7 +17,6 @@ const FormContent = () => {
     headers: {
       "Content-Type": "application/json",
       'Access-Control-Allow-Origin': '*',
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQWx1bW5pIiwiaWF0IjoxNjg3Mjc3ODk5LCJleHAiOjE2ODc1MzcwOTl9.bCNbl8YVht4RTGn10oqanil0DjF2PxtlRg7ZGMZ2uZI`
       }
     }
 
@@ -32,7 +32,7 @@ const FormContent = () => {
         if(response.data.message != "Token has expired"){
           setStatus(true);
           setColor('');
-          setRegistrationNumber(response.data.message[0]._id)
+          setRegistrationNumber(response.data.message[0].referenceAttributeId._id)
           setCompanyName(response.data.message[0].referenceAttributeId.name)
         }
       })
@@ -50,13 +50,14 @@ const FormContent = () => {
       method:"put",
       headers:{
         "Content-Type": "multipart/form-data",
-        'Access-Control-Allow-Origin': '*',
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQWx1bW5pIiwiaWF0IjoxNjg3Mjc3ODk5LCJleHAiOjE2ODc1MzcwOTl9.bCNbl8YVht4RTGn10oqanil0DjF2PxtlRg7ZGMZ2uZI`
+        'Access-Control-Allow-Origin': '*'
       },
       data:formData
     }).then(r => r);
 
     console.log(upload);
+
+    toast.success('MoU has uploaded'); // Toast login failure
 
   };
 

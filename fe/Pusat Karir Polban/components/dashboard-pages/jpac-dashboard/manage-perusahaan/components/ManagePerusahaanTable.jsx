@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const JobListingsTable = () => {
   const [jobs, setJobs] = useState([]);
@@ -8,7 +11,7 @@ const JobListingsTable = () => {
     headers: {
       "Content-Type": "application/json",
       'Access-Control-Allow-Origin': '*',
-      'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQWx1bW5pIiwiaWF0IjoxNjg3Mjc3ODk5LCJleHAiOjE2ODc1MzcwOTl9.bCNbl8YVht4RTGn10oqanil0DjF2PxtlRg7ZGMZ2uZI`
+      'Authorization': `Bearer ${Cookies.get("token")}`
       }
     }
 
@@ -39,8 +42,10 @@ const JobListingsTable = () => {
         }, config)
         .then((res) => {
           axios
-          .get("http://localhost:3010/api/partner", config)
+          .post("http://localhost:3010/api/partner/get", data, config)
           .then((response) => {
+            toast.success('Login Success'); // Toast login failure
+            setJobs([])
             const updatedJobs = response.data.message.map((job) => ({
               ...job
             }));
@@ -115,7 +120,7 @@ const JobListingsTable = () => {
                     <br />
                     <a>{item.phone}</a>
                   </td>
-                  <td>{item.createdAt}</td>
+                  <td>{new Date(item.createdAt).toDateString()}</td>
                   <td>
                     <div className="option-box">
                       <ul className="option-list">

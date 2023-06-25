@@ -18,6 +18,8 @@ const FormContent = () => {
       password: password
     }
 
+    console.log(data)
+
     await axios.post('http://127.0.0.1:3010/api/user/login', data)
       .then((res) => {
         Cookies.set('token', res.data.message.access_token);
