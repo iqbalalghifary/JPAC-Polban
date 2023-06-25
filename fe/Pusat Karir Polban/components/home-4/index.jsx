@@ -9,6 +9,8 @@ import Blog from "../blog/Blog";
 import Partner from "../common/partner/Partner";
 import LoginPopup from "../common/form/login/LoginPopup";
 import MobileMenu from "../header/MobileMenu";
+import { useEffect } from "react";
+import Cookies from 'js-cookie';
 
 const index = () => {
     return (
@@ -28,7 +30,7 @@ const index = () => {
             <section className="job-section alternate">
                 <div className="auto-container">
                     <div className="sec-title text-center">
-                        <h2>Let's Build Your Career!</h2>
+                        <h2>Lets Build Your Career!</h2>
                         <div className="text">
                         Recognize the opportunities that will determine your future
                         </div>
@@ -48,7 +50,7 @@ const index = () => {
                     <div className="sec-title text-center">
                         <h2>How It Works?</h2>
                         <div className="text">
-                            Let's get started easily with the Career Center
+                            Lets get started easily with the Career Center
                             Polban
                         </div>
                     </div>

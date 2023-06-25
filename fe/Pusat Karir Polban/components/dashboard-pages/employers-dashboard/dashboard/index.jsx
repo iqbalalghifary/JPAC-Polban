@@ -9,8 +9,17 @@ import Notification from "./components/Notification";
 import Applicants from "./components/Applicants";
 import CopyrightFooter from "../../CopyrightFooter";
 import MenuToggler from "../../MenuToggler";
+import { useEffect } from "react";
+import Cookies from 'js-cookie';
 
 const Index = () => {
+
+  useEffect(() => {
+    if(Cookies.get('role') != "Partner"){
+      window.location = "http://localhost:3000/login";
+    }
+  });
+
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>

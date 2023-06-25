@@ -159,7 +159,7 @@ const JobListingsTable = () => {
                     </div>
                   </td>
                   <td className="document">
-                    <a href={'http://localhost:3010/mou/' + getFileNameFromURL(item.mou)} target="_blank">
+                    <a href={'http://localhost:3010/mou/' + getFileNameFromURL(item.mou)} rel="noreferrer" target="_blank">
                       { (getFileNameFromURL(item.mou) == null ) ? "Belum mengunggah dokumen" : getFileNameFromURL(item.mou)}
                     </a>
                   </td>

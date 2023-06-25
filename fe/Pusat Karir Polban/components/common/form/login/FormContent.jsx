@@ -42,6 +42,14 @@ const FormContent = () => {
     setShowPassword(!showPassword);
   };
 
+  useEffect(() => {
+    if(Cookies.get('role') == "Operator"){
+      window.location = "http://localhost:3000/jpac-dashboard/dashboard";
+    } else if (Cookies.get('role') == "Partner"){
+      window.location = "http://localhost:3000/employers-dashboard/dashboard";
+    }
+  });
+  
   return (
     <div className="form-inner">
       <h3>Login</h3>
@@ -89,7 +97,7 @@ const FormContent = () => {
 
       <div className="bottom-box">
         <div className="text">
-          Don't have an account?{' '}
+          Dont have an account?
           <Link
             href="#"
             className="call-modal signup"
