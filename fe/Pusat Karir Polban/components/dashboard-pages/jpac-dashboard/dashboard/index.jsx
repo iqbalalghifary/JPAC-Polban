@@ -7,8 +7,18 @@ import TopCardBlock from "./components/TopCardBlock";
 import Applicants from "./components/Applicants";
 import CopyrightFooter from "../../CopyrightFooter";
 import MenuToggler from "../../MenuToggler";
+import React, { useEffect } from "react";
+import Cookies from 'js-cookie';
 
 const Index = () => {
+  
+  useEffect(() => {
+    console.log()
+    if(Cookies.get('role') != "Operator"){
+      window.location = "http://localhost:3000/login";
+    }
+  }, []);
+
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>

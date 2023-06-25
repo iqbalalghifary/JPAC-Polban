@@ -31,7 +31,9 @@ const FormContent = () => {
         Cookies.set('token', res.data.message.access_token);
         Cookies.set('username', res.data.message.user.username);
         Cookies.set('role', res.data.message.user.role);
-        console.log('Login success'); // Log success
+
+        window.location = "http://localhost:3000/jpac-dashboard/dashboard";
+        toast.success('Login success'); // Toast login failure
       })
       .catch((err) => {
         console.log(err);
