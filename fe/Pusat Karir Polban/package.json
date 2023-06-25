@@ -12,6 +12,7 @@
     "@faker-js/faker": "^7.6.0",
     "@popperjs/core": "^2.11.6",
     "@reduxjs/toolkit": "^1.9.1",
+    "@types/jquery": "^3.5.16",
     "aos": "^2.3.4",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
@@ -19,6 +20,7 @@
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
     "google-map-react": "^2.2.0",
+    "jquery": "^3.7.0",
     "js-cookie": "^3.0.5",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.29",
@@ -49,5 +51,8 @@
     "sass": "^1.56.1",
     "sharp": "^0.31.3",
     "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.6"
   }
 }

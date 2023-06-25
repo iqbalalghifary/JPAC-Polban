@@ -36,6 +36,14 @@ const FormContent = () => {
 
     await axios.post('http://127.0.0.1:3010/api/partner/register', data)
       .then((res) => {
+        setFormData({
+          namaVal: "",
+          sectorVal: "",
+          addressVal: "",
+          phoneVal: "",
+          emailVal: "",
+          websiteVal: "",
+        })
         toast.success('Registration success'); // Tampilkan toaster sukses
         console.log(res);
       })
@@ -88,7 +96,7 @@ const FormContent = () => {
       <div className="form-group">
         <label>Phone</label>
         <input
-          type="text"
+          type="number"
           name="phoneVal"
           placeholder="phone number"
           pattern="[0-9]+"

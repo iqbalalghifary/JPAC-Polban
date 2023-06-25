@@ -3,8 +3,6 @@ import FormPelamar from "./FormPelamar";
 import FormPerusahaan from "./FormPerusahaan";
 import FormMahasiswa from "./FormMahasiswa";
 import Link from "next/link";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   return (
@@ -42,7 +40,6 @@ const Register = () => {
 
         <TabPanel>
           <FormPerusahaan />
-          <ToastContainer />
         </TabPanel>
 
         <TabPanel>
