@@ -61,13 +61,6 @@ module.exports = [
       icon: "la-lock",
       routePath: "/jpac-dashboard/change-password",
       active: "",
-    },
-    {
-      id: 9,
-      name: "Logout",
-      icon: "la-sign-out",
-      routePath: "/login",
-      active: "",
-    },
+    }
   ];
   

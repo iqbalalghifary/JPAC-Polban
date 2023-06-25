@@ -4,6 +4,7 @@ import { isActiveLink } from "../../utils/linkActiveChecker";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { menuToggle } from "../../features/toggle/toggleSlice";
+import Cookies from 'js-cookie';
 
 const DashboardJpacSidebar = () => {
     const router = useRouter();
@@ -13,6 +14,13 @@ const DashboardJpacSidebar = () => {
     // menu togggle handler
     const menuToggleHandler = () => {
         dispatch(menuToggle());
+    };
+
+    const destroySession = () => {
+        Cookies.remove('token');
+        Cookies.remove('role');
+        Cookies.remove('username');
+        window.location = "http://localhost:3000/login";
     };
 
     return (
@@ -43,6 +51,16 @@ const DashboardJpacSidebar = () => {
                             </Link>
                         </li>
                     ))}
+                        <li
+                            className={`mb-1`}
+                            key={9}
+                            onClick={destroySession}
+                        >
+                            <Link href={'#'}>
+                                <i className={`la la-sign-out`}></i>{" "}
+                                Logout
+                            </Link>
+                        </li>                    
                 </ul>
             </div>
         </div>

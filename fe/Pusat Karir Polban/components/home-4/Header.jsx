@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import HeaderNavContent from "../header/HeaderNavContent";
+import Cookies from 'js-cookie';
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
@@ -51,7 +52,7 @@ const Header = () => {
                 className="theme-btn btn-style-six call-modal"
                 data-bs-toggle="modal"
               >
-                Login / Register
+                { Cookies.get('username') != undefined ? "Logout" : "Login / Register" }
               </a>
               {/* <Link
                 href="/employers-dashboard/post-jobs"

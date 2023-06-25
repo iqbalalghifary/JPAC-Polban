@@ -10,14 +10,6 @@ const FormContent = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const destroySession = () => {
-    Cookies.remove('sessionToken');
-  };
-
-  const handleLogout = () => {
-    destroySession();
-  };    
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -32,8 +24,11 @@ const FormContent = () => {
         Cookies.set('username', res.data.message.user.username);
         Cookies.set('role', res.data.message.user.role);
 
-        window.location = "http://localhost:3000/jpac-dashboard/dashboard";
-        toast.success('Login success'); // Toast login failure
+        if(res.data.message.user.role == "Operator"){
+          window.location = "http://localhost:3000/jpac-dashboard/dashboard";
+        } else {
+          window.location = "http://localhost:3000/employers-dashboard/dashboard";
+        }
       })
       .catch((err) => {
         console.log(err);
