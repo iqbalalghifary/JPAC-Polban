@@ -25,11 +25,12 @@ const FormContent = () => {
     }
 
     const handleFileChange = (e) => {
-      if(this.files[0].size > 2097152){
-        toast.success('File is too big');
+      console.log("kesini harusnya yaa gaess")
+      if(e.target.files[0].size > 2097152){
+        toast.error('File is too big');
         return;
       };  
-      setFile(e.target.files[0]);
+      setFileMoU(e.target.files[0]);
     };
 
   useEffect(() => {
@@ -65,7 +66,9 @@ const FormContent = () => {
 
     console.log(upload);
 
-    toast.success('MoU has uploaded'); // Toast login failure
+    toast.success('MoU has uploaded');
+
+    window.location = "http://localhost:3000";
 
   };
 
