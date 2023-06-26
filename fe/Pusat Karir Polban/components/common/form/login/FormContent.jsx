@@ -42,13 +42,13 @@ const FormContent = () => {
     setShowPassword(!showPassword);
   };
 
-  useEffect(() => {
-    if(Cookies.get('role') == "Operator"){
-      window.location = "http://localhost:3000/jpac-dashboard/dashboard";
-    } else if (Cookies.get('role') == "Partner"){
-      window.location = "http://localhost:3000/employers-dashboard/dashboard";
-    }
-  });
+  // useEffect(() => {
+  //   if(Cookies.get('role') == "Operator"){
+  //     window.location = "http://localhost:3000/jpac-dashboard/dashboard";
+  //   } else if (Cookies.get('role') == "Partner"){
+  //     window.location = "http://localhost:3000/employers-dashboard/dashboard";
+  //   }
+  // });
   
   return (
     <div className="form-inner">

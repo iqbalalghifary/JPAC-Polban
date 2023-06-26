@@ -24,6 +24,14 @@ const FormContent = () => {
       token : urlParams.get('t')
     }
 
+    const handleFileChange = (e) => {
+      if(this.files[0].size > 2097152){
+        toast.success('File is too big');
+        return;
+      };  
+      setFile(e.target.files[0]);
+    };
+
   useEffect(() => {
     axios
       .post(`http://localhost:3010/api/token/filters`, data, config)
@@ -90,7 +98,7 @@ const FormContent = () => {
         </div>
 
         <div className="form-group">
-          <label>Upload File (PDF)</label>
+          <label>Upload File (PDF) *Max 2mb</label>
           <div>
             <label>
               <input
@@ -98,7 +106,7 @@ const FormContent = () => {
                 name="file"
                 accept=".pdf"
                 required
-                onChange={(e) => setFileMoU(e.target.files[0])}
+                onChange={handleFileChange}
               />
             </label>
           </div>
