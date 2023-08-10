@@ -90,7 +90,7 @@ const PostBoxForm = () => {
         }
       }
 
-    await axios.post('http://127.0.0.1:3010/api/vacancy', data, config)
+    await axios.post('https://api.agrapana.tech/api/vacancy', data, config)
       .then((res) => {
         setFormData({
           jobTitleVal: "",

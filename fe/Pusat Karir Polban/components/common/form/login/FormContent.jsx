@@ -20,16 +20,18 @@ const FormContent = () => {
 
     console.log(data)
 
-    await axios.post('http://127.0.0.1:3010/api/user/login', data)
+    // http://127.0.0.1:3010
+
+    await axios.post('https://api.agrapana.tech/api/user/login', data)
       .then((res) => {
         Cookies.set('token', res.data.message.access_token);
         Cookies.set('username', res.data.message.user.username);
         Cookies.set('role', res.data.message.user.role);
 
         if(res.data.message.user.role == "Operator"){
-          window.location = "http://localhost:3000/jpac-dashboard/dashboard";
+          window.location = "https://kota203.agrapana.tech/jpac-dashboard/dashboard";
         } else {
-          window.location = "http://localhost:3000/employers-dashboard/dashboard";
+          window.location = "https://kota203.agrapana.tech/employers-dashboard/dashboard";
         }
       })
       .catch((err) => {

@@ -14,7 +14,7 @@ const Index = () => {
   
   useEffect(() => {
     if(Cookies.get('role') != "Operator"){
-      window.location = "http://localhost:3000/login";
+      window.location = "https://kota203.agrapana.tech/login";
     }
   });
 

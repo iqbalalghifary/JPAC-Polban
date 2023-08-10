@@ -55,7 +55,7 @@ const FormContent = () => {
     formData.append('file', fileMoU);
 
     const upload = await axios({
-      url:`http://127.0.0.1:3010/api/partner/upload-mou/${registrationNumber}`,
+      url:`https://api.agrapana.tech/api/partner/upload-mou/${registrationNumber}`,
       method:"put",
       headers:{
         "Content-Type": "multipart/form-data",
@@ -68,7 +68,7 @@ const FormContent = () => {
 
     toast.success('MoU has uploaded');
 
-    window.location = "http://localhost:3000";
+    window.location = "https://kota203.agrapana.tech/";
 
   };
 

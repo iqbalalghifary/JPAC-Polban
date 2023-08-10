@@ -20,7 +20,7 @@ const DashboardEmployerSidebar = () => {
         Cookies.remove('token');
         Cookies.remove('role');
         Cookies.remove('username');
-        window.location = "http://localhost:3000/login";
+        window.location = "https://kota203.agrapana.tech/login";
     };
 
     return (

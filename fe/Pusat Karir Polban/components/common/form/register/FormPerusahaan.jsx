@@ -34,7 +34,7 @@ const FormContent = () => {
       website: formData.websiteVal,
     }
 
-    await axios.post('http://127.0.0.1:3010/api/partner/register', data)
+    await axios.post('https://api.agrapana.tech/api/partner/register', data)
       .then((res) => {
         setFormData({
           namaVal: "",
