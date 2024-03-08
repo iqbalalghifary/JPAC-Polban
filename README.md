@@ -14,4 +14,6 @@ This is a project to create a website for the Bandung State Polytechnic JPAC ser
    ![image](https://github.com/iqbalalghifary/JPAC-Polban---TA/assets/51478039/018a1dae-c03b-4c50-a8fa-7be750082772)
 6. Gallery
    ![image](https://github.com/iqbalalghifary/JPAC-Polban---TA/assets/51478039/6a507ace-9629-4f15-85b7-064889e2288e)
+7. Service List
+   ![image](https://github.com/iqbalalghifary/JPAC-Polban---TA/assets/51478039/be963f86-c61f-4c32-bd8f-506e7af835e5)
 
