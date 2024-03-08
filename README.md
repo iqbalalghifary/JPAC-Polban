@@ -1,5 +1,7 @@
-# KoTA 203
+# JPAC Polban
+This is a project to create a website for the Bandung State Polytechnic JPAC service unit. We consisted of 3 people to build this project from the analysis to testing stages. In making it, we used the Rational Unified Process framework. Meanwhile, for development, we use a microservices architecture with technologies such as Next JS, Nest JS, Express JS, Mongo DB, Figma.
 
+# Demonstration
 1. Home Page
    ![image](https://github.com/iqbalalghifary/JPAC-Polban---TA/assets/51478039/47138cf8-f92e-4448-9c76-bd21c1b5f382)
    ![image](https://github.com/iqbalalghifary/JPAC-Polban---TA/assets/51478039/ac40da57-7dda-4757-98c0-1cb34989a6a4)
